@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation de compte{% endblock %}
+
+{% block body %}
+<section>
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+
+    <button type="submit">Valider</button>
+    {{ form_end(form) }}
+</section>
+{% endblock %}
