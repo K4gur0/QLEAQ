@@ -1,17 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends 'security/login.html.twig' %}
 
 {% block title %}QLEAQ | Inscription{% endblock %}
 
-{% block body %}
-    <h1>Créez votre compte</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    {% block content %}
+{#        <h1>Créez votre compte</h1>#}
 
-        <button class="btn">Valider</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+{#        {{ form_start(registrationForm) }}#}
+{#            {{ form_row(registrationForm.email) }}#}
+{#            {{ form_row(registrationForm.nom) }}#}
+{#            {{ form_row(registrationForm.prenom) }}#}
+{#            {{ form_row(registrationForm.plainPassword) }}#}
+{#            {{ form_row(registrationForm.agreeTerms) }}#}
+
+{#            <button class="btn">Valider</button>#}
+{#        {{ form_end(registrationForm) }}#}
+
+        <div class="columns is-centered section">
+            <div class="column is-one-third box">
+                <h1 class="title has-text-primary has-text-centered">
+                    Inscription
+                </h1>
+
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, {
+                    label: 'Votre adresse email'
+                }) }}
+
+                {{ form_row(registrationForm.nom, {
+                    label: 'Votre nom'
+                }) }}
+
+                {{ form_row(registrationForm.prenom, {
+                    label: 'Votre prénom'
+                }) }}
+
+                {#
+                    le champ plainPassword est un RepeatedType (champ en double, à répéter)
+                    pour afficher chaque input, on peut utiliser champ.first & champ.second
+                #}
+                {{ form_row(registrationForm.plainPassword.first, {
+                    label: 'Mot de passe'
+                }) }}
+
+                {{ form_row(registrationForm.plainPassword.second, {
+                    label: 'Répétez le mot de passe'
+                }) }}
+
+                <button class="button is-primary is-fullwidth" type="submit">
+                    S'inscrire
+                </button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    {% endblock %}
