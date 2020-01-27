@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/index.html.twig' %}
 
 {% block title %}Creation de compte{% endblock %}
 
-{% block body %}
+{% block content %}
 <section>
     {{ form_start(form) }}
         {{ form_row(form.nom) }}
@@ -14,3 +14,4 @@
     {{ form_end(form) }}
 </section>
 {% endblock %}
+

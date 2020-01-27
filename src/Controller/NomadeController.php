@@ -17,7 +17,7 @@ class NomadeController extends AbstractController
         $nomade = new Nomade();
         $form = $this->createForm(NomadeType::class, $nomade);
 
-        return $this->render('nomade/index.html.twig', [
+        return $this->render('nomade/nomade.html.twig', [
             'form' => $form->createView(),
         ]);
     }

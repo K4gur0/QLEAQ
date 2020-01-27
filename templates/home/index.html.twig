@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QLEAQ
+    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar has-background-grey-darker is-dark">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ path('app_login') }}">
+                <p class="subtitle is-4 has-text-primary">
+
+                    <b>QLEAQ</b>
+                </p>
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+
+
+            <form method="post">
+
+                {% if is_granted('ROLE_USER') %}
+                    <div class="mb-3">
+                        Bienvenue {{ app.user.username }} !<br> <a href="{{ path('app_logout') }}">Deconnexion</a>
+                        <br> <a href="{{ path('nomade') }}">Gerer mon compte</a>
+                    </div>
+                {% else %}
+                    {#                                        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>#}
+                    {#                                        <label for="inputEmail">Email</label>#}
+                    {#                                        <input type="email"  name="email" id="inputEmail" class="form-control" required autofocus>#}
+                    {#                                        <label for="inputPassword">Mot de passe</label>#}
+                    {#                                        <input type="password" name="password" id="inputPassword" class="form-control" required>#}
+
+                    {#                                        <input type="hidden" name="_csrf_token"#}
+                    {#                                               value="{{ csrf_token('authenticate') }}"#}
+                    {#                                        >#}
+
+                    <a class="btn btn-lg btn-primary" href="{{ path('app_login') }}" type="submit">
+                        Connexion
+                    </a>
+
+                    Vous n'avez pas de compte? <a href="{{ path('app_register') }}">Inscrivez-vous !</a>
+                {% endif %}
+
+            </form>
+
+        </div>
+        </div>
+    </nav>
+
+
+
+    {% block content %}{% endblock %}
+
+{% endblock %}

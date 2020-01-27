@@ -1,4 +1,4 @@
-{% extends 'security/login.html.twig' %}
+{% extends 'home/index.html.twig' %}
 
 {% block title %}QLEAQ | Inscription{% endblock %}
 
@@ -23,8 +23,12 @@
                 </h1>
 
                 {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.email, {
+
+                {{ form_row(registrationForm.email.first, {
                     label: 'Votre adresse email'
+                }) }}
+                {{ form_row(registrationForm.email.second, {
+                    label: 'Veuillez repéter votre adresse email'
                 }) }}
 
                 {{ form_row(registrationForm.nom, {
@@ -44,7 +48,7 @@
                 }) }}
 
                 {{ form_row(registrationForm.plainPassword.second, {
-                    label: 'Répétez le mot de passe'
+                    label: 'Veuillez repéter votre mot de passe'
                 }) }}
 
                 <button class="button is-primary is-fullwidth" type="submit">
