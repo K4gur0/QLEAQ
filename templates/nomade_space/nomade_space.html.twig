@@ -1,10 +1,16 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ
-        {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
-{% endblock %}
+{% block title %}Hello NomadeSpaceController!{% endblock %}
+
+
 
 {% block content %}
+
+<section class="columns nomade">
+
+    <div class="column illustration">
+{#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
+    </div>
 
 
     {% if is_granted('ROLE_USER') %}
@@ -12,8 +18,8 @@
 
     {% else %}
 
-        <div class="columns is-centered section">
-            <div class="column is-one-third box">
+        <div class="column is-centered section">
+            <div class="column">
 
                 <h1 class="title has-text-primary has-text-centered">
                     Connexion
@@ -45,11 +51,18 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <br>
 
-                    <div class="field">
+                    <div class="field buttons is-centered">
                         <p class="control">
+
                             <button class="button is-success" type="submit">
                                 Connexion
                             </button>
+
+                            <a class="button is-primary" href="{{ path('app_register') }}">
+                                Créez un compte gratuitement
+                            </a>
+
+
                         </p>
                     </div>
 
@@ -59,11 +72,9 @@
 
     {% endif %}
 
+</section>
 
-
-
-
+{% block background %}{% endblock %}
 
 
 {% endblock %}
-

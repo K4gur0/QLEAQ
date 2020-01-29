@@ -19,6 +19,7 @@ security:
             guard:
                 authenticators:
                     - App\Security\NomadeAuthenticator
+                entry_point: App\Security\NomadeAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

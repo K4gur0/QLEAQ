@@ -7,3 +7,9 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
+
+const fondEcran = require('../images/apart1.jpg');
+const logo_blanc = require('../images/qleaq_blanc.png');
+const logo_bleu = require('../images/qleaq_bleu.png');
+
+var html = "<img src='${fondEcran}'>";

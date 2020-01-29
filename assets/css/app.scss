@@ -1,9 +1,179 @@
-body {
-    background-color: lightgray;
-    font-family: 'Source Sans Pro', sans-serif;
+//body
+//{
+//  background: center no-repeat content-box url("../images/apart2.jpg");
+//  width: 100%;
+//  height: 100vh;
+//  z-index: -1;
+//}
+div.layer
+{
+  background: rgb(255,255,255);
+  background: linear-gradient(360deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3981793400954131) 15%, rgba(255,255,255,0.6026611328125) 30%, rgba(255,255,255,0.6978992280505952) 43%, rgba(255,255,255,0.8015406846332283) 55%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: -1;
 }
 
-$primary: #5651ff;
+div.lien_proprio
+{
+  background: center no-repeat  url("../images/proprio2.jpg");
+  background-size: cover;
+}
+div.lien_nomade
+{
+  background: center no-repeat url("../images/nomade3.jpg");
+  background-size: cover;
+}
+div.lien_nomade, div.lien_proprio
+{
+  //box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  border-radius: 3px;
+  width: 50%;
+  height: 100%;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.lien_nomade a, .lien_proprio a
+{
+  color: rgba(255,255,255,0.7);
+  font-weight: bold;
+  font-size: 2rem;
+  transition: 0.3s;
+  border-radius:10px;
+  height:30%;
+  width: 80%;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+nav div div a
+{
+  color: #366eaa;
+}
+
+.lien_nomade a
+{
+  background: rgba(54,110,170,1);
+}
+.lien_nomade a:hover
+{
+  background: rgba(54,110,170,0.5);
+}
+
+
+
+
+.lien_proprio a
+{
+  background: rgba(236,103,57,1);
+}
+.lien_proprio a:hover
+{
+  background: rgba(236,103,57,0.5);
+}
+
+
+
+.lien_nomade a:hover, .lien_proprio a:hover
+{
+  color: white;
+  border: none;
+  //box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+}
+
+
+div.buttons_home
+{
+  display:flex;
+  flex-direction:row;
+  height:100vh;
+  margin: auto;
+  //justify-content: space-evenly;
+}
+
+
+
+
+section.nomade
+{
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.navbar
+{
+  box-shadow: 0px 30px 100px 100px rgba(255,255,255,1);
+}
+
+section.nomade div.illustration
+{
+  height: 100%;
+  width: 100%;
+  background: center no-repeat  url("../images/apart1.jpg");
+  background-size: cover;
+}
+
+p.control
+{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+@media (max-width: 1000px)
+{
+  div.buttons_home
+  {
+    flex-direction:column;
+    height:80vh;
+    margin: auto;
+    justify-content: space-evenly;
+  }
+  div.lien_nomade, div.lien_proprio
+  {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    border-radius: 3px;
+    width: 100%;
+    height: 45%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+  .lien_nomade a, .lien_proprio a
+  {
+    font-size: 1.7rem;
+  }
+  nav.navbar
+  {
+    box-shadow: none;
+  }
+
+}
+
+//.navbar-item img
+//{
+//  height: 100px;
+//  max-height: none;
+//}
+
+$primary: #ec6739;
+//$info:#366eaa;
+$link-hover:#366eaa;
+//$link:#ec6739;
+$link:#366eaa;
+
 
 // Importer Bulma
 @import "~bulma";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";

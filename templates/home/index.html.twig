@@ -4,59 +4,72 @@
     {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
 {% endblock %}
 
-{% block body %}
-    <nav class="navbar has-background-grey-darker is-dark">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="{{ path('app_login') }}">
-                <p class="subtitle is-4 has-text-primary">
 
-                    <b>QLEAQ</b>
-                </p>
+{% block body %}
+
+
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="" href="{{ path('home') }}">
+                <img src="{{ asset('build/images/qleaq_bleu.7137e0f1.png') }}" alt="" width="150">
             </a>
 
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active')">
+                <span ></span>
+                <span ></span>
+                <span ></span>
             </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
 
 
-            <form method="post">
+                <a class="navbar-item" href="#">
+                    Offres
+                </a>
 
-                {% if is_granted('ROLE_USER') %}
-                    <div class="mb-3">
-                        Bienvenue {{ app.user.username }} !<br> <a href="{{ path('app_logout') }}">Deconnexion</a>
-                        <br> <a href="{{ path('nomade') }}">Gerer mon compte</a>
-                    </div>
-                {% else %}
-                    {#                                        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>#}
-                    {#                                        <label for="inputEmail">Email</label>#}
-                    {#                                        <input type="email"  name="email" id="inputEmail" class="form-control" required autofocus>#}
-                    {#                                        <label for="inputPassword">Mot de passe</label>#}
-                    {#                                        <input type="password" name="password" id="inputPassword" class="form-control" required>#}
+                <a class="navbar-item" href="#">
+                    Partenariats
+                </a>
 
-                    {#                                        <input type="hidden" name="_csrf_token"#}
-                    {#                                               value="{{ csrf_token('authenticate') }}"#}
-                    {#                                        >#}
+                <a class="navbar-item" href="#">
+                    Contact
+                </a>
 
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_login') }}" type="submit">
-                        Connexion
-                    </a>
+            </div>
 
-                    Vous n'avez pas de compte? <a href="{{ path('app_register') }}">Inscrivez-vous !</a>
-                {% endif %}
 
-            </form>
 
-        </div>
+
         </div>
     </nav>
 
+    {% block background %}
+{#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" style="position: fixed; z-index: -2; min-height: 100vh; min-width: 1920px">#}
+    {% endblock %}
 
+    {% block content %}
+        <div class="buttons_home">
 
-    {% block content %}{% endblock %}
+            <div class="lien_nomade">
+
+                    <a class="" href="{{ path('nomade_space') }}">
+                        Espace Nomade
+                    </a>
+
+            </div>
+
+            <div class="lien_proprio">
+
+                    <a class="" href="{{ path('proprio_space') }}">
+                        Espace Propriétaire
+                    </a>
+
+            </div>
+        </div>
+    {% endblock %}
+
 
 {% endblock %}
