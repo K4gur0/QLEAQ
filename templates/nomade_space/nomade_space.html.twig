@@ -1,16 +1,14 @@
-{% extends 'home/index.html.twig' %}
+{% extends ['home/index.html.twig'] %}
 
-{% block title %}Hello NomadeSpaceController!{% endblock %}
+{% block title %}QLEAQ
+    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
+{% endblock %}
 
 
 
 {% block content %}
 
 <section class="columns nomade">
-
-    <div class="column illustration">
-{#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
-    </div>
 
 
     {% if is_granted('ROLE_USER') %}
@@ -22,7 +20,7 @@
             <div class="column">
 
                 <h1 class="title has-text-primary has-text-centered">
-                    Connexion
+                    Connectez vous à votre espace Nomade
                 </h1>
 
                 <form method="post" class="is-centered section">
@@ -70,7 +68,13 @@
             </div>
         </div>
 
+        <div class="column illustration">
+            {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
+        </div>
+
     {% endif %}
+
+
 
 </section>
 

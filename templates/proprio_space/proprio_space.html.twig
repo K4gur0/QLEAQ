@@ -1,7 +1,82 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}Hello ProprioSpaceController!{% endblock %}
+{% block title %}QLEAQ
+    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
+{% endblock %}
+
+
 
 {% block content %}
+
+    <section class="columns proprio">
+
+        <div class="column illustration">
+            {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
+        </div>
+
+
+        {% if is_granted('ROLE_USER') %}
+
+
+        {% else %}
+
+            <div class="column is-centered section">
+                <div class="column">
+
+                    <h1 class="title has-text-primary has-text-centered">
+                        Connectez vous à votre espace Propriétaire
+                    </h1>
+
+                    <form method="post" class="is-centered section">
+
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input" type="email" name="email" id="inputEmail" placeholder="Email" required autofocus>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                                <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" type="password" name="password" id="inputPassword" placeholder="Mot de passe" required>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            </p>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <br>
+
+                        <div class="field buttons is-centered">
+                            <p class="control">
+
+                                <button class="button is-success" type="submit">
+                                    Connexion
+                                </button>
+
+                                <a class="button is-primary" href="{{ path('app_register') }}">
+                                    Créez un compte gratuitement
+                                </a>
+
+
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </section>
+
+    {% block background %}{% endblock %}
+
 
 {% endblock %}

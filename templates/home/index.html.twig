@@ -5,7 +5,7 @@
 {% endblock %}
 
 
-{% block body %}
+{% block header %}
 
 
 
@@ -22,7 +22,7 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-menu">
             <div class="navbar-start">
 
 
@@ -50,26 +50,25 @@
 {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" style="position: fixed; z-index: -2; min-height: 100vh; min-width: 1920px">#}
     {% endblock %}
 
-    {% block content %}
-        <div class="buttons_home">
+{% endblock %}
 
-            <div class="lien_nomade">
+{% block content %}
+    <div class="buttons_home">
 
-                    <a class="" href="{{ path('nomade_space') }}">
-                        Espace Nomade
-                    </a>
+        <div class="lien_nomade">
 
-            </div>
+            <a class="" href="{{ path('nomade_space') }}">
+                Espace Nomade
+            </a>
 
-            <div class="lien_proprio">
-
-                    <a class="" href="{{ path('proprio_space') }}">
-                        Espace Propriétaire
-                    </a>
-
-            </div>
         </div>
-    {% endblock %}
 
+        <div class="lien_proprio">
 
+            <a class="" href="{{ path('proprio_space') }}">
+                Espace Propriétaire
+            </a>
+
+        </div>
+    </div>
 {% endblock %}

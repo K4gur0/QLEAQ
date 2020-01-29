@@ -1,10 +1,4 @@
-//body
-//{
-//  background: center no-repeat content-box url("../images/apart2.jpg");
-//  width: 100%;
-//  height: 100vh;
-//  z-index: -1;
-//}
+
 div.layer
 {
   background: rgb(255,255,255);
@@ -38,7 +32,7 @@ div.lien_nomade, div.lien_proprio
 
 .lien_nomade a, .lien_proprio a
 {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,1);
   font-weight: bold;
   font-size: 2rem;
   transition: 0.3s;
@@ -49,15 +43,20 @@ div.lien_nomade, div.lien_proprio
   justify-content:center;
   align-items: center;
 }
-
-nav div div a
+.lien_nomade a:hover, .lien_proprio a:hover
 {
-  color: #366eaa;
+  color: white;
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-shadow: 0px 0px 3px white;
 }
+
+
 
 .lien_nomade a
 {
-  background: rgba(54,110,170,1);
+  background: linear-gradient(to bottom, #5d94d8 0%,#006eaa 50%,#5d94d8 100%);
 }
 .lien_nomade a:hover
 {
@@ -69,7 +68,7 @@ nav div div a
 
 .lien_proprio a
 {
-  background: rgba(236,103,57,1);
+  background: linear-gradient(to bottom, #f2825b 0%,#e55b2b 50%,#f07146 100%);
 }
 .lien_proprio a:hover
 {
@@ -78,14 +77,6 @@ nav div div a
 
 
 
-.lien_nomade a:hover, .lien_proprio a:hover
-{
-  color: white;
-  border: none;
-  //box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.7);
-  width: 100%;
-  height: 100%;
-}
 
 
 div.buttons_home
@@ -103,7 +94,7 @@ div.buttons_home
 section.nomade
 {
   display: flex;
-  height: 90vh;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 }
@@ -119,6 +110,24 @@ section.nomade div.illustration
   width: 100%;
   background: center no-repeat  url("../images/apart1.jpg");
   background-size: cover;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,1);
+}
+
+
+section.proprio
+{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+section.proprio div.illustration
+{
+  height: 100%;
+  width: 100%;
+  background: center no-repeat  url("../images/apart1.jpg");
+  background-size: cover;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,1);
 }
 
 p.control
@@ -167,12 +176,10 @@ p.control
 //  max-height: none;
 //}
 
-$primary: #ec6739;
-//$info:#366eaa;
-$link-hover:#366eaa;
-//$link:#ec6739;
-$link:#366eaa;
-
+//$primary: #ec6739;
+$primary: #006eaa;
+$navbar-item-color:#006eaa;
+$navbar-item-hover-color:#ec6739;
 
 // Importer Bulma
 @import "~bulma";

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class NomadeSpaceController extends AbstractController
 {
     /**
-     * @Route("/nomade/space", name="nomade_space")
+     * @Route("/connexion_nomade", name="nomade_space")
      */
     public function index()
     {

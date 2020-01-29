@@ -6,21 +6,23 @@
         {% block css %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,900,900i&display=swap" rel="stylesheet">
     </head>
-    <body>
 
-    <div class="layer"></div>
+        <body>
 
-    <header>
+        <div class="layer"></div>
+
         {% block body %}
 
+            <header>
+                {% block header %}{% endblock %}
+            </header>
             {% block content %}{% endblock %}
 
         {% endblock %}
-    </header>
-
-
 
         {% block javascripts %}{% endblock %}
+
     </body>
 </html>
