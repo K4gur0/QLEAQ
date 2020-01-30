@@ -62,12 +62,12 @@ class NomadeType extends AbstractType
                 'attr' => ['class' => 'input'],
             ])
 
-            ->add('budget', NumberType::class, [
-                'attr' => ['class' => 'input'],
-            ])
+//            ->add('budget', NumberType::class, [
+//                'attr' => ['class' => 'input'],
+//            ])
 
             ->add('presentation', TextareaType::class, [
-                'attr' => ['class' => 'input'],
+                'attr' => ['class' => 'textarea'],
             ])
 
 //            ->add('statut')

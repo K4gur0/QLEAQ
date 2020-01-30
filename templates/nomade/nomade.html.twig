@@ -7,18 +7,53 @@
 
     {% if is_granted('ROLE_USER') %}
         <div class="columns is-centered section">
-            <div class="column is-one-third box">
+            <div class="column is-one-third">
                 <h1 class="title has-text-primary has-text-centered">
                     Gestion de votre profile
                 </h1>
 
-                {{ form_start(formNomade) }}
+                {{ form_start(nomadeForm) }}
 
-                {{ form_widget(formNomade)  }}
+                    {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.prenom, {'attr' : {'placeholder' : 'Entrez votre Prénom'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre adresse Email'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.date_naissance, {'label' : 'Selectionnez votre date de naissance'
+                    }) }}
+
+                    {{ form_row(nomadeForm.telephone, {'attr' : {'placeholder' : 'Entrez votre numéro de téléphone'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.adresse, {'attr' : {'placeholder' : 'ex: 1 rue qleaq'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.cp, {'label' : 'Selection votre code postale'
+                    }) }}
+
+                    {{ form_row(nomadeForm.ville, {'attr' : {'placeholder' : 'Entrez votre ville'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.presentation, {'attr' : {'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.password, {'attr' : {'placeholder' : 'Entrez votre adresse Email'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre mot de passe'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.photo_profile) }}
+
+{#                {{ form_widget(nomadeForm)  }}#}
 
                 <button type="submit" class="button is-success">Modifier</button>
 
-                {{ form_end(formNomade) }}
+                {{ form_end(nomadeForm) }}
 
             </div>
         </div>
