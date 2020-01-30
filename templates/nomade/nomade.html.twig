@@ -41,7 +41,10 @@
                     {{ form_row(nomadeForm.presentation, {'attr' : {'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
                     }) }}
 
-                    {{ form_row(nomadeForm.password, {'attr' : {'placeholder' : 'Entrez votre adresse Email'}
+                    {{ form_row(nomadeForm.plainPassword.first, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                    }) }}
+
+                    {{ form_row(nomadeForm.plainPassword.second, {'label' : 'Confirmation du mot de passe', 'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
                     }) }}
 
                     {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre mot de passe'}
@@ -51,7 +54,9 @@
 
 {#                {{ form_widget(nomadeForm)  }}#}
 
-                <button type="submit" class="button is-success">Modifier</button>
+                    <button type="submit" class="button is-success">Modifier</button>
+
+
 
                 {{ form_end(nomadeForm) }}
 

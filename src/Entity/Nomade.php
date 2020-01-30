@@ -37,7 +37,6 @@ class Nomade implements UserInterface
      *
      */
     private $password;
-    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255)

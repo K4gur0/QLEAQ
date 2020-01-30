@@ -9,11 +9,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class NomadeType extends AbstractType
 {
@@ -37,8 +40,22 @@ class NomadeType extends AbstractType
                 'attr' => ['class' => 'input'],
             ])
 
-            ->add('password', PasswordType::class, [
-                'attr' => ['class' => 'input'],
+//            ->add('password', PasswordType::class, [
+//                'attr' => ['class' => 'input'],
+//            ])
+
+            ->add('plainPassword', RepeatedType::class, [
+                'mapped' => false,
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe ne correspondent pas',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez remplir ce champ.']),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit contenir au moins 6 caractères.'
+                    ])
+                ]
             ])
 
             ->add('telephone', TelType::class, [
