@@ -4,6 +4,9 @@
     {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
 {% endblock %}
 
+{% block layer %}
+    <div class="layer" style="position: absolute;height"></div>
+{% endblock %}
 
 {% block header %}
 
@@ -39,6 +42,23 @@
                 </a>
 
             </div>
+
+            {% if is_granted('ROLE_USER') %}
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+
+                            <a class="button is-primary" href="{{ path('nomade') }}">
+                                <strong>{{ app.user.username }}</strong>
+                            </a>
+
+                            <a class="button is-primary" href="{{ path('app_logout') }}">
+                                <strong>Déconnexion</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
 
 

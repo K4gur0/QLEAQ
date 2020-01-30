@@ -7,6 +7,7 @@ use App\Form\NomadeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class NomadeController extends AbstractController
 {
     /**
@@ -22,3 +23,4 @@ class NomadeController extends AbstractController
         ]);
     }
 }
+

@@ -1,21 +1,19 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ
-    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
-{% endblock %}
+{% block title %}QLEAQ | Accueil Propriétaire{% endblock %}
 
 
 
 {% block content %}
 
-    <section class="columns proprio">
+    <section class="proprio">
 
         <div class="column illustration">
             {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
         </div>
 
 
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_PROPRIO') %}
 
 
         {% else %}

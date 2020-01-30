@@ -1,14 +1,12 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ
-    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
-{% endblock %}
+{% block title %}QLEAQ | Accueil Nomade{% endblock %}
 
 
 
 {% block content %}
 
-<section class="columns nomade">
+<section class="nomade">
 
 
     {% if is_granted('ROLE_USER') %}

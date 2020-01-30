@@ -1,26 +1,34 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}Gestion de compte{% endblock %}
+{% block title %}QLEAQ | Gestion de compte Nomade{% endblock %}
 
 {% block content %}
 <section>
 
-    <div class="columns is-centered section">
-        <div class="column is-one-third box">
-            <h1 class="title has-text-primary has-text-centered">
-                Gestion de votre profile
-            </h1>
+    {% if is_granted('ROLE_USER') %}
+        <div class="columns is-centered section">
+            <div class="column is-one-third box">
+                <h1 class="title has-text-primary has-text-centered">
+                    Gestion de votre profile
+                </h1>
 
-            {{ form_start(formNomade) }}
+                {{ form_start(formNomade) }}
 
                 {{ form_widget(formNomade)  }}
 
-            <button type="submit" class="button is-success">Modifier</button>
+                <button type="submit" class="button is-success">Modifier</button>
 
-            {{ form_end(formNomade) }}
+                {{ form_end(formNomade) }}
 
+            </div>
         </div>
-    </div>
+    {% else %}
+
+        <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
+            <h1>Accès refusé !</h1>
+        </div>
+
+    {% endif %}
 
 </section>
 {% endblock %}
