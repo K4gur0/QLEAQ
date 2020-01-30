@@ -19,6 +19,7 @@ class RegistrationController extends AbstractController
     {
         $user = new Nomade();
         $form = $this->createForm(RegistrationFormType::class, $user);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

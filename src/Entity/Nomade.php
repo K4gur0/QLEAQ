@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NomadeRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="L'email indiquée est déjà utilisée")
  */
 class Nomade implements UserInterface
 {
@@ -24,6 +24,7 @@ class Nomade implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+    public $confirm_email;
 
     /**
      * @ORM\Column(type="json")
@@ -33,8 +34,10 @@ class Nomade implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     *
      */
     private $password;
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255)

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProprioSpaceController extends AbstractController
 {
     /**
-     * @Route("/connexion-proprietaire", name="proprio_space")
+     * @Route("/espace-proprietaire", name="proprio_space")
      */
     public function index()
     {

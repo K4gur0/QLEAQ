@@ -1,17 +1,27 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}Creation de compte{% endblock %}
+{% block title %}Gestion de compte{% endblock %}
 
 {% block content %}
 <section>
-    {{ form_start(form) }}
-        {{ form_row(form.nom) }}
-        {{ form_row(form.prenom) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.password) }}
 
-    <button type="submit">Valider</button>
-    {{ form_end(form) }}
+    <div class="columns is-centered section">
+        <div class="column is-one-third box">
+            <h1 class="title has-text-primary has-text-centered">
+                Gestion de votre profile
+            </h1>
+
+            {{ form_start(formNomade) }}
+
+                {{ form_widget(formNomade)  }}
+
+            <button type="submit" class="button is-success">Modifier</button>
+
+            {{ form_end(formNomade) }}
+
+        </div>
+    </div>
+
 </section>
 {% endblock %}
 
