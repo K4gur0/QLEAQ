@@ -12,6 +12,8 @@
                     Gestion de votre profile
                 </h1>
 
+                {% include 'includes/flash_message.html.twig' %}
+
                 {{ form_start(nomadeForm) }}
 
                     {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}
@@ -26,13 +28,13 @@
                     {{ form_row(nomadeForm.date_naissance, {'label' : 'Selectionnez votre date de naissance'
                     }) }}
 
-                    {{ form_row(nomadeForm.telephone, {'attr' : {'placeholder' : 'Entrez votre numéro de téléphone'}
+                    {{ form_row(nomadeForm.telephone, {'attr' : {'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' }
                     }) }}
 
-                    {{ form_row(nomadeForm.adresse, {'attr' : {'placeholder' : 'ex: 1 rue qleaq'}
+                    {{ form_row(nomadeForm.adresse, {'attr' : {'placeholder' : 'ex : 1 rue qleaq'}
                     }) }}
 
-                    {{ form_row(nomadeForm.cp, {'label' : 'Selection votre code postale'
+                    {{ form_row(nomadeForm.cp, {'label' : 'Selection votre code postale', 'attr' : {'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}'  }
                     }) }}
 
                     {{ form_row(nomadeForm.ville, {'attr' : {'placeholder' : 'Entrez votre ville'}
@@ -71,5 +73,25 @@
     {% endif %}
 
 </section>
+
+    <script language="Javascript">
+        function verif_nombre(champ)
+        {
+            var chiffres = new RegExp("[0-9]");
+            var verif;
+            var points = 0;
+
+            for(x = 0; x < champ.value.length; x++)
+            {
+                verif = chiffres.test(champ.value.charAt(x));
+                if(champ.value.charAt(x) == "."){points++;}
+                if(points > 1){verif = false; points = 1;}
+                if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
+            }
+        }
+    </script>
+
 {% endblock %}
+
+
 

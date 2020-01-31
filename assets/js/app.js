@@ -13,3 +13,4 @@ const logo_blanc = require('../images/qleaq_blanc.png');
 const logo_bleu = require('../images/qleaq_bleu.png');
 
 var html = "<img src='${fondEcran}'>";
+

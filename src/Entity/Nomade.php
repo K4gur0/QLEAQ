@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NomadeRepository")
  * @UniqueEntity(fields={"email"}, message="L'email indiquée est déjà utilisée")
+ *
  */
 class Nomade implements UserInterface
 {
@@ -65,6 +66,7 @@ class Nomade implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      */
     private $cp;
 

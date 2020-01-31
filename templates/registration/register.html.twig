@@ -11,6 +11,8 @@
                     Inscription
                 </h1>
 
+                {% include 'includes/flash_message.html.twig' %}
+
                 {{ form_start(registrationForm) }}
 
                     {{ form_row(registrationForm.email, {'label' : 'Email', 'attr' : {'placeholder' : 'Entrez votre adresse Email'}
