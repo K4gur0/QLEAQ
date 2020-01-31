@@ -1,0 +1,36 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}QLEAQ | Modification de mot de passe{% endblock %}
+
+{% block content %}
+
+    {% if is_granted('ROLE_USER') %}
+
+    <div class="columns is-centered section">
+        <div class="column is-one-third">
+            <h1 class="title has-text-primary has-text-centered">
+                Modification du mot de passe
+            </h1>
+
+
+
+            {{ form_start(changePasswordForm) }}
+
+                {{ form_row(changePasswordForm.plainPassword.first, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                }) }}
+
+                {{ form_row(changePasswordForm.plainPassword.second, {'label' : 'Confirmation du mot de passe', 'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                }) }}
+
+                {% include 'includes/flash_message.html.twig' %}
+
+                <button type="submit" class="button is-success">Modifier</button>
+
+            {{ form_end(changePasswordForm) }}
+
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

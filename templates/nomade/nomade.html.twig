@@ -12,7 +12,7 @@
                     Gestion de votre profile
                 </h1>
 
-                {% include 'includes/flash_message.html.twig' %}
+
 
                 {{ form_start(nomadeForm) }}
 
@@ -43,18 +43,30 @@
                     {{ form_row(nomadeForm.presentation, {'attr' : {'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
                     }) }}
 
-                    {{ form_row(nomadeForm.plainPassword.first, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.plainPassword.second, {'label' : 'Confirmation du mot de passe', 'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
-                    }) }}
-
                     {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre mot de passe'}
                     }) }}
 
+                    <button type="submit" class="button is-success"><a href="{{ path('change_password') }}">Changer votre mot de passe</a></button>
+
                     {{ form_row(nomadeForm.photo_profile) }}
 
+{#                <div class="file">#}
+{#                    <label class="file-label">#}
+{#                        <input class="file-input" type="file" name="resume">#}
+{#                        <span class="file-cta">#}
+{#                          <span class="file-icon">#}
+{#                            <i class="fas fa-upload"></i>#}
+{#                          </span>#}
+{#                          <span class="file-label">#}
+{#                            Uploadez votre photo…#}
+{#                          </span>#}
+{#                        </span>#}
+{#                    </label>#}
+{#                </div>#}
+
 {#                {{ form_widget(nomadeForm)  }}#}
+
+                {% include 'includes/flash_message.html.twig' %}
 
                     <button type="submit" class="button is-success">Modifier</button>
 
