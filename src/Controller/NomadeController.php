@@ -42,12 +42,6 @@ class NomadeController extends AbstractController
             // Formulaire lié à une classe entité: getData() retourne l'entité
             $nomade = $nomadeForm->getData();
 
-            $nomade->setPassword(
-                $passwordEncoder->encodePassword(
-                    $nomade,
-                    $nomadeForm->get('plainPassword')->getData()
-                )
-            );
             // Mise à jour de l'entité en BDD
 //            $em->persist($nomade);
 //            $em->flush();

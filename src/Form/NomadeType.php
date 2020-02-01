@@ -8,6 +8,7 @@ use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -27,51 +28,53 @@ class NomadeType extends AbstractType
     {
         $builder
 
-            ->add('nom', TextType::class, [
-                'attr' => ['class' => 'input'],
-            ])
+//            ->add('nom', TextType::class, [
+////                'attr' => ['class' => 'input'],
+////            ])
 
-            ->add('prenom', TextType::class, [
-                'attr' => ['class' => 'input'],
-            ])
+            ->add('nom',
+                TextType::class,
+                array('label' => false)
+            )
 
-            ->add('date_naissance', BirthdayType::class,[
-                'required' => false,
-            ])
 
-            ->add('email', TextType::class, [
-                'attr' => ['class' => 'input'],
-            ])
+            ->add('prenom', TextType::class,
+                array('label' => false)
+            )
+
+            ->add('date_naissance', BirthdayType::class,
+                array('label' => false, 'required' => false,)
+            )
+
+            ->add('email', EmailType::class,
+                array('label' => false)
+            )
 
 //            ->add('password', PasswordType::class, [
 //                'attr' => ['class' => 'input'],
 //            ])
 
-            ->add('telephone', TelType::class, [
-                'attr' => ['class' => 'input'],
-                'required' => false,
-            ])
+            ->add('telephone', TelType::class,
+                array('label' => false,  'required' => false)
+            )
 
-            ->add('adresse', TextType::class, [
-                'attr' => ['class' => 'input'],
-                'required' => false,
-            ])
+            ->add('adresse', TextType::class,
+                array('label' => false, 'required' => false,)
+            )
 
-            ->add('cp', NumberType::class, [
-                'label' => 'Code postal',
-                'attr' => ['class' => 'input'],
-                'required' => false,
-            ])
+            ->add('cp', NumberType::class,
+                array('label' => false, 'required' => false)
+            )
 
-            ->add('ville', TextType::class, [
-                'attr' => ['class' => 'input'],
-                'required' => false,
-            ])
+            ->add('ville', TextType::class,
+                array('label' => false, 'required' => false,)
+            )
 
-            ->add('photo_profile', FileType::class, [
+            ->add('photo_profile', FileType::class,
+                [
                 'attr' => ['class' => 'input'],
 
-                'label' => 'Photo (.jpg)',
+                'label' => false,
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 
@@ -97,9 +100,9 @@ class NomadeType extends AbstractType
 //                'attr' => ['class' => 'input'],
 //            ])
 
-            ->add('presentation', TextareaType::class, [
-                'attr' => ['class' => 'textarea'],
-            ])
+            ->add('presentation', TextareaType::class,
+                array('label' => false, 'required' => false,)
+            )
 
 //            ->add('statut')
         ;

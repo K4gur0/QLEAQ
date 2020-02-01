@@ -12,70 +12,126 @@
                     Gestion de votre profile
                 </h1>
 
-
-
-                {{ form_start(nomadeForm) }}
-
-                    {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.prenom, {'attr' : {'placeholder' : 'Entrez votre Prénom'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre adresse Email'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.date_naissance, {'label' : 'Selectionnez votre date de naissance'
-                    }) }}
-
-                    {{ form_row(nomadeForm.telephone, {'attr' : {'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' }
-                    }) }}
-
-                    {{ form_row(nomadeForm.adresse, {'attr' : {'placeholder' : 'ex : 1 rue qleaq'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.cp, {'label' : 'Selection votre code postale', 'attr' : {'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}'  }
-                    }) }}
-
-                    {{ form_row(nomadeForm.ville, {'attr' : {'placeholder' : 'Entrez votre ville'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.presentation, {'attr' : {'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
-                    }) }}
-
-                    {{ form_row(nomadeForm.email, {'attr' : {'placeholder' : 'Entrez votre mot de passe'}
-                    }) }}
-
-                    <button type="submit" class="button is-success"><a href="{{ path('change_password') }}">Changer votre mot de passe</a></button>
-
-                    {{ form_row(nomadeForm.photo_profile) }}
-
-{#                <div class="file">#}
-{#                    <label class="file-label">#}
-{#                        <input class="file-input" type="file" name="resume">#}
-{#                        <span class="file-cta">#}
-{#                          <span class="file-icon">#}
-{#                            <i class="fas fa-upload"></i>#}
-{#                          </span>#}
-{#                          <span class="file-label">#}
-{#                            Uploadez votre photo…#}
-{#                          </span>#}
-{#                        </span>#}
-{#                    </label>#}
-{#                </div>#}
-
-{#                {{ form_widget(nomadeForm)  }}#}
-
                 {% include 'includes/flash_message.html.twig' %}
 
-                    <button type="submit" class="button is-success">Modifier</button>
+                <div class="field" >
+                    {{ form_start(nomadeForm) }}
+
+{#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
+{#                        }) }}#}
+
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom'},
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Prénom</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Prénom'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Selectionnez votre date de naissance</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.date_naissance, {'attr' : {'class' : 'input'}
+                            }) }}
+                        </div>
+                    </div>
 
 
 
-                {{ form_end(nomadeForm) }}
+                    <div class="field">
+                        <label class="label">Numéro de téléphone</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' }
+                            }) }}
+                        </div>
+                    </div>
 
+                    <div class="field">
+                        <label class="label">Adresse</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Selection votre code postale</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}'  }
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Entrez votre Ville</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Présentez vous</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'input', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Photo de profile</label>
+                        <div class="control">
+
+                            {{ form_row(nomadeForm.photo_profile, {'attr' : {'class' : 'input'}
+                            }) }}
+                        </div>
+                    </div>
+
+
+    {#                <div class="file">#}
+    {#                    <label class="file-label">#}
+    {#                        <input class="file-input" type="file" name="resume">#}
+    {#                        <span class="file-cta">#}
+    {#                          <span class="file-icon">#}
+    {#                            <i class="fas fa-upload"></i>#}
+    {#                          </span>#}
+    {#                          <span class="file-label">#}
+    {#                            Uploadez votre photo…#}
+    {#                          </span>#}
+    {#                        </span>#}
+    {#                    </label>#}
+    {#                </div>#}
+
+                    <div class="columns column is-centered">
+                        <a class="button is-info" href="{{ path('change_password') }}">Changer votre mot de passe</a>
+                    </div>
+
+
+                    <div class="columns column is-centered">
+                        <button type="submit" class="button is-success">Modifier</button>
+                    </div>
+
+                    {{ form_end(nomadeForm) }}
+                </div>
             </div>
         </div>
+
     {% else %}
 
         <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
@@ -86,6 +142,9 @@
 
 </section>
 
+
+
+{#    VERIFICATION REMPLISSAGE DES CHAMPS EN JAVASCRIPT   #}
     <script language="Javascript">
         function verif_nombre(champ)
         {
