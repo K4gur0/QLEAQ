@@ -15,12 +15,21 @@
 
 
             {{ form_start(changePasswordForm) }}
+                <div class="field">
+                    <label class="label">Entrez votre nouveau mot de passe</label>
+                    <div class="control">
+                        {{ form_row(changePasswordForm.plainPassword.first, {'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
 
-                {{ form_row(changePasswordForm.plainPassword.first, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
-                }) }}
-
-                {{ form_row(changePasswordForm.plainPassword.second, {'label' : 'Confirmation du mot de passe', 'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
-                }) }}
+                <div class="field">
+                    <label class="label">Validez votre nouveau mot de passe</label>
+                    <div class="control">
+                        {{ form_row(changePasswordForm.plainPassword.second, {'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
 
                 {% include 'includes/flash_message.html.twig' %}
 

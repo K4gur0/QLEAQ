@@ -16,6 +16,9 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
            ->add('plainPassword', RepeatedType::class, [
+               'first_options'  => array('label' => false),
+               'second_options' => array('label' => false),
+                'label' => false,
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne correspondent pas',

@@ -176,6 +176,8 @@ p.control
 $primary: #006eaa;
 $navbar-item-color:#006eaa;
 $navbar-item-hover-color:#ec6739;
+$link: rgba(255,255,255,1);
+$link-hover: rgba(255,255,255,1);
 
 // Importer Bulma
 @import "~bulma";

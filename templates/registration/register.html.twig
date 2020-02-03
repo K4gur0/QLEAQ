@@ -15,20 +15,46 @@
 
                 {{ form_start(registrationForm) }}
 
-                    {{ form_row(registrationForm.email, {'label' : 'Email', 'attr' : {'placeholder' : 'Entrez votre adresse Email'}
-                    }) }}
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Email'}
+                        }) }}
+                    </div>
+                </div>
 
-                    {{ form_row(registrationForm.nom, {'label' : 'Nom', 'attr' : {'placeholder' : 'Entrez votre Nom'}
-                    }) }}
+                <div class="field">
+                    <label class="label">Nom</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom'}
+                        }) }}
+                    </div>
+                </div>
 
-                    {{ form_row(registrationForm.prenom, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Entrez votre adresse Prénom'}
-                    }) }}
+                <div class="field">
+                    <label class="label">Prénom</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom'}
+                        }) }}
+                    </div>
+                </div>
 
-                    {{ form_row(registrationForm.plainPassword.first, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
-                    }) }}
+                <div class="field">
+                    <label class="label">Mot de passe</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
 
-                    {{ form_row(registrationForm.plainPassword.second, {'label' : 'Confirmation du mot de passe', 'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
-                    }) }}
+                <div class="field">
+                    <label class="label">Comfirmez votre mot de passe</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
+
 
                     <button class="button is-primary is-fullwidth" type="submit">
                         S'inscrire

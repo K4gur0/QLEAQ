@@ -12,7 +12,7 @@
                     Gestion de votre profile
                 </h1>
 
-                {% include 'includes/flash_message.html.twig' %}
+
 
                 <div class="field" >
                     {{ form_start(nomadeForm) }}
@@ -47,12 +47,9 @@
                     <div class="field">
                         <label class="label">Selectionnez votre date de naissance</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.date_naissance, {'attr' : {'class' : 'input'}
-                            }) }}
+                            {{ form_row(nomadeForm.date_naissance) }}
                         </div>
                     </div>
-
-
 
                     <div class="field">
                         <label class="label">Numéro de téléphone</label>
@@ -94,14 +91,17 @@
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label class="label">Photo de profile</label>
-                        <div class="control">
+{#                    <div class="field">#}
+{#                        <label class="label">Photo de profile</label>#}
+{#                        <div class="control">#}
+{#                            <a href="{{ asset('uploads/' ~ Nomade.photo_profile) }}">View brochure (PDF)</a>#}
 
-                            {{ form_row(nomadeForm.photo_profile, {'attr' : {'class' : 'input'}
-                            }) }}
-                        </div>
-                    </div>
+{#                            {{ form_row(nomadeForm.photo_profile, {'attr' : {'class' : 'input'}#}
+{#                            }) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+
 
 
     {#                <div class="file">#}
@@ -118,14 +118,20 @@
     {#                    </label>#}
     {#                </div>#}
 
-                    <div class="columns column is-centered">
-                        <a class="button is-info" href="{{ path('change_password') }}">Changer votre mot de passe</a>
+                    <div class="column is-centered ">
+                        <a class="button is-primary" style="width: 100%;" href="{{ path('change_password') }}">Changer votre mot de passe</a>
                     </div>
 
 
-                    <div class="columns column is-centered">
-                        <button type="submit" class="button is-success">Modifier</button>
+                    {% include 'includes/flash_message.html.twig' %}
+
+                    <div class="column is-centered">
+                        <button type="submit" style="width: 100%;" class="button is-success">Valider les modifications</button>
                     </div>
+
+{#                    <div class="columns column is-centered">#}
+{#                        <a class="button is-danger">Supprimer mon compte</a>#}
+{#                    </div>#}
 
                     {{ form_end(nomadeForm) }}
                 </div>

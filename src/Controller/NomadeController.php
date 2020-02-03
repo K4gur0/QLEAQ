@@ -7,6 +7,7 @@ use App\Form\NomadeType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,21 +44,50 @@ class NomadeController extends AbstractController
             $nomade = $nomadeForm->getData();
 
             // Mise à jour de l'entité en BDD
-//            $em->persist($nomade);
-//            $em->flush();
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($nomade);
             $entityManager->flush();
+
+//            /**
+//             * @var UploadedFile $photo
+//             */
+//            $photo = $nomadeForm->get('photo_profile')->getData();
+//
+//            if ($photo){
+//                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+//                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+//                $newFilename = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
+//
+//                try {
+//                    $photo->move(
+//                        $this->getParameter('dossier_photo'),
+//                        $newFilename
+//                    );
+//                } catch (FileException $e) {
+//                    // ... handle exception if something happens during file upload
+//                }
+//
+//            }
+//
+//
+//
+//            $nomade->setPhotoProfile($newFilename);
+
+
 
 
             // Ajout d'un message flash
             $this->addFlash('success', 'Votre profil a été mis à jour.');
 //            $this->addFlash('error', 'Echec de mise à jour.');
+
+
         }
 
         return $this->render('nomade/nomade.html.twig', [
             'nomadeForm' => $nomadeForm->createView()
         ]);
     }
+
 }
 

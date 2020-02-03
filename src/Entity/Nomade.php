@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NomadeRepository")
@@ -76,7 +77,9 @@ class Nomade implements UserInterface
     private $ville;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     *
      */
     private $photo_profile;
 
@@ -267,12 +270,12 @@ class Nomade implements UserInterface
         return $this;
     }
 
-    public function getPhotoProfile(): ?string
+    public function getPhotoProfile()
     {
         return $this->photo_profile;
     }
 
-    public function setPhotoProfile(?string $photo_profile): self
+    public function setPhotoProfile($photo_profile)
     {
         $this->photo_profile = $photo_profile;
 
