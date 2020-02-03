@@ -13,12 +13,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Route("/nomade", name="nomade_")
+ * @IsGranted("ROLE_USER")
+ */
 
 class NomadeController extends AbstractController
 {
+
     /**
-     * @Route("/nomade", name="nomade")
-     * @IsGranted("ROLE_USER")
+     * @Route("/", name="home")
+     */
+
+    public function espace(){
+
+        return $this->render('nomade/espace.html.twig');
+    }
+
+    /**
+     * @Route("/profile", name="profile")
+     *
      */
 //    public function index()
 //    {

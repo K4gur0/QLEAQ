@@ -1,0 +1,25 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}QLEAQ | Gestion de compte Nomade{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_USER') %}
+
+
+        {% else %}
+
+            <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
+                <h1>Accès refusé !</h1>
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+
+
+
+{% endblock %}
