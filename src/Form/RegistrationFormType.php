@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,6 +29,15 @@ class RegistrationFormType extends AbstractType
                     new Email(['message' => 'Veuillez indiquer une adresse mail valide']),
                 ]
             ])
+
+            ->add('telephone', TelType::class,
+                array('label' => false,
+                    'required' => true,
+                    'constraints' => [
+                            new NotBlank(['message' => 'Veuillez remplir ce champ.']),
+                        ]
+                    )
+            )
 
 
             ->add('nom',TextType::class, [
@@ -75,6 +85,7 @@ class RegistrationFormType extends AbstractType
             ->add('sexe', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'placeholder' => 'Choisissez ...',
                     'choices' => [
                         'M.' => 'Monsieur',
                         'Mme.' => 'Madame',

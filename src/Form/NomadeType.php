@@ -49,7 +49,7 @@ class NomadeType extends AbstractType
                     'placeholder' => [
                             'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
                             ],
-                    'format' => 'dd-MM-yyyy',
+                    'format' => 'dd MM yyyy',
                     )
             )
 
@@ -62,7 +62,7 @@ class NomadeType extends AbstractType
 //            ])
 
             ->add('telephone', TelType::class,
-                array('label' => false,  'required' => true)
+                array('label' => false,  'required' => false)
             )
 
             ->add('adresse', TextType::class,

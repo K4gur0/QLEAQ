@@ -4,21 +4,42 @@
 
 
     {% block content %}
-<section class="hero is-primary is-medium">
+
+        {% if is_granted('ROLE_USER') %}
+
+        {% else %}
+
+<section class="hero is-medium">
         <div class="columns is-centered section">
-            <div class="column is-one-third register">
-                <h1 class="title has-text-centered is-success">
+
+
+            <div class="column" style="align-items: center;display: flex;">
+                <img src="{{ asset('build/images/formulaire.21012800.svg') }}" alt="" style="margin: auto; max-width: 70%">
+            </div>
+
+
+
+            <div class="column is-two-fifths register">
+                <h1 class="title has-text-centered has-text-primary">
                     Inscription
                 </h1>
 
                 {% include 'includes/flash_message.html.twig' %}
 
-                {{ form_start(registrationForm) }}
+                {{ form_start(registrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
 
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Email'}
+                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Téléphone</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405'}
                         }) }}
                     </div>
                 </div>
@@ -26,9 +47,15 @@
                 <div class="field">
                     <label class="label">Civilité</label>
 
-                    <div class="select" style="width: 100%">
+                    <div class="select" style="width: 100%;">
 
-                        {{ form_row(registrationForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select'}
+
+
+
+
+
+
+                    {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input'}
                         }) }}
 
                     </div>
@@ -74,8 +101,8 @@
                 </div>
 
                 <div class="field">
-                    <label class="label" style="width: 100%">Votre statut</label>
-                    <div class="select">
+                    <label class="label">Votre statut</label>
+                    <div class="select" style="width: 100%">
                         {{ form_row(registrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
                         }) }}
                     </div>
@@ -95,4 +122,7 @@
         </div>
 
 </section>
+
+        {% endif %}
+
     {% endblock %}

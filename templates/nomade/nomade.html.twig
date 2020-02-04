@@ -1,6 +1,6 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ | Gestion de compte Nomade{% endblock %}
+{% block title %}QLEAQ | Gestion de compte Locataire{% endblock %}
 
 {% block content %}
 <section>
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="field">
-                        <label class="label">Selection votre code postale</label>
+                        <label class="label">Entrez votre code postale</label>
                         <div class="control">
                             {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}'  }
                             }) }}

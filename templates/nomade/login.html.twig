@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="nomade">
+<div class=" columns is-vcentered">
 
 
     {% if is_granted('ROLE_USER') %}
@@ -14,11 +14,15 @@
 
     {% else %}
 
+        <div class="column illustration">
+            <img src="{{ asset('build/images/locataire.9bc3b050.svg') }}" >
+        </div>
+
         <div class="column is-centered section">
-            <div class="column">
+            <div class="column ">
 
                 <h1 class="title has-text-primary has-text-centered">
-                    Connectez vous à votre espace Nomade
+                    Connectez vous à votre espace Locataire
                 </h1>
 
                 <form method="post" class="is-centered section">
@@ -68,15 +72,13 @@
             </div>
         </div>
 
-        <div class="column illustration">
-            {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
-        </div>
+
 
     {% endif %}
 
 
 
-</section>
+</div>
 
 {% block background %}{% endblock %}
 
