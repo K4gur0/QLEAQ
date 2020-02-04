@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Nomade;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -24,7 +25,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'input'],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez remplir ce champ.']),
-                    new Email(['message' => 'Veuillez indiquer une adresse email valide']),
+                    new Email(['message' => 'Veuillez indiquer une adresse mail valide']),
                 ]
             ])
 
@@ -55,6 +56,31 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ])
+
+            ->add('statut', ChoiceType::class,
+                array('label' => false,
+                    'required' => true,
+                    'choices' => [
+                        'Etudiant' => 'Etudiant',
+                        'Salarié' => 'Salarie',
+                        'Profesionnel' => 'Profesionnel',
+                        'Expatrié' => 'Expatrié',
+                        'Intérimaire' => 'Intérimaire',
+                        'Intérmitant' => 'Intérmitant',
+                        'Autre' => 'Autre',
+                    ]
+                )
+            )
+
+            ->add('sexe', ChoiceType::class,
+                array('label' => false,
+                    'required' => true,
+                    'choices' => [
+                        'M.' => 'Monsieur',
+                        'Mme.' => 'Madame',
+                    ]
+                )
+            )
         ;
     }
 

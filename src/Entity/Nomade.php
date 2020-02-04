@@ -103,6 +103,11 @@ class Nomade implements UserInterface
      */
     private $date_creation_compte;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $sexe;
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
@@ -326,6 +331,18 @@ class Nomade implements UserInterface
     public function setDateCreationCompte(\DateTimeInterface $date_creation_compte): self
     {
         $this->date_creation_compte = $date_creation_compte;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(?string $sexe): self
+    {
+        $this->sexe = $sexe;
 
         return $this;
     }

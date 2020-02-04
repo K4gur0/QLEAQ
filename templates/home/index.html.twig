@@ -13,7 +13,7 @@
 
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
+        <div class="navbar-brand" style="align-items: center;">
             <a class="" href="{{ path('home') }}">
                 <img src="{{ asset('build/images/qleaq_bleu.7137e0f1.png') }}" alt="" width="150">
             </a>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="navbar-menu">
-            <div class="navbar-start">
+            <div class="navbar-start" >
 
 
                 <a class="navbar-item" href="#">
@@ -44,12 +44,15 @@
             </div>
 
             {% if is_granted('ROLE_USER') %}
+
+
+
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <div class="buttons">
+                        <div class="buttons" style="justify-content: end;">
 
                             <a class="button is-primary" href="{{ path('nomade_profile') }}">
-                                <strong>{{ app.user.username }}</strong>
+                                <strong>Vous êtes connecté : {{ app.user.username }}</strong>
                             </a>
 
                             <a class="button is-primary" href="{{ path('app_logout') }}">

@@ -4,10 +4,10 @@
 
 
     {% block content %}
-
+<section class="hero is-primary is-medium">
         <div class="columns is-centered section">
-            <div class="column is-one-third">
-                <h1 class="title has-text-primary has-text-centered">
+            <div class="column is-one-third register">
+                <h1 class="title has-text-centered is-success">
                     Inscription
                 </h1>
 
@@ -21,6 +21,18 @@
                         {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Email'}
                         }) }}
                     </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Civilité</label>
+
+                    <div class="select">
+
+                        {{ form_row(registrationForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select'}
+                        }) }}
+
+                    </div>
+
                 </div>
 
                 <div class="field">
@@ -39,13 +51,19 @@
                     </div>
                 </div>
 
+
+
                 <div class="field">
                     <label class="label">Mot de passe</label>
+                    <div class="form-error">
+                        {{ form_errors(registrationForm) }}
+                    </div>
                     <div class="control">
                         {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
                         }) }}
                     </div>
                 </div>
+
 
                 <div class="field">
                     <label class="label">Comfirmez votre mot de passe</label>
@@ -55,8 +73,19 @@
                     </div>
                 </div>
 
+                <div class="field">
+                    <label class="label">Votre statut</label>
+                    <div class="select">
+                        {{ form_row(registrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                        }) }}
+                    </div>
+                </div>
 
-                    <button class="button is-primary is-fullwidth" type="submit">
+                <div class="form-error">
+                    {{ form_errors(registrationForm) }}
+                </div>
+
+                    <button class="button is-success is-fullwidth" type="submit">
                         S'inscrire
                     </button>
 
@@ -64,4 +93,6 @@
 
             </div>
         </div>
+
+</section>
     {% endblock %}

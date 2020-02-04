@@ -44,6 +44,8 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <br>
 
+                    {% include 'includes/flash_message.html.twig' %}
+
                     <div class="field">
                         <p class="control">
                             <button class="button is-success" type="submit">

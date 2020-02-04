@@ -8,6 +8,20 @@
         {% if is_granted('ROLE_USER') %}
 
 
+
+            <section class="hero is-medium is-primary is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Bonjour {{ app.user.username }} {{ app.user.nom }} !
+                        </h1>
+                        <h2 class="subtitle">
+                            Bienvenue sur votre espace Nomade
+                        </h2>
+                    </div>
+                </div>
+            </section>
+
         {% else %}
 
             <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">

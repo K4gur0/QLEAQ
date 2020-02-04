@@ -6,12 +6,27 @@
 <section>
 
     {% if is_granted('ROLE_USER') %}
-        <div class="columns is-centered section">
-            <div class="column is-one-third">
-                <h1 class="title has-text-primary has-text-centered">
-                    Gestion de votre profile
-                </h1>
 
+        <section class="hero is-medium is-primary is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Gestion de votre profile {{ app.user.username }}
+                    </h1>
+                    <h2 class="subtitle">
+                        Ici vous pouvez compléter les informations de votre profile
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="columns is-centered section">
+
+            <div class="column is-one-third">
+
+{#                <h1 class="title has-text-primary has-text-centered">#}
+{#                    Gestion de votre profile#}
+{#                </h1>#}
 
 
                 <div class="field" >
@@ -19,6 +34,14 @@
 
 {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
 {#                        }) }}#}
+
+                    <div class="field">
+                        <label class="label">Civilité</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                            }) }}
+                        </div>
+                    </div>
 
                     <div class="field">
                         <label class="label">Nom</label>
@@ -37,17 +60,17 @@
                     </div>
 
                     <div class="field">
-                        <label class="label">Email</label>
+                        <label class="label">Selectionnez votre date de naissance</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email'}
-                            }) }}
+                            {{ form_row(nomadeForm.date_naissance) }}
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label">Selectionnez votre date de naissance</label>
+                        <label class="label">Email</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.date_naissance) }}
+                            {{ form_row(nomadeForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email'}
+                            }) }}
                         </div>
                     </div>
 
@@ -86,7 +109,15 @@
                     <div class="field">
                         <label class="label">Présentez vous</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'input', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;'}
+                            {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Votre statut</label>
+                        <div class="control">
+                            {{ form_row(nomadeForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
                             }) }}
                         </div>
                     </div>

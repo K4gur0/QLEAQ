@@ -7,6 +7,7 @@ use App\Entity\Nomade;
 use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -43,7 +44,13 @@ class NomadeType extends AbstractType
             )
 
             ->add('date_naissance', BirthdayType::class,
-                array('label' => false, 'required' => false,)
+                array('label' => false,
+                    'required' => false,
+                    'placeholder' => [
+                            'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                            ],
+                    'format' => 'dd-MM-yyyy',
+                    )
             )
 
             ->add('email', EmailType::class,
@@ -55,7 +62,7 @@ class NomadeType extends AbstractType
 //            ])
 
             ->add('telephone', TelType::class,
-                array('label' => false,  'required' => false)
+                array('label' => false,  'required' => true)
             )
 
             ->add('adresse', TextType::class,
@@ -104,7 +111,30 @@ class NomadeType extends AbstractType
                 array('label' => false, 'required' => false,)
             )
 
-//            ->add('statut')
+            ->add('statut', ChoiceType::class,
+                array('label' => false,
+                        'required' => true,
+                        'choices' => [
+                            'Etudiant' => 'Etudiant',
+                            'Salarié' => 'Salarie',
+                            'Profesionnel' => 'Profesionnel',
+                            'Expatrié' => 'Expatrié',
+                            'Intérimaire' => 'Intérimaire',
+                            'Intérmitant' => 'Intérmitant',
+                            'Autre' => 'Autre',
+                        ]
+                    )
+            )
+
+            ->add('sexe', ChoiceType::class,
+                array('label' => false,
+                    'required' => true,
+                    'choices' => [
+                        'M.' => 'Monsieur',
+                        'Mme.' => 'Madame',
+                    ]
+                )
+            )
         ;
     }
 

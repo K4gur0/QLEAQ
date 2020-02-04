@@ -134,6 +134,14 @@ p.control
   flex-direction: column;
 }
 
+div.register label
+{
+  color: white;
+}
+
+
+
+
 
 
 @media (max-width: 1000px)
@@ -174,6 +182,7 @@ p.control
 
 //$primary: #ec6739;
 $primary: #006eaa;
+$success: rgba(236,103,57,1);
 $navbar-item-color:#006eaa;
 $navbar-item-hover-color:#ec6739;
 $link: rgba(255,255,255,1);
