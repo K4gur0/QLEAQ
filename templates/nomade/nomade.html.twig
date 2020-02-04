@@ -37,10 +37,12 @@
 
                     <div class="field">
                         <label class="label">Civilité</label>
-                        <div class="control">
-                            {{ form_row(nomadeForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
-                            }) }}
-                        </div>
+
+                            <div class="select" style="width: 100%">
+                                {{ form_row(nomadeForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                                }) }}
+                            </div>
+
                     </div>
 
                     <div class="field">
@@ -116,7 +118,7 @@
 
                     <div class="field">
                         <label class="label">Votre statut</label>
-                        <div class="control">
+                        <div class="select" style="width: 100%">
                             {{ form_row(nomadeForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
                             }) }}
                         </div>

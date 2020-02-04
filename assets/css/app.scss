@@ -139,6 +139,11 @@ div.register label
   color: white;
 }
 
+footer a
+{
+  color: white;
+}
+
 
 
 
@@ -185,8 +190,8 @@ $primary: #006eaa;
 $success: rgba(236,103,57,1);
 $navbar-item-color:#006eaa;
 $navbar-item-hover-color:#ec6739;
-$link: rgba(255,255,255,1);
-$link-hover: rgba(255,255,255,1);
+//$link: rgba(255,255,255,1);
+//$link-hover: rgba(255,255,255,1);
 
 // Importer Bulma
 @import "~bulma";
