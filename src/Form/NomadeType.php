@@ -35,12 +35,14 @@ class NomadeType extends AbstractType
 
             ->add('nom',
                 TextType::class,
-                array('label' => false)
+                array('label' => false
+                )
             )
 
 
             ->add('prenom', TextType::class,
-                array('label' => false)
+                array('label' => false
+                    )
             )
 
             ->add('date_naissance', BirthdayType::class,
@@ -115,12 +117,12 @@ class NomadeType extends AbstractType
                 array('label' => false,
                         'required' => true,
                         'choices' => [
-                            'Etudiant' => 'Etudiant',
-                            'Salarié' => 'Salarie',
-                            'Profesionnel' => 'Profesionnel',
-                            'Expatrié' => 'Expatrié',
+                            'Etudiant(e)' => 'Etudiant',
+                            'Salarié(e)' => 'Salarie',
+                            'Profesionnel(le)' => 'Profesionnel',
+                            'Expatrié(e)' => 'Expatrié',
                             'Intérimaire' => 'Intérimaire',
-                            'Intérmitant' => 'Intérmitant',
+                            'Intérmitant(e)' => 'Intérmitant',
                             'Autre' => 'Autre',
                         ]
                     )
@@ -130,8 +132,8 @@ class NomadeType extends AbstractType
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'M.' => 'Monsieur',
-                        'Mme.' => 'Madame',
+                        'M.' => 'Masculin',
+                        'Mme.' => 'Féminin',
                     ]
                 )
             )
