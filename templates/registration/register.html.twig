@@ -28,34 +28,13 @@
 
                 {{ form_start(registrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
 
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
-                        }) }}
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label">Téléphone</label>
-                    <div class="control">
-                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405'}
-                        }) }}
-                    </div>
-                </div>
 
                 <div class="field">
                     <label class="label">Civilité</label>
 
                     <div class="select" style="width: 100%;">
 
-
-
-
-
-
-
-                    {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input'}
+                        {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input'}
                         }) }}
 
                     </div>
@@ -78,7 +57,21 @@
                     </div>
                 </div>
 
+                <div class="field">
+                    <label class="label">Téléphone</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405'}
+                        }) }}
+                    </div>
+                </div>
 
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                        }) }}
+                    </div>
+                </div>
 
                 <div class="field">
                     <label class="label">Mot de passe</label>

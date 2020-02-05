@@ -15,10 +15,20 @@
 
 
             {{ form_start(changePasswordForm) }}
+
+            <div class="field">
+                <label class="label">Entrez votre mot de passe actuel</label>
+                <div class="control">
+                    {{ form_row(changePasswordForm.password, {'attr' : {'placeholder' : 'Entrez le Mot de passe', 'class' : 'input'}
+                    }) }}
+                </div>
+            </div>
+
+
                 <div class="field">
                     <label class="label">Entrez votre nouveau mot de passe</label>
                     <div class="control">
-                        {{ form_row(changePasswordForm.plainPassword.first, {'attr' : {'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                        {{ form_row(changePasswordForm.plainPassword.first, {'attr' : {'placeholder' : 'Entrez le Mot de passe', 'class' : 'input'}
                         }) }}
                     </div>
                 </div>
