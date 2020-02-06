@@ -21,6 +21,7 @@ class ChangePasswordFormType extends AbstractType
         $builder
             ->add('password', PasswordType::class,
                 array('label' => false,
+                    'mapped' => false,
                     )
                 )
 
