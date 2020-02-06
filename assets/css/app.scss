@@ -9,6 +9,11 @@ div.layer
   z-index: -1;
 }
 
+section.vh
+{
+  min-height: 90vh;
+}
+
 div.lien_proprio
 {
   background: center no-repeat  url("../images/proprio2.jpg");
@@ -152,6 +157,34 @@ select::placeholder{
   color: #dfdfdf;
 }
 
+footer div
+{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+footer div div
+{
+  display: flex !important;
+  flex-direction: column !important;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+}
+footer div div a
+{
+  width: auto;
+  //padding: 5px 15px;
+  //border-radius: 3px;
+  transition: 0.2s;
+}
+//footer div div a:hover
+//{
+//  color:#ec6739;
+//  //background:#00669d;
+//}
+
 
 
 
@@ -199,8 +232,9 @@ $primary: #006eaa;
 $info : rgba(236,103,57,1);
 $navbar-item-color:#006eaa;
 $navbar-item-hover-color:#ec6739;
-//$link: rgba(255,255,255,1);
-//$link-hover: rgba(255,255,255,1);
+//$link: #006eaa;
+//$link-hover: #ec6739;
+$footer-background-color:#006eaa;
 
 // Importer Bulma
 @import "~bulma";

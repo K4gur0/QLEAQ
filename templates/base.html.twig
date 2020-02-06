@@ -10,8 +10,9 @@
         <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
     </head>
 
-        <body>
+    <body>
 
+    <section class="vh">
         <div class="layer"></div>
 
         {% block body %}
@@ -23,44 +24,75 @@
 
         {% endblock %}
 
-        {% block javascripts %}{% endblock %}
+    </section>
 
-    </body>
 
     <footer class="footer" style="position: relative;bottom:0 ;width: 100%;">
-        <div class="content has-text-centered">
-            <button class="button is-primary">
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                <span><a href="https://twitter.com/MigMnty" target="_blank">Twitter</a></span>
-            </button>
-            <button class="button is-primary">
+
+        <hr style="background: rgba(255,255,255,0.5);height: 2px;width: 95%;margin: 0 auto 50px auto;">
+
+        <div class="content has-text-centered columns">
+
+            <div class="column">
+                <a class="is-link" href="{{ path('footer_mentions') }}">Contact</a>
+                <a class="is-link" href="{{ path('footer_mentions') }}">CGU/CGV</a>
+                <a class="is-link" href="{{ path('footer_mentions') }}">Mentions légales</a>
+            </div>
+
+
+            <div class="column">
+                <a class="is-link" href="{{ path('footer_mentions') }}">Professionnels</a>
+                <a class="is-link" href="{{ path('footer_mentions') }}">Partenaires</a>
+                <a class="is-link" href="{{ path('footer_mentions') }}">Annonceurs</a>
+                <a class="is-link" href="{{ path('footer_mentions') }}">Presse</a>
+            </div>
+
+
+            <div class="column">
+{#                <button class="button is-primary">#}
+{#                <span class="icon">#}
+{#                  <i class="fab fa-twitter"></i>#}
+{#                </span>#}
+{#                    <span><a href="https://twitter.com/MigMnty" target="_blank">Twitter</a></span>#}
+{#                </button>#}
+                <button class="button is-primary">
                 <span class="icon">
                   <i class="fab fa-facebook"></i>
                 </span>
-                <span><a target="_blank" href="https://www.facebook.com/Qleaq.Officiel/">Facebook</a></span>
-            </button>
-            <button class="button is-primary">
-                <span class="icon">
-                  <i class="fab fa-youtube"></i>
-                </span>
-                <span>Youtube</span>
-            </button>
-            <button class="button is-primary">
+                    <span><a target="_blank" href="https://www.facebook.com/Qleaq.Officiel/">Facebook</a></span>
+                </button>
+{#                <button class="button is-primary">#}
+{#                <span class="icon">#}
+{#                  <i class="fab fa-youtube"></i>#}
+{#                </span>#}
+{#                    <span><a target="_blank" href="#">Youtube</a></span>#}
+{#                </button>#}
+                <button class="button is-primary">
                 <span class="icon">
                   <i class="fab fa-instagram"></i>
                 </span>
-                <span><a  target="_blank"href="https://www.instagram.com/Qleaq_Officiel/">Instagram</a></span>
-            </button>
-            <button class="button is-primary">
+                    <span><a  target="_blank"href="https://www.instagram.com/Qleaq_Officiel/">Instagram</a></span>
+                </button>
+                <button class="button is-primary">
                 <span class="icon">
                   <i class="fab fa-linkedin"></i>
                 </span>
-                <span><a  target="_blank"href="https://au.linkedin.com/company/qleaq-officiel">Linkedin</a></span>
-            </button>
-
+                    <span><a  target="_blank"href="https://au.linkedin.com/company/qleaq-officiel">Linkedin</a></span>
+                </button>
+            </div>
+            
+            
         </div>
     </footer>
+
+
+
+        {% block javascripts %}{% endblock %}
+
+
+
+    </body>
+
+
 
 </html>
