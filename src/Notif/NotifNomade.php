@@ -36,4 +36,5 @@ class NotifNomade
         $this->mailer->send($message);
     }
 
+
 }

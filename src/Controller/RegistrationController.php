@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $notifNomade->notify($user);
+
             $this->addFlash('success', 'Votre compte a bien été créée');
 
 
@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
+            $notifNomade->notify($user);
 
             return $this->redirectToRoute('app_login');
         }
