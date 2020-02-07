@@ -40,7 +40,7 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
+        return 'login_nomade' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -101,6 +101,6 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('app_login');
+        return $this->urlGenerator->generate('login_nomade');
     }
 }

@@ -1,0 +1,39 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Accueil Nomade{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_PROPRIO') %}
+
+
+
+            <section class="hero is-medium is-primary is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Bonjour {{ app.user.prenom }} {{ app.user.nom }} !
+                        </h1>
+                        <h2 class="subtitle">
+                            Bienvenue sur votre espace Propriétaire
+                        </h2>
+                    </div>
+                </div>
+            </section>
+
+        {% else %}
+
+            <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
+                <h1>Accès refusé !</h1>
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+
+
+
+{% endblock %}
