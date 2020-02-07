@@ -159,9 +159,8 @@ select::placeholder{
 
 footer div
 {
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  width: 70%;
+  margin: auto !important;
 }
 
 footer div div
@@ -171,6 +170,7 @@ footer div div
   width: 20%;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 footer div div a
 {
@@ -197,7 +197,6 @@ footer div div a
 {
   margin: 15px 0;
 }
-
 
 
 

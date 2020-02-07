@@ -23,10 +23,11 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => false,
+                'error_bubbling' => true,
                 'attr' => ['class' => 'input'],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez remplir ce champ.']),
-                    new Email(['message' => 'Veuillez indiquer une adresse mail valide']),
+                    new Email(['message' => 'Veuillez indiquer une adresse mail valide. Exemple : mon_adresse_mail@gmail.com']),
                 ]
             ])
 
@@ -56,8 +57,9 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passe ne correspondent pas',
+                'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 'required' => true,
+                'error_bubbling' => true,
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez remplir ce champ.']),
                     new Length([
@@ -87,8 +89,8 @@ class RegistrationFormType extends AbstractType
                     'required' => true,
                     'placeholder' => 'Choisissez ...',
                     'choices' => [
-                        'M.' => 'Monsieur',
-                        'Mme.' => 'Madame',
+                        'M.' => 'Masculin',
+                        'Mme.' => 'Feminin',
                     ]
                 )
             )

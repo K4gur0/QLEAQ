@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -29,9 +30,6 @@ class NomadeType extends AbstractType
     {
         $builder
 
-//            ->add('nom', TextType::class, [
-////                'attr' => ['class' => 'input'],
-////            ])
 
             ->add('nom',
                 TextType::class,
@@ -48,16 +46,26 @@ class NomadeType extends AbstractType
             ->add('date_naissance', BirthdayType::class,
                 array('label' => false,
                     'required' => false,
+                    'attr' => ['class' => 'buttons'],
                     'placeholder' => [
                             'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
                             ],
                     'format' => 'dd MM yyyy',
+                    'invalid_message' => 'Veuillez selectionnez une date valide.',
+                    'error_bubbling' => true,
+//                    'mapped' => false,
                     )
             )
 
-            ->add('email', EmailType::class,
-                array('label' => false)
-            )
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'error_bubbling' => true,
+                'attr' => ['class' => 'input'],
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez remplir ce champ.']),
+                    new Email(['message' => 'Veuillez indiquer une adresse mail valide. Exemple : mon_adresse_mail@gmail.com']),
+                ]
+            ])
 
 //            ->add('password', PasswordType::class, [
 //                'attr' => ['class' => 'input'],

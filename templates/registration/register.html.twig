@@ -1,6 +1,6 @@
 {% extends 'security/login.html.twig' %}
 
-{% block title %}QLEAQ | Inscription{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Inscription{% endblock %}
 
 
     {% block content %}
@@ -60,7 +60,7 @@
                 <div class="field">
                     <label class="label">Téléphone</label>
                     <div class="control">
-                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405'}
+                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
                         }) }}
                     </div>
                 </div>
@@ -75,9 +75,6 @@
 
                 <div class="field">
                     <label class="label">Mot de passe</label>
-                    <div class="form-error">
-                        {{ form_errors(registrationForm) }}
-                    </div>
                     <div class="control">
                         {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
                         }) }}
@@ -101,9 +98,14 @@
                     </div>
                 </div>
 
-                <div class="form-error">
-                    {{ form_errors(registrationForm) }}
-                </div>
+                {% if form_errors(registrationForm) != null %}
+                    <div class="form-error notification is-danger">
+                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                        {{ form_errors(registrationForm) }}
+                    </div>
+                {% endif %}
+
+{#                {% include 'includes/flash_message.html.twig' %}#}
 
                     <button class="button is-info is-fullwidth" type="submit">
                         S'inscrire
@@ -117,5 +119,26 @@
 </section>
 
         {% endif %}
+
+        {#    VERIFICATION REMPLISSAGE DES CHAMPS EN JAVASCRIPT   #}
+        <script language="Javascript">
+            function verif_nombre(champ)
+            {
+                var chiffres = new RegExp("[0-9]");
+                var verif;
+                var points = 0;
+
+                for(x = 0; x < champ.value.length; x++)
+                {
+                    verif = chiffres.test(champ.value.charAt(x));
+                    if(champ.value.charAt(x) == "."){points++;}
+                    if(points > 1){verif = false; points = 1;}
+                    if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
+                }
+            }
+        </script>
+
+
+
 
     {% endblock %}

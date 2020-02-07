@@ -93,9 +93,11 @@ class NomadeController extends AbstractController
 
             // Ajout d'un message flash
             $this->addFlash('success', 'Votre profil a été mis à jour.');
-//            $this->addFlash('error', 'Echec de mise à jour.');
 
 
+
+        }else if ($nomadeForm->isSubmitted()) {
+            $this->addFlash('danger', 'Echec de mise à jour.');
         }
 
         return $this->render('nomade/nomade.html.twig', [

@@ -1,6 +1,6 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ | Gestion de compte Locataire{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Gestion de compte Locataire{% endblock %}
 
 {% block content %}
 <section>
@@ -40,6 +40,12 @@
                     {% include 'includes/flash_message.html.twig' %}
 {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
 {#                        }) }}#}
+                    {% if form_errors(nomadeForm) != null %}
+                        <div class="notification is-danger">
+                            <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                            {{ form_errors(nomadeForm) }}
+                        </div>
+                    {% endif %}
 
                     <div class="field">
                         <label class="label">Civilitée</label>
@@ -160,6 +166,8 @@
                     <div class="column is-centered ">
                         <a class="button is-primary" style="width: 100%;" href="{{ path('change_password') }}">Changer votre mot de passe</a>
                     </div>
+
+
 
 
 

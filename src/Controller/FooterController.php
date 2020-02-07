@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/footer", name="footer_")
+ * @Route("/", name="footer_")
  */
 class FooterController extends AbstractController
 {
@@ -36,11 +36,11 @@ class FooterController extends AbstractController
 
 
     /**
-     * @Route("/partenaires", name="partenaires")
+     * @Route("/partenariats", name="partenariats")
      */
     public function partenaires()
     {
-        return $this->render('footer/partenaires.html.twig', [
+        return $this->render('footer/partenariats.html.twig', [
             'controller_name' => 'FooterController',
         ]);
     }
@@ -74,7 +74,7 @@ class FooterController extends AbstractController
      */
     public function professionnels()
     {
-        return $this->render('footer/professionnels.html.twig', [
+        return $this->render('footer/pro.html.twig', [
             'controller_name' => 'FooterController',
         ]);
     }

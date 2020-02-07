@@ -2,7 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}| QLEAQ{% endblock %}</title>
+        <title>{% block title %}
+                {% include 'includes/qleaq_title.html.twig' %}
+                {% endblock %}</title>
+
         {% block css %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -34,17 +37,17 @@
         <div class="content has-text-centered columns">
 
             <div class="column">
-                <a class="is-link" href="{{ path('footer_mentions') }}">Contact</a>
-                <a class="is-link" href="{{ path('footer_mentions') }}">CGU/CGV</a>
+                <a class="is-link" href="{{ path('footer_contact') }}">Contact</a>
+                <a class="is-link" href="{{ path('footer_cgu') }}">CGU/CGV</a>
                 <a class="is-link" href="{{ path('footer_mentions') }}">Mentions légales</a>
             </div>
 
 
             <div class="column">
-                <a class="is-link" href="{{ path('footer_mentions') }}">Professionnels</a>
-                <a class="is-link" href="{{ path('footer_mentions') }}">Partenaires</a>
-                <a class="is-link" href="{{ path('footer_mentions') }}">Annonceurs</a>
-                <a class="is-link" href="{{ path('footer_mentions') }}">Presse</a>
+                <a class="is-link" href="{{ path('footer_pro') }}">Professionnels</a>
+                <a class="is-link" href="{{ path('footer_partenariats') }}">Partenariats</a>
+                <a class="is-link" href="{{ path('footer_annonceurs') }}">Annonceurs</a>
+                <a class="is-link" href="{{ path('footer_presse') }}">Presse</a>
             </div>
 
 

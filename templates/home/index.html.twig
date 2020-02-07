@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QLEAQ
-    {% if app.user %} | {{ app.user.username }}{% else %} | Accueil{% endif %}
+{% block title %} {% include 'includes/qleaq_title.html.twig' %}
+    {% if app.user %} | {{ app.user.username }}{% else %}Accueil{% endif %}
 {% endblock %}
 
 {% block layer %}
@@ -33,11 +33,11 @@
                     Offres
                 </a>
 
-                <a class="navbar-item" href="#">
+                <a class="navbar-item" href="{{ path('footer_partenariats') }}">
                     Partenariats
                 </a>
 
-                <a class="navbar-item" href="#">
+                <a class="navbar-item" href="{{ path('footer_contact') }}">
                     Contact
                 </a>
 
