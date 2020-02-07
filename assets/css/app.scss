@@ -175,15 +175,28 @@ footer div div
 footer div div a
 {
   width: auto;
-  //padding: 5px 15px;
-  //border-radius: 3px;
   transition: 0.2s;
 }
-//footer div div a:hover
-//{
-//  color:#ec6739;
-//  //background:#00669d;
-//}
+
+.footer-sections
+{
+  min-height: 80vh;
+  background:#006eaa;
+  //justify-content: center;
+  //align-items: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.footer-sections h1
+{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.footer-sections p
+{
+  margin: 15px 0;
+}
 
 
 
@@ -235,6 +248,7 @@ $navbar-item-hover-color:#ec6739;
 //$link: #006eaa;
 //$link-hover: #ec6739;
 $footer-background-color:#006eaa;
+$dropdown-content-background-color :#006eaa;
 
 // Importer Bulma
 @import "~bulma";

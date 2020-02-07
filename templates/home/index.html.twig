@@ -49,15 +49,55 @@
 
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <div class="buttons" style="justify-content: end;">
+                        <div class="" style="justify-content: end;">
 
-                            <a class="button is-primary" href="{{ path('nomade_profile') }}">
-                                <strong>Vous êtes connecté : {{ app.user.username }}</strong>
-                            </a>
 
-                            <a class="button is-primary" href="{{ path('app_logout') }}">
-                                <strong>Déconnexion</strong>
-                            </a>
+
+
+
+                            <div class="dropdown is-hoverable is-right">
+                                <div class="dropdown-trigger">
+                                    <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu2">
+                                        <strong>Vous êtes connecté : {{ app.user.username }}</strong>
+                                            <span class="icon is-small">
+                                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu is-primary" id="dropdown-menu2" role="menu">
+                                    <div class="dropdown-content">
+
+
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_home') }}">
+                                            <span>Accueil Nomade</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_profile') }}">
+                                            <span>Gestion du profile</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-primary is-fullwidth" href="{{ path('app_logout') }}">
+                                            <span>Déconnexion</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+{#                            <a class="button is-primary" href="{{ path('nomade_profile') }}">#}
+{#                                <strong>Vous êtes connecté : {{ app.user.username }}</strong>#}
+{#                            </a>#}
+
+{#                            <a class="button is-primary" href="{{ path('app_logout') }}">#}
+{#                                <strong>Déconnexion</strong>#}
+{#                            </a>#}
                         </div>
                     </div>
                 </div>

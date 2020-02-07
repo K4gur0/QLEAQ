@@ -33,6 +33,7 @@ class ChangePasswordFormType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne correspondent pas',
                 'required' => true,
+                'error_bubbling' => true,
                 'constraints' => [
 //                    new NotBlank(['message' => 'Veuillez remplir ce champ.']),
                     new Length([

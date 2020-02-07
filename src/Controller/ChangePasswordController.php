@@ -97,11 +97,11 @@ class ChangePasswordController extends AbstractController
 
 
                 // Ajout d'un message flash
-                $this->addFlash('success', 'Votre mot de passe a été modifié.');
+                $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
             }
             else
             {
-                $this->addFlash('danger', 'Ancien mot de passe incorrect');
+                $this->addFlash('danger', 'L\'ancien mot de passe est incorrect');
             }
 
 

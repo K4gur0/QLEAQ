@@ -41,6 +41,13 @@
                     </div>
                 </div>
 
+            {% if form_errors(changePasswordForm) != null %}
+                <div class="notification is-danger">
+                    <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                    {{ form_errors(changePasswordForm) }}
+                </div>
+            {% endif %}
+
                 {% include 'includes/flash_message.html.twig' %}
 
                 <button type="submit" class="button is-info">Modifier</button>
@@ -53,3 +60,5 @@
     {% endif %}
 
 {% endblock %}
+
+
