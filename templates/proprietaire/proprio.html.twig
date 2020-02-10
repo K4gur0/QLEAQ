@@ -1,17 +1,17 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}{% include 'includes/qleaq_title.html.twig' %}Gestion de compte Locataire{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Gestion de compte Propriétaire{% endblock %}
 
 {% block content %}
     <section>
 
         {% if is_granted('ROLE_PROPRIO') %}
 
-            <section class="hero is-medium is-primary is-bold">
+            <section class="hero is-medium is-info is-bold">
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
-                            Gestion de votre profile {{ app.user.username }}
+                            Gestion du propriétaire {{ app.user.username }}
                         </h1>
                         <h2 class="subtitle">
                             Ici vous pouvez compléter les informations de votre profile
@@ -136,32 +136,6 @@
                             </div>
                         </div>
 
-                        {#                    <div class="field">#}
-                        {#                        <label class="label">Photo de profile</label>#}
-                        {#                        <div class="control">#}
-                        {#                            <a href="{{ asset('uploads/' ~ Nomade.photo_profile) }}">View brochure (PDF)</a>#}
-
-                        {#                            {{ form_row(nomadeForm.photo_profile, {'attr' : {'class' : 'input'}#}
-                        {#                            }) }}#}
-                        {#                        </div>#}
-                        {#                    </div>#}
-
-
-
-
-                        {#                <div class="file">#}
-                        {#                    <label class="file-label">#}
-                        {#                        <input class="file-input" type="file" name="resume">#}
-                        {#                        <span class="file-cta">#}
-                        {#                          <span class="file-icon">#}
-                        {#                            <i class="fas fa-upload"></i>#}
-                        {#                          </span>#}
-                        {#                          <span class="file-label">#}
-                        {#                            Uploadez votre photo…#}
-                        {#                          </span>#}
-                        {#                        </span>#}
-                        {#                    </label>#}
-                        {#                </div>#}
 
                         <div class="column is-centered ">
                             <a class="button is-primary" style="width: 100%;" href="{{ path('change_password') }}">Changer votre mot de passe</a>

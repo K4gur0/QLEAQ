@@ -2,6 +2,8 @@ security:
     encoders:
         App\Entity\Nomade:
             algorithm: auto
+        App\Entity\Proprietaire:
+            algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -10,6 +12,8 @@ security:
             entity:
                 class: App\Entity\Nomade
                 property: email
+
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,6 +23,7 @@ security:
             guard:
                 authenticators:
                     - App\Security\NomadeAuthenticator
+                    - App\Security\ProprioAuthenticator
                 entry_point: App\Security\NomadeAuthenticator
             logout:
                 path: app_logout
@@ -38,6 +43,6 @@ security:
          - { path: ^/nomade, roles: ROLE_USER }
          - { path: ^/proprio, roles: ROLE_PROPRIO }
 
-    role_hierarchy:
-        ROLE_PROPRIO:      ROLE_USER
-        ROLE_ADMIN:       [ROLE_USER, ROLE_PROPRIO]
+#    role_hierarchy:
+#        ROLE_PROPRIO:      ROLE_USER
+#        ROLE_ADMIN:       [ROLE_USER, ROLE_PROPRIO]

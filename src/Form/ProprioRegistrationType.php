@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use function Couchbase\defaultEncoder;
 use Doctrine\DBAL\Types\ArrayType;
 use Symfony\Component\Form\AbstractType;
@@ -63,7 +64,7 @@ class ProprioRegistrationType extends AbstractType
             ])
 
 // PRENOM ICI = RAISON SOCIAL / NOM D'ENTREPRISE :
-            ->add('prenom', TextType::class,[
+            ->add('raison_social', TextType::class,[
                 'label' => false,
                 'attr' => ['class' => 'input'],
             ])
@@ -109,11 +110,6 @@ class ProprioRegistrationType extends AbstractType
                 )
             )
 
-//            ->add('prenom', TextType::class,[
-//                'label' => false,
-//                'attr' => ['class' => 'input'],
-//            ])
-
 
 
 
@@ -124,7 +120,7 @@ class ProprioRegistrationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Nomade::class,
+            'data_class' => Proprietaire::class,
         ]);
     }
 }

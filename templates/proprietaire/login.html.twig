@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <section class="proprio">
+    <div class="columns is-vcentered" style="height:80vh;">
 
 
 
@@ -56,6 +56,13 @@
 
                         {% include 'includes/flash_message.html.twig' %}
 
+                        {% if error %}
+                            <div class="form-error notification is-danger">
+                                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        {% endif %}
+
                         <div class="field buttons is-centered">
 
                             <p class="control">
@@ -78,7 +85,7 @@
 
         {% endif %}
 
-    </section>
+    </div>
 
     {% block background %}{% endblock %}
 

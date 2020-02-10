@@ -3,13 +3,12 @@
 
 namespace App\Notif;
 
-use App\Entity\Nomade;
+
 use App\Entity\Proprietaire;
 use Twig\Environment;
 
-class NotifNomade
+class NotifProprio
 {
-
     /**
      * NotifNomade constructor.
      * @param \Swift_Mailer $mailer
@@ -24,17 +23,15 @@ class NotifNomade
         $this->renderer = $renderer;
     }
 
-
-    public function notify(Nomade $nomade)
+    public function notifyProprio(Proprietaire $proprio)
     {
         $message = (new \Swift_Message('Confirmation de création de compte Qleaq'))
             ->setFrom('qleaq@gmail.com')
-            ->setTo($nomade->getEmail())
-            ->setReplyTo($nomade->getEmail())
-            ->setBody($this->renderer->render('emails/nomade.html.twig',[
-                'nomade' => $nomade
+            ->setTo($proprio->getEmail())
+            ->setReplyTo($proprio->getEmail())
+            ->setBody($this->renderer->render('emails/proprio.html.twig',[
+                'proprio' => $proprio
             ]), 'text/html' );
         $this->mailer->send($message);
     }
-
 }

@@ -43,9 +43,53 @@
 
             </div>
 
-            {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_PROPRIO')%}
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div style="justify-content: end;">
 
 
+
+
+
+                        <div class="dropdown is-hoverable is-right">
+                            <div class="dropdown-trigger">
+                                <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu2">
+                                    <strong>Vous êtes connecté : {{ app.user.username }}</strong>
+                                    <span class="icon is-small">
+                                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu is-info" id="dropdown-menu2" role="menu">
+                                <div class="dropdown-content" style="background-color: rgba(236,103,57,1);">
+
+
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_home') }}">
+                                        <span>Accueil Propriétaire</span>
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_profile') }}">
+                                        <span>Gestion du compte</span>
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="button is-info is-fullwidth" href="{{ path('app_logout') }}">
+                                        <span>Déconnexion</span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            {% elseif is_granted('ROLE_USER') %}
 
                 <div class="navbar-end">
                     <div class="navbar-item">
@@ -65,7 +109,7 @@
                                     </button>
                                 </div>
                                 <div class="dropdown-menu is-primary" id="dropdown-menu2" role="menu">
-                                    <div class="dropdown-content">
+                                    <div class="dropdown-content" style="background-color: #006eaa;">
 
 
                                         <a class="button is-primary is-fullwidth" href="{{ path('nomade_home') }}">
@@ -86,21 +130,10 @@
                                 </div>
                             </div>
 
-
-
-
-
-
-{#                            <a class="button is-primary" href="{{ path('nomade_profile') }}">#}
-{#                                <strong>Vous êtes connecté : {{ app.user.username }}</strong>#}
-{#                            </a>#}
-
-{#                            <a class="button is-primary" href="{{ path('app_logout') }}">#}
-{#                                <strong>Déconnexion</strong>#}
-{#                            </a>#}
                         </div>
                     </div>
                 </div>
+
             {% endif %}
 
 

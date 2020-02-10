@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use App\Form\ProprioRegistrationType;
 use App\Notif\NotifNomade;
+use App\Notif\NotifProprio;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +18,9 @@ class ProprioRegistrationController extends AbstractController
     /**
      * @Route("/inscription-proprietaire", name="proprio_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, NotifNomade $notifNomade): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, NotifProprio $notifProprio): Response
     {
-        $proprio = new Nomade();
+        $proprio = new Proprietaire();
         $form = $this->createForm(ProprioRegistrationType::class, $proprio);
 
         $form->handleRequest($request);
@@ -44,7 +46,7 @@ class ProprioRegistrationController extends AbstractController
             $entityManager->persist($proprio);
             $entityManager->flush();
 
-            $notifNomade->notify($proprio);
+            $notifProprio->notifyProprio($proprio);
 
             return $this->redirectToRoute('login_proprietaire');
         }

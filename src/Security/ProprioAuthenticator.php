@@ -6,11 +6,9 @@ use App\Entity\Nomade;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
@@ -22,7 +20,7 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class ProprioAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
 
@@ -41,7 +39,7 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     public function supports(Request $request)
     {
-        return 'login_nomade' === $request->attributes->get('_route')
+        return 'login_proprietaire' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -57,8 +55,6 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             $credentials['email']
         );
 
-
-
         return $credentials;
     }
 
@@ -73,48 +69,35 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Cet email n\'est pas enregistré');
+            throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
-
 
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        if (!$credentials){
-            throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
-        }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
-
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function getPassword($credentials): ?string
     {
-//        dump($credentials['password']);
-//        dump($credentials);die();
-//        if (!$credentials){
-//            throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
-//        }
         return $credentials['password'];
     }
 
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-
-
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($this->urlGenerator->generate('nomade_home'));
+            return new RedirectResponse($this->urlGenerator->generate('proprietaire_home'));
         }
 
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('login_nomade');
+        return $this->urlGenerator->generate('login_proprietaire');
     }
 }
