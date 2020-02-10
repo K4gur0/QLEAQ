@@ -42,7 +42,7 @@ class RegistrationController extends AbstractController
 
             $notifNomade->notify($user);
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('login_nomade');
         }
 
         return $this->render('registration/register.html.twig', [

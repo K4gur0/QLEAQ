@@ -14,9 +14,15 @@ class NomadeLoginController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('nomade_home');
-         }
+
+        if ($this->getUser()) {
+            $role = $this->getUser()->getRoles();
+            if ($role[0] == "ROLE_USER"){
+                return $this->redirectToRoute('nomade_home');
+            }elseif ($role[0] == "ROLE_PROPRIO"){
+                return $this->redirectToRoute('proprio_home');
+            }
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

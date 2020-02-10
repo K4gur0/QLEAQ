@@ -89,11 +89,26 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
         return $credentials['password'];
     }
 
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($this->urlGenerator->generate('nomade'));
+            return new RedirectResponse($this->urlGenerator->generate('nomade_home'));
         }
+
+//        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+//
+//            $role = $this->getUser()->getRoles();
+////            var_dump($role);die();
+//            if ($role[0] == "ROLE_USER") {
+//                return new RedirectResponse($this->urlGenerator->generate('nomade_home'));
+//            }elseif ($role[0] == "ROLE_PROPRIO"){
+//                return new RedirectResponse($this->urlGenerator->generate('proprio_home'));
+//            }
+//
+//        }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
 

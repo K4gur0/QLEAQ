@@ -147,7 +147,8 @@ class Nomade implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
+//        $roles[1] = 'ROLE_PROPRIO';
+//        $roles[2] = 'ROLE_ADMIN';
         return array_unique($roles);
     }
 
