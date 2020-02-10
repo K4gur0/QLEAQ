@@ -89,7 +89,6 @@ div.buttons_home
   flex-direction:row;
   height:90vh;
   margin: auto;
-  //justify-content: space-evenly;
 }
 
 
@@ -108,19 +107,6 @@ section.nomade p
   margin: auto;
 }
 
-//nav.navbar
-//{
-//  box-shadow: 0px 30px 100px 100px rgba(255,255,255,1);
-//}
-
-//section.nomade div.illustration
-//{
-//  height: 100%;
-//  width: 100%;
-//  background: center no-repeat  url("../images/apart2.jpg");
-//  background-size: cover;
-//}
-
 
 section.proprio
 {
@@ -129,13 +115,7 @@ section.proprio
   justify-content: center;
   align-items: center;
 }
-section.proprio div.illustration
-{
-  height: 100%;
-  width: 100%;
-  background: center no-repeat  url("../images/apart6.jpg");
-  background-size: cover;
-}
+
 
 p.control
 {

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/nomade", name="nomade_")
+ * @Route("/locataire", name="nomade_")
  * @IsGranted("ROLE_USER")
  */
 

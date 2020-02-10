@@ -8,15 +8,17 @@
 
     <section class="proprio">
 
-        <div class="column illustration">
-            {#        <img src="{{ asset('build/images/apart1.f6c2aa21.jpg') }}" >#}
-        </div>
+
 
 
         {% if is_granted('ROLE_PROPRIO') %}
 
 
         {% else %}
+
+            <div class="column illustration">
+                        <img src="{{ asset('build/images/formulaire_proprio.8c1f6fbb.svg') }}" >
+            </div>
 
             <div class="column is-centered section">
                 <div class="column">
@@ -51,14 +53,18 @@
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <br>
 
+
+                        {% include 'includes/flash_message.html.twig' %}
+
                         <div class="field buttons is-centered">
+
                             <p class="control">
 
                                 <button class="button is-info" type="submit">
                                     Connexion
                                 </button>
 
-                                <a class="button is-primary" href="{{ path('app_register') }}">
+                                <a class="button is-primary" href="{{ path('proprio_register') }}">
                                     Créez un compte gratuitement
                                 </a>
 

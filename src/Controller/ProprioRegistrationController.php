@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Nomade;
-use App\Form\RegistrationFormType;
+use App\Form\ProprioRegistrationType;
 use App\Notif\NotifNomade;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,15 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class RegistrationController extends AbstractController
+class ProprioRegistrationController extends AbstractController
 {
     /**
-     * @Route("/inscription-locataire", name="app_register")
+     * @Route("/inscription-proprietaire", name="proprio_register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, NotifNomade $notifNomade): Response
     {
-        $user = new Nomade();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $proprio = new Nomade();
+        $form = $this->createForm(ProprioRegistrationType::class, $proprio);
 
         $form->handleRequest($request);
 
@@ -28,25 +28,29 @@ class RegistrationController extends AbstractController
             $this->addFlash('success', 'Votre compte a bien été créée');
 
 
+            $proprio->setRoles(
+              ["ROLE_PROPRIO"]
+            );
+
             // encode the plain password
-            $user->setPassword(
+            $proprio->setPassword(
                 $passwordEncoder->encodePassword(
-                    $user,
+                    $proprio,
                     $form->get('plainPassword')->getData()
                 )
             );
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($proprio);
             $entityManager->flush();
 
-            $notifNomade->notify($user);
+            $notifNomade->notify($proprio);
 
-            return $this->redirectToRoute('login_nomade');
+            return $this->redirectToRoute('login_proprietaire');
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+        return $this->render('registration/proprio_register.html.twig', [
+            'ProprioRegistrationForm' => $form->createView(),
         ]);
     }
 }

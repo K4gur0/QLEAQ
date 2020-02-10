@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class NomadeLoginController extends AbstractController
 {
     /**
-     * @Route("/login_nomade", name="login_nomade")
+     * @Route("/login-locataire", name="login_nomade")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

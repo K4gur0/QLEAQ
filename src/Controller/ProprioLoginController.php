@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class ProprioLoginController extends AbstractController
 {
     /**
-     * @Route("/login_proprietaire", name="login_proprietaire")
+     * @Route("/login-proprietaire", name="login_proprietaire")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

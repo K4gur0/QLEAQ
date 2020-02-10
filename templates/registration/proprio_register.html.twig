@@ -1,0 +1,164 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Inscription Propriétaire{% endblock %}
+
+
+    {% block content %}
+
+        {% if is_granted('ROLE_PROPRIO') %}
+
+        {% else %}
+
+            <section class="hero is-medium">
+                <div class="columns is-centered section">
+
+
+                    <div class="column" style="align-items: center;display: flex;">
+                        <img src="{{ asset('build/images/proprio_sub.5660b548.svg') }}" alt="" style="margin: auto; max-width: 70%">
+                    </div>
+
+
+
+                        <div class="column is-two-fifths register">
+                        <h1 class="title has-text-centered has-text-primary">
+                            Inscription Propriétaire
+                        </h1>
+
+                        {% include 'includes/flash_message.html.twig' %}
+
+                        {{ form_start(ProprioRegistrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
+
+
+                        <div class="field">
+                            <label class="label">Nom d'entreprise / Raison Social</label>
+                            <div class="control">
+                                {{ form_row(ProprioRegistrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom'}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Téléphone</label>
+                            <div class="control">
+                                {{ form_row(ProprioRegistrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                {{ form_row(ProprioRegistrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                                }) }}
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <label class="label">Votre statut</label>
+                            <div class="select" style="width: 100%">
+                                {{ form_row(ProprioRegistrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                                }) }}
+                            </div>
+                        </div>
+
+
+
+                         <div class="field">
+                             <label class="label">Adresse du siège social</label>
+                             <div style="width: 100%">
+                                 {{ form_row(ProprioRegistrationForm.adresse, {'attr' : {'placeholder' : 'Entrez l\'adresse du siège de l\'entreprise'}
+                                 }) }}
+                             </div>
+                         </div>
+
+                            <div class="field">
+                                <label class="label">Entrez votre code postale</label>
+                                <div class="control">
+                                    {{ form_row(ProprioRegistrationForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                    }) }}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Ville</label>
+                                <div style="width: 100%">
+                                    {{ form_row(ProprioRegistrationForm.ville, {'attr' : {'placeholder' : 'Entrez la ville de l\'entreprise'}
+                                    }) }}
+                                </div>
+                            </div>
+
+{#                            <div class="field">#}
+{#                                <label class="label">Présentation</label>#}
+{#                                <div style="width: 100%">#}
+{#                                    {{ form_row(ProprioRegistrationForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Complêtez avec des informations complémentaires', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}#}
+{#                                    }) }}#}
+{#                                </div>#}
+{#                            </div>#}
+
+                            <div class="field">
+                                <label class="label">Mot de passe</label>
+                                <div class="control">
+                                    {{ form_row(ProprioRegistrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                                    }) }}
+                                </div>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label">Comfirmez votre mot de passe</label>
+                                <div class="control">
+                                    {{ form_row(ProprioRegistrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                                    }) }}
+                                </div>
+                            </div>
+
+
+
+
+
+                        {% if form_errors(ProprioRegistrationForm) != null %}
+                            <div class="form-error notification is-danger">
+                                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                                {{ form_errors(ProprioRegistrationForm) }}
+                            </div>
+                        {% endif %}
+
+                        {#                {% include 'includes/flash_message.html.twig' %}#}
+
+                        <button class="button is-info is-fullwidth" type="submit">
+                            S'inscrire
+                        </button>
+
+                        {{ form_end(ProprioRegistrationForm) }}
+
+                    </div>
+                </div>
+
+
+            </section>
+
+        {% endif %}
+
+        {#    VERIFICATION REMPLISSAGE DES CHAMPS EN JAVASCRIPT   #}
+        <script language="Javascript">
+            function verif_nombre(champ)
+            {
+                var chiffres = new RegExp("[0-9]");
+                var verif;
+                var points = 0;
+
+                for(x = 0; x < champ.value.length; x++)
+                {
+                    verif = chiffres.test(champ.value.charAt(x));
+                    if(champ.value.charAt(x) == "."){points++;}
+                    if(points > 1){verif = false; points = 1;}
+                    if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
+                }
+            }
+        </script>
+
+
+
+
+    {% endblock %}
