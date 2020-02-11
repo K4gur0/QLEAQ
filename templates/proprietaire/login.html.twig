@@ -5,8 +5,8 @@
 
 
 {% block content %}
-
-    <div class="columns is-vcentered" style="height:80vh;">
+<section class="hero is-medium">
+    <div class="columns is-vcentered section">
 
 
 
@@ -17,7 +17,7 @@
         {% else %}
 
             <div class="column illustration">
-                        <img src="{{ asset('build/images/formulaire_proprio.8c1f6fbb.svg') }}" >
+                        <img src="{{ asset('build/images/login_proprio.f1dcb802.svg') }}" >
             </div>
 
             <div class="column is-centered section">
@@ -83,9 +83,13 @@
                 </div>
             </div>
 
+        </div>
+
+</section>
+
         {% endif %}
 
-    </div>
+
 
     {% block background %}{% endblock %}
 
