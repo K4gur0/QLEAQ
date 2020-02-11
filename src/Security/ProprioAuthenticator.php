@@ -2,7 +2,8 @@
 
 namespace App\Security;
 
-use App\Entity\Nomade;
+
+use App\Entity\Proprietaire;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,19 +66,19 @@ class ProprioAuthenticator extends AbstractFormLoginAuthenticator implements Pas
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(Nomade::class)->findOneBy(['email' => $credentials['email']]);
+        $proprio = $this->entityManager->getRepository(Proprietaire::class)->findOneBy(['email' => $credentials['email']]);
 
-        if (!$user) {
+        if (!$proprio) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
-        return $user;
+        return $proprio;
     }
 
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $proprio)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        return $this->passwordEncoder->isPasswordValid($proprio, $credentials['password']);
     }
 
     /**
@@ -91,7 +92,7 @@ class ProprioAuthenticator extends AbstractFormLoginAuthenticator implements Pas
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($this->urlGenerator->generate('proprietaire_home'));
+            return new RedirectResponse($this->urlGenerator->generate('proprio_home'));
         }
 
     }

@@ -12,6 +12,18 @@
     {% if is_granted('ROLE_USER') %}
 
 
+        <section class="hero is-primary is-medium">
+            <div class="hero-body">
+                <div class="container" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                    <h1 class="title">
+                        Vous êtes déjà connecté !
+                    </h1>
+                    <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                </div>
+            </div>
+        </section>
+
+
     {% else %}
 
         <div class="column illustration">

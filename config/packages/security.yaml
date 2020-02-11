@@ -5,13 +5,28 @@ security:
         App\Entity\Proprietaire:
             algorithm: auto
 
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+#    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+#    providers:
+#        # used to reload user from session & other features (e.g. switch_user)
+#        app_user_provider:
+#            entity:
+#                class: App\Entity\Nomade
+#                property: email
+
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        nomade_users:
             entity:
                 class: App\Entity\Nomade
                 property: email
+
+        proprio_users:
+            entity:
+                class: App\Entity\Proprietaire
+                property: email
+        all_users:
+            chain:
+                providers: ['nomade_users', 'proprio_users']
+
 
 
     firewalls:
@@ -20,6 +35,7 @@ security:
             security: false
         main:
             anonymous: lazy
+            provider: all_users
             guard:
                 authenticators:
                     - App\Security\NomadeAuthenticator
@@ -27,14 +43,36 @@ security:
                 entry_point: App\Security\NomadeAuthenticator
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+#                 where to redirect after logout
+#                 target: homepage
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+
+
+#    firewalls:
+#        dev:
+#            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+#        nomade:
+#            pattern: ^/nomade
+#            provider: nomade_users
+#            guard:
+#                authenticators:
+#                    - App\Security\NomadeAuthenticator
+#                entry_point: App\Security\NomadeAuthenticator
+#        proprio:
+#            pattern: ^/proprio
+#            provider: proprio_users
+#            guard:
+#                authenticators:
+#                    - App\Security\ProprioAuthenticator
+#                entry_point: App\Security\ProprioAuthenticator
+#            logout:
+#                path: app_logout
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

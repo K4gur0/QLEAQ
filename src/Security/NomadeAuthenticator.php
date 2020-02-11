@@ -75,8 +75,6 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Cet email n\'est pas enregistré');
         }
-
-
         return $user;
     }
 

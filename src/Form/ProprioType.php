@@ -2,39 +2,83 @@
 
 namespace App\Form;
 
-use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProprioType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('nom')
-            ->add('prenom')
-            ->add('date_naissance')
-            ->add('telephone')
-            ->add('adresse')
-            ->add('cp')
-            ->add('ville')
-            ->add('photo_profile')
-            ->add('budget')
-            ->add('presentation')
-            ->add('statut')
-            ->add('date_creation_compte')
-            ->add('sexe')
+//            ->add('roles')
+            ->add('raison_social',TextType::class,
+                array('label' => false,
+                )
+            )
+
+            ->add('telephone',TelType::class,
+                array('label' => false,
+                    'required' => false)
+            )
+
+            ->add('adresse',TextType::class, [
+                'label' => false,
+                'attr' => ['class' => 'input'],
+            ])
+
+
+            ->add('cp', TextType::class,[
+                'label' => false,
+                'attr' => ['class' => 'input'],
+            ])
+
+
+            ->add('ville', TextType::class,[
+                'label' => false,
+                'attr' => ['class' => 'input'],
+            ])
+
+
+            ->add('email',EmailType::class, [
+                'label' => false,
+                'error_bubbling' => true,
+                'attr' => ['class' => 'input'],
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez remplir ce champ.']),
+                    new Email(['message' => 'Veuillez indiquer une adresse mail valide. Exemple : mon_adresse_mail@gmail.com']),
+                ]
+            ])
+
+            ->add('statut',ChoiceType::class,
+                array('label' => false,
+                    'required' => true,
+                    'choices' => [
+                        'Propriétaire' => 'Proprietaire',
+                        'Mandataire' => 'Mandataire',
+                        'Agence Immo' => 'Agence_immo',
+                        'Hôtel' => 'Hotel',
+                        'Aparthôtel' => 'Aparthotel',
+                        'Auberge de Jeunesse' => 'Aubrege_de_jeunesse',
+                        'Résidence étudiante' => 'Residence_etudiante',
+                        'Autre' => 'Autre',
+                    ]
+                )
+            )
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Nomade::class,
+            'data_class' => Proprietaire::class,
         ]);
     }
 }

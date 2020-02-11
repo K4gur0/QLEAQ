@@ -15,14 +15,27 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/locataire", name="nomade_")
- * @IsGranted("ROLE_USER")
+ *
  */
 
 class NomadeController extends AbstractController
 {
 
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="presentation")
+     *
+     */
+
+    public function presentationLoc(){
+
+        return $this->render('nomade/presentation.html.twig');
+    }
+
+
+    /**
+     * @Route("/accueil", name="home")
+     * @IsGranted("ROLE_USER")
+     *
      */
 
     public function espace(){
@@ -32,17 +45,10 @@ class NomadeController extends AbstractController
 
     /**
      * @Route("/profile", name="profile")
+     * @IsGranted("ROLE_USER")
      *
      */
-//    public function index()
-//    {
-//        $nomade = new Nomade();
-//        $form = $this->createForm(NomadeType::class, $nomade);
-//
-//        return $this->render('nomade/nomade.html.twig', [
-//            'formNomade' => $form->createView(),
-//        ]);
-//    }
+
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         // Récupération de l'utilisateur courant
@@ -62,33 +68,6 @@ class NomadeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($nomade);
             $entityManager->flush();
-
-//            /**
-//             * @var UploadedFile $photo
-//             */
-//            $photo = $nomadeForm->get('photo_profile')->getData();
-//
-//            if ($photo){
-//                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-//                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-//                $newFilename = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
-//
-//                try {
-//                    $photo->move(
-//                        $this->getParameter('dossier_photo'),
-//                        $newFilename
-//                    );
-//                } catch (FileException $e) {
-//                    // ... handle exception if something happens during file upload
-//                }
-//
-//            }
-//
-//
-//
-//            $nomade->setPhotoProfile($newFilename);
-
-
 
 
             // Ajout d'un message flash

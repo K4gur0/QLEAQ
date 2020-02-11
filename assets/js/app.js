@@ -16,6 +16,10 @@ const formulaire = require('../images/svg/formulaire.svg');
 const formulaire_proprio = require('../images/svg/formulaire_proprio.svg');
 const locataire = require('../images/svg/locataire.svg');
 const proprio_sub = require('../images/svg/proprio_sub.svg');
+const vision = require('../images/svg/vision.svg');
+const best_place = require('../images/svg/best_place.svg');
+const mission = require('../images/svg/mission.svg');
+const solution = require('../images/svg/solution.svg');
 
 
 var html = "<img src='${fondEcran}'>";

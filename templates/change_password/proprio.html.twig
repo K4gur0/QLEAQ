@@ -1,0 +1,72 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}QLEAQ | Modification de mot de passe{% endblock %}
+
+{% block content %}
+
+    {% if is_granted('ROLE_PROPRIO') %}
+
+        <div class="columns is-centered section">
+            <div class="column is-one-third">
+                <h1 class="title has-text-primary has-text-centered">
+                    Modification du mot de passe
+                </h1>
+
+
+
+                {{ form_start(changePasswordFormProprio) }}
+
+                <div class="field">
+                    <label class="label">Entrez votre mot de passe actuel</label>
+                    <div class="control">
+                        {{ form_row(changePasswordFormProprio.password, {'attr' : {'placeholder' : 'Entrez le Mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Entrez votre nouveau mot de passe</label>
+                    <div class="control">
+                        {{ form_row(changePasswordFormProprio.plainPassword.first, {'attr' : {'placeholder' : 'Entrez le Mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Validez votre nouveau mot de passe</label>
+                    <div class="control">
+                        {{ form_row(changePasswordFormProprio.plainPassword.second, {'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                        }) }}
+                    </div>
+                </div>
+
+                            {% if form_errors(changePasswordFormProprio) != null %}
+                                <div class="notification is-danger">
+                                    <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                                    {{ form_errors(changePasswordFormProprio) }}
+                                </div>
+                            {% endif %}
+
+                {% include 'includes/flash_message.html.twig' %}
+
+{#                {% if error %}#}
+{#                    <div class="form-error notification is-danger">#}
+{#                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
+{#                        {{ error.messageKey|trans(error.messageData, 'security') }}#}
+{#                    </div>#}
+{#                {% endif %}#}
+
+                <button type="submit" class="button is-info">Modifier</button>
+
+                {{ form_end(changePasswordFormProprio) }}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+
+
+

@@ -34,56 +34,56 @@
 
 
                     <div class="field" >
-                        {{ form_start(nomadeForm) }}
+                        {{ form_start(proprioForm) }}
 
 
                         {% include 'includes/flash_message.html.twig' %}
                         {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
                         {#                        }) }}#}
-                        {% if form_errors(nomadeForm) != null %}
+                        {% if form_errors(proprioForm) != null %}
                             <div class="notification is-danger">
                                 <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
-                                {{ form_errors(nomadeForm) }}
+                                {{ form_errors(proprioForm) }}
                             </div>
                         {% endif %}
 
+{#                        <div class="field">#}
+{#                            <label class="label">Civilitée</label>#}
+
+{#                            <div class="select" style="width: 100%">#}
+{#                                {{ form_row(proprioForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input', 'alt' : 'civilite'}#}
+{#                                }) }}#}
+{#                            </div>#}
+
+{#                        </div>#}
+
                         <div class="field">
-                            <label class="label">Civilitée</label>
-
-                            <div class="select" style="width: 100%">
-                                {{ form_row(nomadeForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input', 'alt' : 'civilite'}
-                                }) }}
-                            </div>
-
-                        </div>
-
-                        <div class="field">
-                            <label class="label">Nom</label>
+                            <label class="label">Nom ou Raison social</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom' , 'alt' : 'nom'},
-                                }) }}
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">Prénom</label>
-                            <div class="control">
-                                {{ form_row(nomadeForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Prénom' , 'alt' : 'prenom'}
+                                {{ form_row(proprioForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom' , 'alt' : 'nom'},
                                 }) }}
                             </div>
                         </div>
 
-                        <div class="field">
-                            <label class="label">Selectionnez votre date de naissance</label>
-                            <div class="control">
-                                {{ form_row(nomadeForm.date_naissance) }}
-                            </div>
-                        </div>
+{#                        <div class="field">#}
+{#                            <label class="label">Prénom</label>#}
+{#                            <div class="control">#}
+{#                                {{ form_row(proprioForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Prénom' , 'alt' : 'prenom'}#}
+{#                                }) }}#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="field">#}
+{#                            <label class="label">Selectionnez votre date de naissance</label>#}
+{#                            <div class="control">#}
+{#                                {{ form_row(proprioForm.date_naissance) }}#}
+{#                            </div>#}
+{#                        </div>#}
 
                         <div class="field">
                             <label class="label">Email</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email' , 'alt' : 'email'}
+                                {{ form_row(proprioForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email' , 'alt' : 'email'}
                                 }) }}
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         <div class="field">
                             <label class="label">Numéro de téléphone</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                                {{ form_row(proprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
                                 }) }}
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="field">
                             <label class="label">Adresse</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
+                                {{ form_row(proprioForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
                                 }) }}
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                         <div class="field">
                             <label class="label">Entrez votre code postale</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                {{ form_row(proprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
                                 }) }}
                             </div>
                         </div>
@@ -115,30 +115,30 @@
                         <div class="field">
                             <label class="label">Entrez votre Ville</label>
                             <div class="control">
-                                {{ form_row(nomadeForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville' , 'alt' : 'ville'}
+                                {{ form_row(proprioForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville' , 'alt' : 'ville'}
                                 }) }}
                             </div>
                         </div>
 
-                        <div class="field">
-                            <label class="label">Présentez vous</label>
-                            <div class="control">
-                                {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}
-                                }) }}
-                            </div>
-                        </div>
+{#                        <div class="field">#}
+{#                            <label class="label">Présentez vous</label>#}
+{#                            <div class="control">#}
+{#                                {{ form_row(proprioForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}#}
+{#                                }) }}#}
+{#                            </div>#}
+{#                        </div>#}
 
                         <div class="field">
                             <label class="label">Votre statut</label>
                             <div class="select" style="width: 100%">
-                                {{ form_row(nomadeForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
+                                {{ form_row(proprioForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
                                 }) }}
                             </div>
                         </div>
 
 
                         <div class="column is-centered ">
-                            <a class="button is-primary" style="width: 100%;" href="{{ path('change_password') }}">Changer votre mot de passe</a>
+                            <a class="button is-primary" style="width: 100%;" href="{{ path('change_password_proprio') }}">Changer votre mot de passe</a>
                         </div>
 
 
@@ -154,7 +154,7 @@
                         {#                        <a class="button is-danger">Supprimer mon compte</a>#}
                         {#                    </div>#}
 
-                        {{ form_end(nomadeForm) }}
+                        {{ form_end(proprioForm) }}
                     </div>
                 </div>
             </div>

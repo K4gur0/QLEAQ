@@ -7,6 +7,26 @@
 
         {% if is_granted('ROLE_USER') %}
 
+{#            <div class="section hero is-warning">#}
+{#                <div class="hero-body is-danger">#}
+{#                     <p class="is-centered" style="margin: auto">Vous êtes déjà connecté !</p>#}
+{#                    #}
+{#                </div>#}
+{#            </div>#}
+
+            <section class="hero is-primary is-medium">
+                <div class="hero-body">
+                    <div class="container" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                        <h1 class="title">
+                            Vous êtes connecté avec un compte déjà enregistré !
+                        </h1>
+                        <i>Veuillez vous déconnecter pour pouvoir enregistrer un compte</i>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
+            
+
         {% else %}
 
 <section class="hero is-medium">

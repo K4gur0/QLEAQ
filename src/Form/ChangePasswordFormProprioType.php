@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -10,8 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 
-
-class ChangePasswordFormType extends AbstractType
+class ChangePasswordFormProprioType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -20,12 +19,12 @@ class ChangePasswordFormType extends AbstractType
             ->add('password', PasswordType::class,
                 array('label' => false,
                     'mapped' => false,
-                    )
                 )
+            )
 
-           ->add('plainPassword', RepeatedType::class, [
-               'first_options'  => array('label' => false),
-               'second_options' => array('label' => false),
+            ->add('plainPassword', RepeatedType::class, [
+                'first_options'  => array('label' => false),
+                'second_options' => array('label' => false),
                 'label' => false,
                 'mapped' => false,
                 'type' => PasswordType::class,
@@ -46,7 +45,8 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Nomade::class,
+            'data_class' => Proprietaire::class,
         ]);
     }
 }
+
