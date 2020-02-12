@@ -60,6 +60,7 @@ class NomadeRegistrationController extends AbstractController
 //            $this->sendConfirmationEmail($mailer, $user);
 
             $this->addFlash('success', 'Votre compte a bien été créée');
+            $this->addFlash('info', 'Vous devrez confirmez votre compte, un lien vous a été envoyé par email.');
 
             return $this->redirectToRoute('login_nomade');
         }

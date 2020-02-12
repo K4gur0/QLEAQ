@@ -29,9 +29,9 @@ class NotifNomade
     {
         $message = (new \Swift_Message('Confirmation de création de compte Qleaq'))
             ->setFrom('qleaq@gmail.com')
-            ->setTo($nomade->getEmail())
-            ->setReplyTo($nomade->getEmail())
-            ->setBody($this->renderer->render('emails/confirmation.html.twig',[
+            ->setTo('kenshin91cb@gmail.com')
+//            ->setReplyTo($nomade->getEmail())
+            ->setBody($this->renderer->render('emails/confirmation_nomade.html.twig',[
                 'nomade' => $nomade
             ]), 'text/html' );
         $this->mailer->send($message);

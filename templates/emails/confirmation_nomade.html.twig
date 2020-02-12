@@ -1,5 +1,7 @@
 
 <!doctype html>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
@@ -164,22 +166,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tr>
                                 <td align="center" style="font-size:0px;padding:10px 25px;padding-top:28px;padding-right:25px;padding-bottom:18px;padding-left:25px;word-break:break-word;">
-                                    <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#ABCDEA;">HELLO
-{#                                        <p style="font-size:16px; color:white">#}
-{#                                            {{ nomade.prenom }} {{ nomade.nom }}#}
-{#                                        </p>#}
 
-                                        <h1>Confirmation du compte</h1>
-
-                                        <p>
-                                            Bonjour {{ nomade.username }}<br>
-                                            Pour pouvoir vous connecter, accédez au lien suivant:
-                                            <a href="{{ url('user_confirmation', {id: nomade.id, token: nomade.securityToken}) }}">
-                                                {{ url('user_confirmation', {id: nomade.id, token: nomade.securityToken}) }}
-                                            </a>
-                                        </p>
-nomade
-                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -241,9 +228,33 @@ nomade
                             </tr>
                             <tr>
                                 <td align="center" style="font-size:0px;padding:10px 25px;padding-top:28px;padding-right:25px;padding-bottom:28px;padding-left:25px;word-break:break-word;">
-                                    <div style="font-family:Helvetica;font-size:13px;line-height:1;text-align:center;color:#FFFFFF;"><span style="font-size:20px; font-weight:bold">Bienvenue sur Qleaq !</span> <br/> <span style="font-size:15px"><p>La création de votre compte est validé</p></span></div>
+
                                 </td>
                             </tr>
+
+                            <h1>Confirmation du compte</h1>
+
+                            <div style="font-family:Helvetica;font-size:13px;line-height:1;text-align:center;color:#FFFFFF;">
+                                <span style="font-size:20px; font-weight:bold">Bienvenue sur Qleaq {{ nomade.prenom }} !</span>
+                                <br/>
+                                <span style="font-size:15px">
+                                    <p>La création de votre compte presque validée !</p>
+                                </span>
+                            </div>
+                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#ABCDEA;">
+
+                                <p>
+                                    <p>Afin de finaliser votre inscription, veuillez cliquez sur le lien suivant : </p>
+                                    <p>
+                                        <a href="{{ url('user_confirmation', {id: nomade.id, token: nomade.securityToken}) }}" style="display:inline-block;background:#ffae00;color:#FFFFFF;font-family:Helvetica;font-size:14px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;"
+                                           target="_blank">
+                                            Lien de confirmation
+                                        </a>
+                                    </p>
+
+                                </p>
+                            </div>
+
                         </table>
                     </div>
                     <!--[if mso | IE]>
@@ -262,6 +273,8 @@ nomade
     </td>
     </tr>
     </table>
+
+
 
     <table
             align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
@@ -294,8 +307,8 @@ nomade
                                 <td align="center" style="font-size:0px;padding:10px 25px;padding-top:10px;padding-right:25px;padding-bottom:20px;padding-left:25px;word-break:break-word;">
                                     <div style="font-family:Helvetica;font-size:13px;line-height:1;text-align:center;color:#FFFFFF;">
 
-{#                                        <p>Mail :{{ nomade.email }}</p>#}
-{#                                        <p>Mot de passe : {{ nomade.password }}</p>#}
+                                        <p>Mail : {{ nomade.email }}</p>
+                                        <p>Mot de passe : {{ nomade.password }}</p>
 
                                     </div>
                                 </td>
@@ -345,7 +358,7 @@ nomade
                                 <td align="center" vertical-align="middle" style="font-size:0px;padding:15px 30px;padding-right:25px;padding-bottom:10px;padding-left:25px;word-break:break-word;">
                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                         <tr>
-                                            <td align="center" bgcolor="#ffae00" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#ffae00;" valign="middle"> <a href="https://mjml.io" style="display:inline-block;background:#ffae00;color:#FFFFFF;font-family:Helvetica;font-size:14px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;"
+                                            <td align="center" bgcolor="#ffae00" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#ffae00;" valign="middle"> <a href="https://www.qleaq.com" style="display:inline-block;background:#ffae00;color:#FFFFFF;font-family:Helvetica;font-size:14px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;"
                                                                                                                                                                                                                           target="_blank">
                                                     Revenir sur Qleaq.com
                                                 </a> </td>
