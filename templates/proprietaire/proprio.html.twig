@@ -38,8 +38,7 @@
 
 
                         {% include 'includes/flash_message.html.twig' %}
-                        {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
-                        {#                        }) }}#}
+
                         {% if form_errors(proprioForm) != null %}
                             <div class="notification is-danger">
                                 <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
@@ -47,15 +46,6 @@
                             </div>
                         {% endif %}
 
-{#                        <div class="field">#}
-{#                            <label class="label">Civilitée</label>#}
-
-{#                            <div class="select" style="width: 100%">#}
-{#                                {{ form_row(proprioForm.sexe, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input', 'alt' : 'civilite'}#}
-{#                                }) }}#}
-{#                            </div>#}
-
-{#                        </div>#}
 
                         <div class="field">
                             <label class="label">Nom ou Raison social</label>
@@ -65,20 +55,6 @@
                             </div>
                         </div>
 
-{#                        <div class="field">#}
-{#                            <label class="label">Prénom</label>#}
-{#                            <div class="control">#}
-{#                                {{ form_row(proprioForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Prénom' , 'alt' : 'prenom'}#}
-{#                                }) }}#}
-{#                            </div>#}
-{#                        </div>#}
-
-{#                        <div class="field">#}
-{#                            <label class="label">Selectionnez votre date de naissance</label>#}
-{#                            <div class="control">#}
-{#                                {{ form_row(proprioForm.date_naissance) }}#}
-{#                            </div>#}
-{#                        </div>#}
 
                         <div class="field">
                             <label class="label">Email</label>
@@ -150,9 +126,6 @@
                             <button type="submit" style="width: 100%;" class="button is-info">Valider les modifications</button>
                         </div>
 
-                        {#                    <div class="columns column is-centered">#}
-                        {#                        <a class="button is-danger">Supprimer mon compte</a>#}
-                        {#                    </div>#}
 
                         {{ form_end(proprioForm) }}
                     </div>
@@ -161,9 +134,16 @@
 
         {% else %}
 
-            <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
-                <h1>Accès refusé !</h1>
-            </div>
+            <section class="hero is-dark is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
 
         {% endif %}
 

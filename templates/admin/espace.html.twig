@@ -1,28 +1,39 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}{% include 'includes/qleaq_title.html.twig' %}Accueil Locataire{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Espace d'administration{% endblock %}
 
 {% block content %}
     <section>
 
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
 
 
 
-            <section class="hero is-medium is-primary is-bold">
+            <section class="hero is-medium is-dark is-bold">
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
                             Bonjour {{ app.user.prenom }} {{ app.user.nom }} !
                         </h1>
                         <h2 class="subtitle">
-                            Bienvenue sur votre espace Locataire
+                            Bienvenue sur votre espace d'aministration
                         </h2>
                     </div>
                 </div>
             </section>
 
+
+            <section class="section">
+
+                {% include 'includes/InfoNomade.html.twig' with {nomades: nomade} %}
+
+            </section>
+
+
+
+
         {% else %}
+
 
             <section class="hero is-dark is-bold is-large">
                 <div class="hero-body">
@@ -34,6 +45,7 @@
                     </div>
                 </div>
             </section>
+
 
         {% endif %}
 

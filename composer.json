@@ -16,6 +16,7 @@
         "symfony/mailer": "4.4.*",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.4.*",
+        "symfony/sendgrid-mailer": "4.4.*",
         "symfony/swiftmailer-bundle": "^3.4",
         "symfony/translation": "4.4.*",
         "symfony/twig-pack": "^1.0",

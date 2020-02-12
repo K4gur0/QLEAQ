@@ -1,0 +1,33 @@
+
+
+
+{% for nomade in nomades %}
+    {# @var record \App\Entity\Nomade #}
+    <div class="box">
+        <article class="media">
+
+            <div class="media-content">
+                <div class="content">
+                    <p>
+
+                        <a href="{{ path('nomade_profile', {id: nomade.id}) }}" class="has-text-primary">
+                            <span class="tag is-primary">
+                            {{ nomade.nom }}
+                        </span>
+                        </a>
+                        <span class="tag is-primary">
+                            {{ nomade.prenom }}
+                        </span>
+                        <span class="tag is-primary">
+                            {{ nomade.email }}
+                        </span>
+                        <span class="tag is-primary">
+                            {{ nomade.telephone }}
+                        </span>
+
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+{% endfor %}

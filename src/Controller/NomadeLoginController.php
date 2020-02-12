@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Nomade;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class NomadeLoginController extends AbstractController
@@ -15,12 +18,14 @@ class NomadeLoginController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
+
         if ($this->getUser()) {
             $role = $this->getUser()->getRoles();
-            if ($role[0] == "ROLE_USER"){
-                return $this->redirectToRoute('nomade_home');
-            }elseif ($role[0] == "ROLE_PROPRIO"){
+            if ($role[0] == "ROLE_PROPRIO"){
                 return $this->redirectToRoute('proprio_home');
+            }elseif ($role[0] == "ROLE_USER"){
+//                $id = $this->getDoctrine()->getRepository()->find($id);
+                return $this->redirectToRoute('nomade_home' );
             }
         }
 

@@ -17,10 +17,10 @@ class ProprioLoginController extends AbstractController
 
         if ($this->getUser()) {
             $role = $this->getUser()->getRoles();
-            if ($role[0] == "ROLE_USER"){
-                return $this->redirectToRoute('nomade_home');
-            }elseif ($role[0] == "ROLE_PROPRIO"){
+            if ($role[0] == "ROLE_PROPRIO"){
                 return $this->redirectToRoute('proprio_home');
+            }elseif ($role[0] == "ROLE_USER"){
+                return $this->redirectToRoute('nomade_home');
             }
         }
 

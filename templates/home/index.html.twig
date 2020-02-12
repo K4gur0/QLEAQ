@@ -43,7 +43,67 @@
 
             </div>
 
-            {% if is_granted('ROLE_PROPRIO')%}
+            {% if is_granted('ROLE_ADMIN') %}
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div style="justify-content: end;">
+
+
+
+
+
+                            <div class="dropdown is-hoverable is-right">
+                                <div class="dropdown-trigger">
+                                    <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu2">
+                                        <strong>Vous êtes connecté : {{ app.user.username }}</strong>
+                                        <span class="icon is-small">
+                                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu is-dark" id="dropdown-menu2" role="menu">
+                                    <div class="dropdown-content has-background-dark">
+
+
+                                        <a class="button is-dark is-fullwidth" href="{{ path('admin_home', {id: app.user.id} )  }}">
+                                            <span>Accueil</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-dark is-fullwidth" href="#">
+                                            <span>Gestion des comptes Locataires</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-dark is-fullwidth" href="#">
+                                            <span>Gestion des comptes Propriétaires</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-dark is-fullwidth" href="#">
+                                            <span>Gérer mon compte Admin</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-dark is-fullwidth" href="{{ path('app_logout') }}">
+                                            <span>Déconnexion</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            {% elseif is_granted('ROLE_PROPRIO')%}
 
             <div class="navbar-end">
                 <div class="navbar-item">
@@ -66,12 +126,12 @@
                                 <div class="dropdown-content" style="background-color: rgba(236,103,57,1);">
 
 
-                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_home') }}">
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_home', {id: app.user.id} )  }}">
                                         <span>Accueil Propriétaire</span>
                                     </a>
 
                                     <hr class="dropdown-divider">
-                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_profile') }}">
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_profile', {id: app.user.id} )  }}">
                                         <span>Gestion du compte</span>
                                     </a>
 
@@ -112,13 +172,18 @@
                                     <div class="dropdown-content" style="background-color: #006eaa;">
 
 
-                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_home') }}">
-                                            <span>Accueil Nomade</span>
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_presentation') }}">
+                                            <span>Accueil Locataire</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
-                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_profile') }}">
-                                            <span>Gestion du profile</span>
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_home', {id: app.user.id} ) }}">
+                                            <span>Mon compte Locataire</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_profile', {id: app.user.id}) }}">
+                                            <span>Modifier mon profile</span>
                                         </a>
 
                                         <hr class="dropdown-divider">

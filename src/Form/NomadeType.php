@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Nomade;
 
 use Doctrine\ORM\Query\Expr\Select;
+use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -153,5 +154,7 @@ class NomadeType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Nomade::class,
         ]);
+
+
     }
 }

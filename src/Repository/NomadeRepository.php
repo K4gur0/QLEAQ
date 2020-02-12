@@ -27,7 +27,7 @@ class NomadeRepository extends ServiceEntityRepository implements PasswordUpgrad
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
-        if (!$user instanceof User) {
+        if (!$user instanceof Nomade) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
 
@@ -36,22 +36,22 @@ class NomadeRepository extends ServiceEntityRepository implements PasswordUpgrad
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return Nomade[] Returns an array of Nomade objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+     /**
+      * @return Nomade[] Returns an array of Nomade objects
+      */
+
+//    public function findByExampleField($value)
+//    {
+//        return $this->createQueryBuilder('n')
+//            ->andWhere('n.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('n.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
 
     /*
     public function findOneBySomeField($value): ?Nomade

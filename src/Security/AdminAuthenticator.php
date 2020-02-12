@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\Nomade;
+use App\Entity\Admin;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class AdminAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
 
@@ -39,7 +39,7 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     public function supports(Request $request)
     {
-        return 'login_nomade' === $request->attributes->get('_route')
+        return 'admin_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -55,8 +55,6 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             $credentials['email']
         );
 
-
-
         return $credentials;
     }
 
@@ -67,58 +65,39 @@ class NomadeAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(Nomade::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(Admin::class)->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Cet email n\'est pas enregistré');
+            throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
+
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-
-        /**
-         * @Var Nomade $user
-         */
-        if (!$user->getIsConfirmed()) {
-            throw new CustomUserMessageAuthenticationException('Vous devez confirmer votre compte avant de pouvoir vous connecter');
-        }
-
-        if (!$credentials){
-            throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
-        }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
-
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function getPassword($credentials): ?string
     {
-//        dump($credentials['password']);
-//        dump($credentials);die();
-//        if (!$credentials){
-//            throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
-//        }
         return $credentials['password'];
     }
 
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-
-
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($this->urlGenerator->generate('nomade_home' ));
+            return new RedirectResponse($this->urlGenerator->generate('admin_home'));
         }
 
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('login_nomade');
+        return $this->urlGenerator->generate('admin_login');
     }
 }

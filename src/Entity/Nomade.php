@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NomadeRepository")
  * @UniqueEntity(fields={"email"}, message="L'email indiquée est déjà utilisée")
+ * @ORM\HasLifecycleCallbacks()
  *
  */
 class Nomade implements UserInterface
@@ -107,9 +108,35 @@ class Nomade implements UserInterface
      */
     private $sexe;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isConfirmed;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $securityToken;
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        // Si le statut isConfirmed n'est pas défini: mettre à false
+        if ($this->isConfirmed === null) {
+            $this->setIsConfirmed(false);
+        }
+
+        // Définir un jeton s'il n'y en a pas
+        if ($this->securityToken === null) {
+            $this->renewToken();
+        }
     }
 
     public function getId(): ?int
@@ -345,4 +372,43 @@ class Nomade implements UserInterface
 
         return $this;
     }
+
+    public function getIsConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(bool $isConfirmed): self
+    {
+        $this->isConfirmed = $isConfirmed;
+
+        return $this;
+    }
+
+    public function getSecurityToken(): ?string
+    {
+        return $this->securityToken;
+    }
+
+    public function setSecurityToken(string $securityToken): self
+    {
+        $this->securityToken = $securityToken;
+
+        return $this;
+    }
+
+
+    /**
+     * Renouveller le jeton de sécurité
+     */
+    public function renewToken() : self
+    {
+        // Création d'un jeton
+        $token = bin2hex(random_bytes(16));
+
+        return $this->setSecurityToken($token);
+    }
+
+
+
 }

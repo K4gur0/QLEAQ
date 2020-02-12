@@ -4,6 +4,9 @@ security:
             algorithm: auto
         App\Entity\Proprietaire:
             algorithm: auto
+        App\Entity\Admin:
+            algorithm: auto
+
 
 #    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
 #    providers:
@@ -23,9 +26,15 @@ security:
             entity:
                 class: App\Entity\Proprietaire
                 property: email
+        admin:
+            entity:
+                class: App\Entity\Admin
+                property: email
         all_users:
             chain:
-                providers: ['nomade_users', 'proprio_users']
+                providers: ['nomade_users', 'proprio_users', 'admin']
+        # used to reload user from session & other features (e.g. switch_user)
+
 
 
 
@@ -40,6 +49,7 @@ security:
                 authenticators:
                     - App\Security\NomadeAuthenticator
                     - App\Security\ProprioAuthenticator
+                    - App\Security\AdminAuthenticator
                 entry_point: App\Security\NomadeAuthenticator
             logout:
                 path: app_logout
@@ -53,27 +63,6 @@ security:
             # switch_user: true
 
 
-#    firewalls:
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#        nomade:
-#            pattern: ^/nomade
-#            provider: nomade_users
-#            guard:
-#                authenticators:
-#                    - App\Security\NomadeAuthenticator
-#                entry_point: App\Security\NomadeAuthenticator
-#        proprio:
-#            pattern: ^/proprio
-#            provider: proprio_users
-#            guard:
-#                authenticators:
-#                    - App\Security\ProprioAuthenticator
-#                entry_point: App\Security\ProprioAuthenticator
-#            logout:
-#                path: app_logout
-
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
@@ -81,6 +70,6 @@ security:
          - { path: ^/nomade, roles: ROLE_USER }
          - { path: ^/proprio, roles: ROLE_PROPRIO }
 
-#    role_hierarchy:
-#        ROLE_PROPRIO:      ROLE_USER
-#        ROLE_ADMIN:       [ROLE_USER, ROLE_PROPRIO]
+    role_hierarchy:
+        ROLE_PROPRIO:      ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER, ROLE_PROPRIO]

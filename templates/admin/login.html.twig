@@ -1,0 +1,101 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Connexion Administrateur{% endblock %}
+
+{% block content %}
+    <section class="section">
+    <div class="is-centered section">
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+
+        <section class="hero is-primary is-medium">
+            <div class="hero-body">
+                <div class="container" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                    <h1 class="title">
+                        Vous êtes déjà connecté !
+                    </h1>
+                    <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                </div>
+            </div>
+        </section>
+
+
+    {% else %}
+
+{#        <div class="column illustration">#}
+{#            <img src="{{ asset('build/images/login_nomade.b67e2a5c.svg') }}" >#}
+{#        </div>#}
+
+        <div class="columns is-centered section">
+            <div class="field">
+
+                <h1 class="title has-text-primary has-text-centered">
+                    Connexion à l'espace Administrateur
+                </h1>
+
+                <form method="post" class="is-centered section">
+
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="email" name="email" id="inputEmail" placeholder="Email" required autofocus>
+                            <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            <span class="icon is-small is-right">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input class="input" type="password" name="password" id="inputPassword" placeholder="Mot de passe" required>
+                            <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                        </p>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <br>
+
+
+                    {% include 'includes/flash_message.html.twig' %}
+
+
+                    {% if error %}
+                        <div class="form-error notification is-danger">
+                            <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <div class="field buttons is-centered">
+                        <p class="control">
+
+                            <button class="button is-info" type="submit">
+                                Connexion
+                            </button>
+
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        </div>
+
+        </section>
+
+    {% endif %}
+
+
+
+
+
+    {% block background %}{% endblock %}
+
+
+{% endblock %}

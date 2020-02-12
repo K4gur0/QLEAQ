@@ -31,7 +31,7 @@ class NotifNomade
             ->setFrom('qleaq@gmail.com')
             ->setTo($nomade->getEmail())
             ->setReplyTo($nomade->getEmail())
-            ->setBody($this->renderer->render('emails/nomade.html.twig',[
+            ->setBody($this->renderer->render('emails/confirmation.html.twig',[
                 'nomade' => $nomade
             ]), 'text/html' );
         $this->mailer->send($message);

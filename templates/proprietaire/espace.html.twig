@@ -24,9 +24,16 @@
 
         {% else %}
 
-            <div style="height: 80vh;width: 100%;display: flex;justify-content: center;align-items: center;">
-                <h1>Accès refusé !</h1>
-            </div>
+            <section class="hero is-dark is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
 
         {% endif %}
 
