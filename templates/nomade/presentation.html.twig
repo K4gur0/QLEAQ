@@ -12,10 +12,10 @@
                     Locataire avec Qleaq
                 </h1>
 
-                <a class="button is-info is-large" href="{{ path('login_nomade') }}">
+                <a class="button is-info" href="{{ path('login_nomade') }}">
                     Connexion
                 </a>
-                <a class="button is-info is-large" href="{{ path('app_register') }}">
+                <a class="button is-info" href="{{ path('app_register') }}">
                     Inscription
                 </a>
 
@@ -23,11 +23,11 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section is-medium">
 
         <div class="columns is-vcentered">
 
-            <div class="column is-hidden-touch is-two-fifths">
+            <div class="column is-two-fifths">
                 <figure class="image is-3by2">
                     <img src="{{ asset('build/images/vision.87e05348.svg') }}">
                 </figure>
@@ -42,16 +42,22 @@
 
     </section>
 
-    <section class="section">
+    <section class="section is-medium" style="background: #fafafa;">
 
         <div class="columns is-vcentered">
+
+            <div class="column is-hidden-tablet is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/mission.e40c0ea9.svg') }}">
+                </figure>
+            </div>
 
             <div class="column has-text-centered textes-presentation-nomade">
                 <h2 class="title is-2 box has-background-primary has-text-white">Notre Mission</h2>
                 <p class="subtitle is-3">Vous aider à organiser vos séjours professionnels, études, missions, stages ou formations.</p>
             </div>
 
-            <div class="column is-hidden-touch is-two-fifths">
+            <div class="column is-hidden-mobile is-two-fifths">
                 <figure class="image is-3by2">
                     <img src="{{ asset('build/images/mission.e40c0ea9.svg') }}">
                 </figure>
@@ -61,11 +67,11 @@
 
     </section>
 
-    <section class="section">
+    <section class="section is-medium">
 
         <div class="columns is-vcentered">
 
-            <div class="column is-hidden-touch is-two-fifths">
+            <div class="column is-two-fifths">
                 <figure class="image is-3by2">
                     <img src="{{ asset('build/images/best_place.6eed7ff9.svg') }}">
                 </figure>
@@ -80,9 +86,17 @@
 
     </section>
 
-    <section class="section">
+    <section class="section is-medium" style="background: #fafafa;">
 
         <div class="columns is-vcentered">
+
+
+            <div class="column is-hidden-tablet is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/offres.982066ea.svg') }}">
+                </figure>
+            </div>
+
 
             <div class="column textes-presentation-nomade">
                 <h2 class="title is-1 box has-background-primary has-text-white">Offres</h2>
@@ -99,9 +113,11 @@
                     </ul>
                 </div>
 
+                <a class="button is-primary" href="{{ path('nomade_offres') }}">En savoir plus</a>
+
             </div>
 
-            <div class="column is-hidden-touch is-two-fifths">
+            <div class="column is-hidden-mobile is-two-fifths">
                 <figure class="image is-3by2">
                     <img src="{{ asset('build/images/offres.982066ea.svg') }}">
                 </figure>
@@ -114,3 +130,4 @@
 
 
 {% endblock %}
+

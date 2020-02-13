@@ -26,7 +26,6 @@ class Nomade implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
-    public $confirm_email;
 
     /**
      * @ORM\Column(type="json")

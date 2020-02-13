@@ -31,6 +31,14 @@ class NomadeController extends AbstractController
         return $this->render('nomade/presentation.html.twig');
     }
 
+    /**
+     * @Route("/offres", name="offres")
+     */
+    public function offres(){
+
+        return $this->render('nomade/offres.html.twig');
+    }
+
 
     /**
      * @Route("/accueil", name="home")

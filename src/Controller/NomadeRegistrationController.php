@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Nomade;
+use App\Form\LostNomadePasswordType;
 use App\Form\RegistrationFormType;
 use App\Form\UsernameFormType;
 use App\Notif\NotifNomade;
 use App\Repository\NomadeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -157,6 +158,52 @@ class NomadeRegistrationController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
+
+    /**
+     * Demander un lien de réinitialisation du mot de passe
+     * @Route("/lost-password", name="lost_password")
+     *
+     * @param Request         $request          Pour le formulaire
+     * @param NomadeRepository  $userRepository   Pour rechercher l'utilisateur
+     * @param MailerInterface $mailer           Pour envoyer l'email de réinitialisation
+     */
+    public function lostPassword(Request $request, NomadeRepository $userRepository, NotifNomade $notifNomade)
+    {
+
+        $losteNomadePasswordForm = $this->createForm(LostNomadePasswordType::class);
+        $losteNomadePasswordForm->handleRequest($request);
+
+        if ($losteNomadePasswordForm->isSubmitted() && $losteNomadePasswordForm->isValid()) {
+            $username = $losteNomadePasswordForm->getData();
+
+            $user = $userRepository->findOneBy(['email' => $username]);
+
+            if ($user === null) {
+                $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
+
+//                dump($user);die();
+            } else {
+
+//                dump($user);die();
+
+                $notifNomade->lostPasswordNomade($user);
+
+                $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
+                return $this->redirectToRoute('lost_password');
+
+            }
+        }
+
+        return $this->render('nomade/lost_password.html.twig', [
+            'lost_nomade_password_form' => $losteNomadePasswordForm->createView()
+        ]);
+    }
 
 
 

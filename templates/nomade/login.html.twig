@@ -63,6 +63,21 @@
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <br>
 
+                        <div class="level">
+                            <div class="level-left">
+                                <a href="{{ path('send_confirmation') }}" class="button is-info is-small">
+                                    <i class="far fa-envelope"></i>&nbsp;
+                                    Pas reçu ?
+                                </a>
+                            </div>
+                            <div class="level-right">
+                                <a href="{{ path('lost_password') }}" class="button is-info is-small">
+                                    <i class="fas fa-key"></i>&nbsp;
+                                    Mot de passe perdu ?
+                                </a>
+                            </div>
+                        </div>
+
 
                         {% include 'includes/flash_message.html.twig' %}
 

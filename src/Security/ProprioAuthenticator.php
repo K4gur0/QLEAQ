@@ -78,6 +78,13 @@ class ProprioAuthenticator extends AbstractFormLoginAuthenticator implements Pas
 
     public function checkCredentials($credentials, UserInterface $proprio)
     {
+        /**
+         * @Var Propretaire $proprio
+         */
+        if (!$proprio->getIsConfirmed()) {
+            throw new CustomUserMessageAuthenticationException('Vous devez confirmer votre compte avant de pouvoir vous connecter');
+        }
+
         return $this->passwordEncoder->isPasswordValid($proprio, $credentials['password']);
     }
 

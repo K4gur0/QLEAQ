@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProprietaireRepository")
  * @UniqueEntity(fields={"email"}, message="L'email indiquée est déjà utilisée")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Proprietaire implements UserInterface
 {
@@ -63,6 +64,42 @@ class Proprietaire implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $statut;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isConfirmed;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $securityToken;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_creation_compte;
+
+    public function __construct()
+    {
+        $this->date_creation_compte = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        // Si le statut isConfirmed n'est pas défini: mettre à false
+        if ($this->isConfirmed === null) {
+            $this->setIsConfirmed(false);
+        }
+
+        // Définir un jeton s'il n'y en a pas
+        if ($this->securityToken === null) {
+            $this->renewToken();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -210,4 +247,53 @@ class Proprietaire implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getDateCreationCompte(): ?\DateTimeInterface
+    {
+        return $this->date_creation_compte;
+    }
+
+    public function setDateCreationCompte(\DateTimeInterface $date_creation_compte): self
+    {
+        $this->date_creation_compte = $date_creation_compte;
+
+        return $this;
+    }
+
+    public function getIsConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(bool $isConfirmed): self
+    {
+        $this->isConfirmed = $isConfirmed;
+
+        return $this;
+    }
+
+    public function getSecurityToken(): ?string
+    {
+        return $this->securityToken;
+    }
+
+    public function setSecurityToken(string $securityToken): self
+    {
+        $this->securityToken = $securityToken;
+
+        return $this;
+    }
+
+    /**
+     * Renouveller le jeton de sécurité
+     */
+    public function renewToken() : self
+    {
+        // Création d'un jeton
+        $token = bin2hex(random_bytes(16));
+
+        return $this->setSecurityToken($token);
+    }
+
+
 }

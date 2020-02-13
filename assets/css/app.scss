@@ -157,13 +157,14 @@ footer div div a
   width: auto;
   transition: 0.2s;
 }
+footer div div a:hover
+{
+  color: #dfdfdf;
+}
 
 .footer-sections
 {
   min-height: 80vh;
-  background:#006eaa;
-  //justify-content: center;
-  //align-items: center;
   display: flex;
   flex-direction: column;
   color: white;
