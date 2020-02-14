@@ -66,8 +66,7 @@ class ProprioRegistrationController extends AbstractController
 
 //            $this->sendConfirmationEmail($mailer, $user);
 
-            $this->addFlash('success', 'Votre demande de création de compte Propriétaire a bien été envoyer');
-            $this->addFlash('info', 'Votre demande est en cours de traitement, vous pourrez vous connecter après validation');
+            $this->addFlash('info', 'Votre demande est en cours de traitement, vous serez prochainement informé par Mail.');
 
             return $this->redirectToRoute('login_proprietaire');
         }
@@ -103,7 +102,7 @@ class ProprioRegistrationController extends AbstractController
 
             // L'utilisateur a déjà confirmé son compte
             if ($user->getIsConfirmed()) {
-                $this->addFlash('warning', 'Votre compte est déjà confirmé, vous pouvez vous connecter.');
+                $this->addFlash('warning', 'Ce compte est déjà confirmé !');
                 return $this->redirectToRoute('login_proprietaire');
             }
 
@@ -123,7 +122,7 @@ class ProprioRegistrationController extends AbstractController
 
             $notifProprio->confirmationProprio($user);
 
-            $this->addFlash('success', 'Votre compte est confirmé, vous pouvez vous connecter.');
+            $this->addFlash('success', 'La création de ce compte est maintenant confirmé, vous pouvez vous connecter.');
             return $this->redirectToRoute('login_proprietaire');
 
         }else{
@@ -172,7 +171,7 @@ class ProprioRegistrationController extends AbstractController
 
             $notifProprio->refusProprio($user);
 
-            $this->addFlash('warning', 'La création de votre compte Porpriétaire a été refusé');
+            $this->addFlash('warning', 'La création du compte Porpriétaire a été refusé');
             return $this->redirectToRoute('login_proprietaire');
         }else{
             $this->addFlash('warning', 'Ce compte est déjà validé et ne peut être refusé');
@@ -187,46 +186,6 @@ class ProprioRegistrationController extends AbstractController
 
 
 
-
-
-//    /**
-//     * Demander un lien de réinitialisation du mot de passe
-//     * @Route("/lost-password-proprio", name="lost_password_proprio")
-//     *
-//     * @param Request                       $request          Pour le formulaire
-//     * @param ProprietaireRepository        $proprietaireRepository   Pour rechercher l'utilisateur
-//     * @param NotifProprio                  $notifProprio   Pour envoyer l'email de réinitialisation
-//     */
-//    public function lostPassword(Request $request, ProprietaireRepository $proprietaireRepository, NotifProprio $notifProprio)
-//    {
-//
-//        $lostProprioPasswordForm = $this->createForm(LostNomadePasswordType::class);
-//        $lostProprioPasswordForm->handleRequest($request);
-//
-//        if ($lostProprioPasswordForm->isSubmitted() && $lostProprioPasswordForm->isValid()) {
-//            $proprio = $lostProprioPasswordForm->getData()['email'];
-//
-//            $user = $proprietaireRepository->findOneBy(['email' => $proprio]);
-//
-//            if ($user === null) {
-//                $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
-//
-//
-//            } else {
-//
-//
-//                $notifProprio->lostPasswordProprio($user);
-//
-//                $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
-//                return $this->redirectToRoute('login_proprietaire');
-//
-//            }
-//        }
-//
-//        return $this->render('proprietaire/lost_password.html.twig', [
-//            'lost_proprio_password_form' => $lostProprioPasswordForm->createView()
-//        ]);
-//    }
 
     /**
      * Demander un lien de réinitialisation du mot de passe

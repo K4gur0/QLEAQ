@@ -126,13 +126,18 @@
                                 <div class="dropdown-content" style="background-color: rgba(236,103,57,1);">
 
 
-                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_home', {id: app.user.id} )  }}">
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_presentation', {id: app.user.id} )  }}">
                                         <span>Accueil Propriétaire</span>
                                     </a>
 
                                     <hr class="dropdown-divider">
+                                    <a class="button is-info is-fullwidth" href="{{ path('proprio_home', {id: app.user.id} ) }}">
+                                        <span>Mon compte Propriétaire</span>
+                                    </a>
+
+                                    <hr class="dropdown-divider">
                                     <a class="button is-info is-fullwidth" href="{{ path('proprio_profile', {id: app.user.id} )  }}">
-                                        <span>Gestion du compte</span>
+                                        <span>Modifier mon compte</span>
                                     </a>
 
                                     <hr class="dropdown-divider">
