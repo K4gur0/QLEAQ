@@ -4,12 +4,133 @@
     {% include 'includes/qleaq_title.html.twig' %}Presentation Propriétaire
 {% endblock %}
 
-
 {% block content %}
-    <section class="hero">
-        <div class="hero-body is-info">PRESENTATION PROPRIETAIRE</div>
+    <section class="hero is-info is-bold is-medium">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1">
+                    Propriétaire avec Qleaq
+                </h1>
+
+                <a class="button is-primary" href="{{ path('login_proprietaire') }}">
+                    Connexion
+                </a>
+                <a class="button is-primary" href="{{ path('proprio_register') }}">
+                    Inscription
+                </a>
+
+            </div>
+        </div>
     </section>
+
+    <section class="section is-medium">
+
+        <div class="columns is-vcentered">
+
+            <div class="column is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/vision.87e05348.svg') }}">
+                </figure>
+            </div>
+
+            <div class="column has-text-centered textes-presentation-nomade">
+                <h2 class="title is-2 box has-background-info has-text-white">Notre Vision</h2>
+                <p class="subtitle is-3">Faciliter et améliorer l'expérience des travailleurs en mobilité professionnelle.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section is-medium" style="background: #fafafa;">
+
+        <div class="columns is-vcentered">
+
+            <div class="column is-hidden-tablet is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/mission.e40c0ea9.svg') }}">
+                </figure>
+            </div>
+
+            <div class="column has-text-centered textes-presentation-nomade">
+                <h2 class="title is-2 box has-background-info has-text-white">Notre Mission</h2>
+                <p class="subtitle is-3">Vous aider à organiser vos séjours professionnels, études, missions, stages ou formations.</p>
+            </div>
+
+            <div class="column is-hidden-mobile is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/mission.e40c0ea9.svg') }}">
+                </figure>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section is-medium">
+
+        <div class="columns is-vcentered">
+
+            <div class="column is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/best_place.6eed7ff9.svg') }}">
+                </figure>
+            </div>
+
+            <div class="column has-text-centered textes-presentation-nomade">
+                <h2 class="title is-2 box has-background-info has-text-white">Nos Solutions</h2>
+                <p class="subtitle is-3">Des hébergements parfaitement adaptés à votre profil, allant de la résidence étudiant à l'hôtel 4 étoiles.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section is-medium" style="background: #fafafa;">
+
+        <div class="columns is-vcentered">
+
+
+            <div class="column is-hidden-tablet is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/offres.982066ea.svg') }}">
+                </figure>
+            </div>
+
+
+            <div class="column textes-presentation-nomade">
+                <h2 class="title is-1 box has-background-info has-text-white">Offres</h2>
+
+                <div class="content is-large">
+                    <ul>
+                        <li>Conseils</li>
+                        <li>Aide au montage du dossier</li>
+                        <li>Diagnostic personalisé</li>
+                        <li>Sélection d'hébergements</li>
+                        <li>Mise en relation avec les établissements</li>
+                        <li>Suivi du dossier jusqu'à la signature du bail</li>
+                        <li>Accompagnement aux visites (sur demande)</li>
+                    </ul>
+                </div>
+
+{#                <a class="button is-info" href="{{ path('nomade_offres') }}">En savoir plus</a>#}
+
+            </div>
+
+            <div class="column is-hidden-mobile is-two-fifths">
+                <figure class="image is-3by2">
+                    <img src="{{ asset('build/images/offres.982066ea.svg') }}">
+                </figure>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
 {% endblock %}
+
 
 {% block footer %}
     {% include('includes/footer_proprietaire.html.twig') %}

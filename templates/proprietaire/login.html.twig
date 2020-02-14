@@ -34,10 +34,6 @@
                                 <input class="input" type="email" name="email" id="inputEmail" placeholder="Email" required autofocus>
                                 <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
-                            </span>
-                                <span class="icon is-small is-right">
-                                <i class="fas fa-check"></i>
-                            </span>
                             </p>
                         </div>
 
@@ -52,6 +48,15 @@
 
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <br>
+
+                        <div class="level">
+                            <div class="level-right">
+                                <a href="{{ path('lost_password_proprio') }}" class="button is-info is-small">
+                                    <i class="fas fa-key"></i>&nbsp;
+                                    Mot de passe oublié ?
+                                </a>
+                            </div>
+                        </div>
 
 
                         {% include 'includes/flash_message.html.twig' %}

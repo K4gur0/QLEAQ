@@ -31,7 +31,7 @@ class ChangePasswordController extends AbstractController
         if ($changePasswordForm->isSubmitted() && $changePasswordForm->isValid())
         {
 //            $passwordEncoder = $this->get('security.csrf.token_manager');
-//            dump($request->request);die();
+
             $oldPassword = $request->request->get('change_password_form')['password'];
 
             if ($passwordEncoder->isPasswordValid($nomade, $oldPassword))

@@ -181,20 +181,18 @@ class NomadeRegistrationController extends AbstractController
 
         $lostNomadePasswordForm = $this->createForm(LostNomadePasswordType::class);
         $lostNomadePasswordForm->handleRequest($request);
-//        dump($lostNomadePasswordForm);
-//        die();
+
         if ($lostNomadePasswordForm->isSubmitted() && $lostNomadePasswordForm->isValid()) {
             $nomade = $lostNomadePasswordForm->getData()['email'];
-//            dump($nomade);
+
             $user = $nomadeRepository->findOneBy(['email' => $nomade]);
-//            dump($user);die();
+
             if ($user === null) {
                 $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
 
-//                dump($user);die();
+
             } else {
 
-//                dump($user);die();
 
                 $notifNomade->lostPasswordNomade($user);
 
@@ -214,30 +212,6 @@ class NomadeRegistrationController extends AbstractController
 
 
 
-    /**
-     * Code de l'envoi d'email de confirmation
-     * Le code a été refactorisé en une méthode
-     * car il est le même dans les méthodes register() & sendConfirmation()
-     */
-//    private function sendConfirmationEmail(MailerInterface $mailer, Nomade $user)
-//    {
-//        // Création de l'email de confirmation
-//        $email = (new TemplatedEmail())
-//            ->from('admin@qleaq.fr')
-//            ->to($user->getEmail())
-//            ->subject('Confirmation du compte Locataire | QLEAQ')
-//            /*
-//             * Indiquer le template de l'email puis les variables nécessaires
-//             */
-//            ->htmlTemplate('emails/confirmation.html.twig')
-//            ->context([
-//                'user' => $user
-//            ])
-//        ;
-////            dump($email);die();
-//        // Envoi de l'email
-//        $mailer->send($email);
-//    }
 
 
 
@@ -271,27 +245,66 @@ class NomadeRegistrationController extends AbstractController
         if ($resetForm->isSubmitted() && $resetForm->isValid()) {
             $password = $resetForm->get('plainPassword')->getData();
 
-//            dump($password);
+            $oldPassword = $passwordEncoder->isPasswordValid($user, $password);
 
-            $user->setPassword($passwordEncoder->encodePassword($user, $password));
-            $user->renewToken();
+            dump($oldPassword);
 
+            if($oldPassword === false){
+                $user->setPassword($passwordEncoder->encodePassword($user, $password));
+                $user->renewToken();
 
-            // Mise à jour de l'entité en BDD
+                // Mise à jour de l'entité en BDD
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            // Ajout d'un message flash
-            $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
-            return $this->redirectToRoute('login_nomade');
+                // Ajout d'un message flash
+                $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
+                return $this->redirectToRoute('login_nomade');
+            }else{
+                $this->addFlash('danger', 'Votre mot de passe doit être différent de l\'ancien');
+            }
+
         }
 
         return $this->render('nomade/reset_password_form.html.twig', [
             'reset_form' => $resetForm->createView()
         ]);
     }
+
+
+
+
+
+
+
+
+
+    /**
+     * Code de l'envoi d'email de confirmation
+     * Le code a été refactorisé en une méthode
+     * car il est le même dans les méthodes register() & sendConfirmation()
+     */
+//    private function sendConfirmationEmail(MailerInterface $mailer, Nomade $user)
+//    {
+//        // Création de l'email de confirmation
+//        $email = (new TemplatedEmail())
+//            ->from('admin@qleaq.fr')
+//            ->to($user->getEmail())
+//            ->subject('Confirmation du compte Locataire | QLEAQ')
+//            /*
+//             * Indiquer le template de l'email puis les variables nécessaires
+//             */
+//            ->htmlTemplate('emails/confirmation.html.twig')
+//            ->context([
+//                'user' => $user
+//            ])
+//        ;
+////            dump($email);die();
+//        // Envoi de l'email
+//        $mailer->send($email);
+//    }
 
 
 

@@ -37,4 +37,48 @@ class NotifProprio
             ]), 'text/html' );
         $this->mailer->send($message);
     }
+
+    public function confirmationProprio(Proprietaire $proprio)
+    {
+        $message = (new \Swift_Message('Confirmation de création de compte Propriétaire Qleaq'))
+            ->setFrom('qleaq@gmail.com')
+            /**
+             * Ci dessous entrez l'adresse administrateur pour gérer les inscriptions Propriétaires
+             */
+            ->setTo('kenshin91cb@gmail.com')
+            ->setReplyTo($proprio->getEmail())
+            ->setBody($this->renderer->render('emails/validation_compte_proprio.html.twig',[
+                'proprio' => $proprio
+            ]), 'text/html' );
+        $this->mailer->send($message);
+    }
+
+    public function refusProprio(Proprietaire $proprio)
+    {
+        $message = (new \Swift_Message('Refus de création de compte Propriétaire Qleaq'))
+            ->setFrom('qleaq@gmail.com')
+            /**
+             * Ci dessous entrez l'adresse administrateur pour gérer les inscriptions Propriétaires
+             */
+            ->setTo('kenshin91cb@gmail.com')
+            ->setReplyTo($proprio->getEmail())
+            ->setBody($this->renderer->render('emails/refus_compte_proprio.html.twig',[
+                'proprio' => $proprio
+            ]), 'text/html' );
+        $this->mailer->send($message);
+    }
+
+    public function lostPasswordProprio(Proprietaire $proprio)
+    {
+        // Création de l'email de réinitialisation
+        $message = (new \Swift_Message('Réinitialisation de votre mot de passe'))
+            ->setFrom('admin@qleaq.fr')
+            ->setTo('kenshin91cb@gmail.com')
+            ->setBody($this->renderer->render('emails/reset_password_proprio.html.twig',[
+                'proprio' => $proprio
+            ]), 'text/html' );
+        $this->mailer->send($message);
+
+    }
+
 }

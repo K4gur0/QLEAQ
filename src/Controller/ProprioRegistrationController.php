@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Nomade;
 use App\Entity\Proprietaire;
+use App\Form\LostNomadePasswordType;
+use App\Form\NomadeResetPasswordFormType;
 use App\Form\ProprioRegistrationType;
 use App\Form\UsernameFormType;
+use App\Notif\NotifNomade;
 use App\Notif\NotifProprio;
+use App\Repository\NomadeRepository;
 use App\Repository\ProprietaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,8 +68,8 @@ class ProprioRegistrationController extends AbstractController
 
 //            $this->sendConfirmationEmail($mailer, $user);
 
-            $this->addFlash('success', 'Votre compte a bien été créée');
-            $this->addFlash('info', 'Vous devrez confirmez votre compte, un lien vous a été envoyé par email.');
+            $this->addFlash('success', 'Votre demande de création de compte Propriétaire a bien été envoyer');
+            $this->addFlash('info', 'Votre demande est en cours de traitement, vous pourrez vous connecter après validation');
 
             return $this->redirectToRoute('login_proprietaire');
         }
@@ -88,29 +93,85 @@ class ProprioRegistrationController extends AbstractController
      * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
      */
 
-    public function confirmAccount(Proprietaire $user, $token, EntityManagerInterface $entityManager)
+    public function confirmAccount(Proprietaire $user,
+                                   $token,
+                                   EntityManagerInterface $entityManager,
+                                   NotifProprio $notifProprio)
     {
-        // L'utilisateur a déjà confirmé son compte
-        if ($user->getIsConfirmed()) {
-            $this->addFlash('warning', 'Votre compte est déjà confirmé, vous pouvez vous connecter.');
+
+        $refus = $user->getRefus();
+
+        if($refus === 0){
+
+            // L'utilisateur a déjà confirmé son compte
+            if ($user->getIsConfirmed()) {
+                $this->addFlash('warning', 'Votre compte est déjà confirmé, vous pouvez vous connecter.');
+                return $this->redirectToRoute('login_proprietaire');
+            }
+
+            // Le jeton ne correspond pas à celui de l'utilisateur
+            if ($user->getSecurityToken() !== $token) {
+
+                $this->addFlash('danger', 'Le jeton est invalide');
+                return $this->redirectToRoute('login_proprietaire');
+            }
+
+            // Le jeton est valide: mettre à jour le jeton et confirmer le compte
+            $user->setIsConfirmed(true);
+            $user->renewToken();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $notifProprio->confirmationProprio($user);
+
+            $this->addFlash('success', 'Votre compte est confirmé, vous pouvez vous connecter.');
+            return $this->redirectToRoute('login_proprietaire');
+
+        }else{
+            $this->addFlash('warning', 'Ce compte à été refusé et ne peut être confirmé');
             return $this->redirectToRoute('login_proprietaire');
         }
 
+
+    }
+
+
+
+    /**
+     * Refus de création du compte Propriétaire
+     * @Route("/{refusToken}", name="proprio_refus")
+     *
+     * @param Proprietaire           $user          L'utilisateur qui tente de confirmer son compte
+     * @param                        $refusToken         Le jeton à vérifier pour confirmer le compte
+     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
+     */
+
+    public function refusAccount(Proprietaire $user,
+                                   $refusToken,
+                                   EntityManagerInterface $entityManager,
+                                   NotifProprio $notifProprio)
+    {
         // Le jeton ne correspond pas à celui de l'utilisateur
-        if ($user->getSecurityToken() !== $token) {
+        if ($user->getRefusToken() !== $refusToken) {
             $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
             return $this->redirectToRoute('login_proprietaire');
         }
 
         // Le jeton est valide: mettre à jour le jeton et confirmer le compte
-        $user->setIsConfirmed(true);
-        $user->renewToken();
+
+        $user->renewRefusToken();
+
+        $user->setRefus(true);
 
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Votre compte est confirmé, vous pouvez vous connecter.');
+        $notifProprio->refusProprio($user);
+
+        $this->addFlash('warning', 'La création de votre compte Porpriétaire a été refusé');
         return $this->redirectToRoute('login_proprietaire');
+
     }
 
 
@@ -159,4 +220,113 @@ class ProprioRegistrationController extends AbstractController
             'username_form' => $usernameForm->createView()
         ]);
     }
+
+
+
+    /**
+     * Demander un lien de réinitialisation du mot de passe
+     * @Route("/lost-password-proprio", name="lost_password_proprio")
+     *
+     * @param Request         $request          Pour le formulaire
+     * @param ProprietaireRepository  $userRepository   Pour rechercher l'utilisateur
+     * @param MailerInterface $mailer           Pour envoyer l'email de réinitialisation
+     */
+    public function lostPassword(Request $request, ProprietaireRepository $proprietaireRepository, NotifProprio $notifProprio)
+    {
+
+        $lostProprioPasswordForm = $this->createForm(LostNomadePasswordType::class);
+        $lostProprioPasswordForm->handleRequest($request);
+
+        if ($lostProprioPasswordForm->isSubmitted() && $lostProprioPasswordForm->isValid()) {
+            $proprio = $lostProprioPasswordForm->getData()['email'];
+
+            $user = $proprietaireRepository->findOneBy(['email' => $proprio]);
+
+            if ($user === null) {
+                $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
+
+
+            } else {
+
+
+                $notifProprio->lostPasswordProprio($user);
+
+                $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
+                return $this->redirectToRoute('login_proprietaire');
+
+            }
+        }
+
+        return $this->render('proprietaire/lost_password.html.twig', [
+            'lost_proprio_password_form' => $lostProprioPasswordForm->createView()
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * Réinitialiser le mot de passe
+     * @Route("/reset-password-proprio/{id}/{token}", name="reset_password_proprio")
+     *
+     * @param User                          $user            L'utilisateur qui souhaite réinitialiser son mot de passe
+     * @param                               $token           Le jeton à vérifier pour la réinitialisation
+     * @param Request                       $request         Pour le formulaire de réinitialisation
+     * @param EntityManagerInterface        $entityManager   Pour mettre à jour l'utilisateur
+     * @param UserPasswordEncoderInterface $passwordEncoder Pour hasher le nouveau mot de passe
+     */
+    public function resetPassword(
+        Proprietaire $user,
+        $token,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
+        // Le jeton ne correspond pas à celui de l'utilisateur
+        if ($user->getSecurityToken() !== $token) {
+            $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
+            return $this->redirectToRoute('login_proprietaire');
+        }
+
+        // Création du formulaire de réinitialisation du mot de passe
+        $resetForm = $this->createForm(NomadeResetPasswordFormType::class);
+        $resetForm->handleRequest($request);
+
+        if ($resetForm->isSubmitted() && $resetForm->isValid()) {
+            $password = $resetForm->get('plainPassword')->getData();
+
+            $oldPassword = $passwordEncoder->isPasswordValid($user, $password);
+
+            dump($oldPassword);
+
+            if($oldPassword === false){
+                $user->setPassword($passwordEncoder->encodePassword($user, $password));
+                $user->renewToken();
+
+                // Mise à jour de l'entité en BDD
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                // Ajout d'un message flash
+                $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
+                return $this->redirectToRoute('login_proprietaire');
+            }else{
+                $this->addFlash('danger', 'Votre mot de passe doit être différent de l\'ancien');
+            }
+
+        }
+
+        return $this->render('proprietaire/reset_password_form.html.twig', [
+            'reset_form' => $resetForm->createView()
+        ]);
+    }
+
+
 }

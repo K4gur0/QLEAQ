@@ -80,6 +80,16 @@ class Proprietaire implements UserInterface
      */
     private $date_creation_compte;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $refus;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $refusToken;
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
@@ -95,9 +105,17 @@ class Proprietaire implements UserInterface
             $this->setIsConfirmed(false);
         }
 
+        if ($this->refus === null) {
+            $this->setRefus(false);
+        }
+
         // Définir un jeton s'il n'y en a pas
         if ($this->securityToken === null) {
             $this->renewToken();
+        }
+
+        if ($this->refusToken === null){
+            $this->renewRefusToken();
         }
     }
 
@@ -284,6 +302,30 @@ class Proprietaire implements UserInterface
         return $this;
     }
 
+    public function getRefusToken(): ?string
+    {
+        return $this->refusToken;
+    }
+
+    public function setRefusToken(string $refusToken): self
+    {
+        $this->refusToken = $refusToken;
+
+        return $this;
+    }
+
+    public function getRefus(): ?bool
+    {
+        return $this->refus;
+    }
+
+    public function setRefus(?bool $refus): self
+    {
+        $this->refus = $refus;
+
+        return $this;
+    }
+
     /**
      * Renouveller le jeton de sécurité
      */
@@ -294,6 +336,16 @@ class Proprietaire implements UserInterface
 
         return $this->setSecurityToken($token);
     }
+
+    public function renewRefusToken() : self
+    {
+        // Création d'un jeton
+        $token = bin2hex(random_bytes(16));
+
+        return $this->setRefusToken($token);
+    }
+
+
 
 
 }
