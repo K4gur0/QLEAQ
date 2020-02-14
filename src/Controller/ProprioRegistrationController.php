@@ -2,15 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Nomade;
+
 use App\Entity\Proprietaire;
 use App\Form\LostNomadePasswordType;
 use App\Form\NomadeResetPasswordFormType;
 use App\Form\ProprioRegistrationType;
 use App\Form\UsernameFormType;
-use App\Notif\NotifNomade;
 use App\Notif\NotifProprio;
-use App\Repository\NomadeRepository;
 use App\Repository\ProprietaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -86,7 +84,7 @@ class ProprioRegistrationController extends AbstractController
 
     /**
      * Confirmation du compte après inscription (lien envoyé par email)
-     * @Route("/{id}/{token}", name="proprio_confirmation")
+     * @Route("{id}/confirm/{token}", name="proprio_confirmation")
      *
      * @param Proprietaire           $user          L'utilisateur qui tente de confirmer son compte
      * @param                        $token         Le jeton à vérifier pour confirmer le compte
@@ -101,7 +99,7 @@ class ProprioRegistrationController extends AbstractController
 
         $refus = $user->getRefus();
 
-        if($refus === 0){
+        if($refus == false ){
 
             // L'utilisateur a déjà confirmé son compte
             if ($user->getIsConfirmed()) {
@@ -140,7 +138,7 @@ class ProprioRegistrationController extends AbstractController
 
     /**
      * Refus de création du compte Propriétaire
-     * @Route("/{refusToken}", name="proprio_refus")
+     * @Route("{id}/refus/{refusToken}", name="proprio_refus")
      *
      * @param Proprietaire           $user          L'utilisateur qui tente de confirmer son compte
      * @param                        $refusToken         Le jeton à vérifier pour confirmer le compte
@@ -152,25 +150,36 @@ class ProprioRegistrationController extends AbstractController
                                    EntityManagerInterface $entityManager,
                                    NotifProprio $notifProprio)
     {
-        // Le jeton ne correspond pas à celui de l'utilisateur
-        if ($user->getRefusToken() !== $refusToken) {
-            $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
+
+        $confirm = $user->getIsConfirmed();
+
+        if ($confirm == false){
+
+            // Le jeton ne correspond pas à celui de l'utilisateur
+            if ($user->getRefusToken() !== $refusToken) {
+                $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
+                return $this->redirectToRoute('login_proprietaire');
+            }
+
+            // Le jeton est valide: mettre à jour le jeton et confirmer le compte
+
+            $user->renewRefusToken();
+
+            $user->setRefus(true);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $notifProprio->refusProprio($user);
+
+            $this->addFlash('warning', 'La création de votre compte Porpriétaire a été refusé');
+            return $this->redirectToRoute('login_proprietaire');
+        }else{
+            $this->addFlash('warning', 'Ce compte est déjà validé et ne peut être refusé');
             return $this->redirectToRoute('login_proprietaire');
         }
 
-        // Le jeton est valide: mettre à jour le jeton et confirmer le compte
 
-        $user->renewRefusToken();
-
-        $user->setRefus(true);
-
-        $entityManager->persist($user);
-        $entityManager->flush();
-
-        $notifProprio->refusProprio($user);
-
-        $this->addFlash('warning', 'La création de votre compte Porpriétaire a été refusé');
-        return $this->redirectToRoute('login_proprietaire');
 
     }
 
@@ -180,48 +189,44 @@ class ProprioRegistrationController extends AbstractController
 
 
 
-    /**
-     * Demander un renvoi du mail de confirmation
-     * @Route("/send-confirmation", name="send_confirmation")
-     *
-     * @param Request         $request                          Pour le formulaire
-     * @param ProprietaireRepository $proprietaireRpository     Pour rechercher l'utilisateur
-     * @param MailerInterface $mailer                           Pour renvoyer l'email de confirmation
-     */
-    public function sendConfirmation(Request $request, ProprietaireRepository $proprietaireRepository, MailerInterface $mailer)
-    {
-        // Création d'un formulaire demandant un email/pseudo
-        $usernameForm = $this->createForm(UsernameFormType::class);
-        $usernameForm->handleRequest($request);
-
-        if ($usernameForm->isSubmitted() && $usernameForm->isValid()) {
-            $username = $usernameForm->getData()['username'];
-
-            // Récupérer un utilisateur par email ou pseudo
-            // Note: vous pouviez choisir de récupérer par seulement l'email ou seulement le pseudo
-            $user = $proprietaireRepository->findOneBy(['email' => $username]);
-
-            if ($user === null) {
-                $this->addFlash('danger', 'Compte propriétaire inconnu');
-
-            } elseif ($user->getIsConfirmed()) {
-                $this->addFlash('warning', 'Votre compte est déjà confirmé.');
-                return $this->redirectToRoute('login_proprietaire');
-
-            } else {
-                // Renvoi de l'email (voir plus bas la méthode sendConfirmationEmail() )
-                $this->sendConfirmationEmail($mailer, $user);
-                $this->addFlash('info', 'Un email de confirmation vous a été renvoyé.');
-                return $this->redirectToRoute('login_proprietaire');
-            }
-        }
-
-        return $this->render('emails/send_confirmation_proprietaire.html.twig', [
-            'username_form' => $usernameForm->createView()
-        ]);
-    }
-
-
+//    /**
+//     * Demander un lien de réinitialisation du mot de passe
+//     * @Route("/lost-password-proprio", name="lost_password_proprio")
+//     *
+//     * @param Request                       $request          Pour le formulaire
+//     * @param ProprietaireRepository        $proprietaireRepository   Pour rechercher l'utilisateur
+//     * @param NotifProprio                  $notifProprio   Pour envoyer l'email de réinitialisation
+//     */
+//    public function lostPassword(Request $request, ProprietaireRepository $proprietaireRepository, NotifProprio $notifProprio)
+//    {
+//
+//        $lostProprioPasswordForm = $this->createForm(LostNomadePasswordType::class);
+//        $lostProprioPasswordForm->handleRequest($request);
+//
+//        if ($lostProprioPasswordForm->isSubmitted() && $lostProprioPasswordForm->isValid()) {
+//            $proprio = $lostProprioPasswordForm->getData()['email'];
+//
+//            $user = $proprietaireRepository->findOneBy(['email' => $proprio]);
+//
+//            if ($user === null) {
+//                $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
+//
+//
+//            } else {
+//
+//
+//                $notifProprio->lostPasswordProprio($user);
+//
+//                $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
+//                return $this->redirectToRoute('login_proprietaire');
+//
+//            }
+//        }
+//
+//        return $this->render('proprietaire/lost_password.html.twig', [
+//            'lost_proprio_password_form' => $lostProprioPasswordForm->createView()
+//        ]);
+//    }
 
     /**
      * Demander un lien de réinitialisation du mot de passe
@@ -234,11 +239,11 @@ class ProprioRegistrationController extends AbstractController
     public function lostPassword(Request $request, ProprietaireRepository $proprietaireRepository, NotifProprio $notifProprio)
     {
 
-        $lostProprioPasswordForm = $this->createForm(LostNomadePasswordType::class);
-        $lostProprioPasswordForm->handleRequest($request);
+        $lostPasswordProprioForm = $this->createForm(LostNomadePasswordType::class);
+        $lostPasswordProprioForm->handleRequest($request);
 
-        if ($lostProprioPasswordForm->isSubmitted() && $lostProprioPasswordForm->isValid()) {
-            $proprio = $lostProprioPasswordForm->getData()['email'];
+        if ($lostPasswordProprioForm->isSubmitted() && $lostPasswordProprioForm->isValid()) {
+            $proprio = $lostPasswordProprioForm->getData()['email'];
 
             $user = $proprietaireRepository->findOneBy(['email' => $proprio]);
 
@@ -258,7 +263,7 @@ class ProprioRegistrationController extends AbstractController
         }
 
         return $this->render('proprietaire/lost_password.html.twig', [
-            'lost_proprio_password_form' => $lostProprioPasswordForm->createView()
+            'lost_proprio_password_form' => $lostPasswordProprioForm->createView()
         ]);
     }
 
@@ -274,7 +279,7 @@ class ProprioRegistrationController extends AbstractController
      * Réinitialiser le mot de passe
      * @Route("/reset-password-proprio/{id}/{token}", name="reset_password_proprio")
      *
-     * @param User                          $user            L'utilisateur qui souhaite réinitialiser son mot de passe
+     * @param Proprietaire                  $user            L'utilisateur qui souhaite réinitialiser son mot de passe
      * @param                               $token           Le jeton à vérifier pour la réinitialisation
      * @param Request                       $request         Pour le formulaire de réinitialisation
      * @param EntityManagerInterface        $entityManager   Pour mettre à jour l'utilisateur

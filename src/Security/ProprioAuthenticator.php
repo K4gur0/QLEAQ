@@ -81,6 +81,7 @@ class ProprioAuthenticator extends AbstractFormLoginAuthenticator implements Pas
         /**
          * @Var Propretaire $proprio
          */
+
         if (!$proprio->getIsConfirmed()) {
             throw new CustomUserMessageAuthenticationException('Vous devez confirmer votre compte avant de pouvoir vous connecter');
         }

@@ -3,15 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Nomade;
-use App\Entity\User;
 use App\Form\LostNomadePasswordType;
 use App\Form\NomadeResetPasswordFormType;
-use App\Form\PasswordResetFormType;
 use App\Form\RegistrationFormType;
-use App\Form\UsernameFormType;
 use App\Notif\NotifNomade;
 use App\Repository\NomadeRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

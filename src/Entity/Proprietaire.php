@@ -96,6 +96,14 @@ class Proprietaire implements UserInterface
     }
 
     /**
+     * Appelée lorsque l'objet est utilisé comme une chaine
+     */
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
+    /**
      * @ORM\PrePersist()
      */
     public function prePersist()
