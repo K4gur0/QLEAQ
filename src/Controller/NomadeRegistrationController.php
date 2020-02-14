@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Nomade;
+use App\Entity\User;
 use App\Form\LostNomadePasswordType;
+use App\Form\NomadeResetPasswordFormType;
+use App\Form\PasswordResetFormType;
 use App\Form\RegistrationFormType;
 use App\Form\UsernameFormType;
 use App\Notif\NotifNomade;
@@ -173,17 +176,18 @@ class NomadeRegistrationController extends AbstractController
      * @param NomadeRepository  $userRepository   Pour rechercher l'utilisateur
      * @param MailerInterface $mailer           Pour envoyer l'email de réinitialisation
      */
-    public function lostPassword(Request $request, NomadeRepository $userRepository, NotifNomade $notifNomade)
+    public function lostPassword(Request $request, NomadeRepository $nomadeRepository, NotifNomade $notifNomade)
     {
 
-        $losteNomadePasswordForm = $this->createForm(LostNomadePasswordType::class);
-        $losteNomadePasswordForm->handleRequest($request);
-
-        if ($losteNomadePasswordForm->isSubmitted() && $losteNomadePasswordForm->isValid()) {
-            $username = $losteNomadePasswordForm->getData();
-
-            $user = $userRepository->findOneBy(['email' => $username]);
-
+        $lostNomadePasswordForm = $this->createForm(LostNomadePasswordType::class);
+        $lostNomadePasswordForm->handleRequest($request);
+//        dump($lostNomadePasswordForm);
+//        die();
+        if ($lostNomadePasswordForm->isSubmitted() && $lostNomadePasswordForm->isValid()) {
+            $nomade = $lostNomadePasswordForm->getData()['email'];
+//            dump($nomade);
+            $user = $nomadeRepository->findOneBy(['email' => $nomade]);
+//            dump($user);die();
             if ($user === null) {
                 $this->addFlash('danger', 'Cet adresse Email n\'est pas enregistrée');
 
@@ -195,13 +199,13 @@ class NomadeRegistrationController extends AbstractController
                 $notifNomade->lostPasswordNomade($user);
 
                 $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
-                return $this->redirectToRoute('lost_password');
+                return $this->redirectToRoute('login_nomade');
 
             }
         }
 
         return $this->render('nomade/lost_password.html.twig', [
-            'lost_nomade_password_form' => $losteNomadePasswordForm->createView()
+            'lost_nomade_password_form' => $lostNomadePasswordForm->createView()
         ]);
     }
 
@@ -234,6 +238,60 @@ class NomadeRegistrationController extends AbstractController
 //        // Envoi de l'email
 //        $mailer->send($email);
 //    }
+
+
+
+    /**
+     * Réinitialiser le mot de passe
+     * @Route("/reset-password/{id}/{token}", name="reset_password")
+     *
+     * @param User                          $user            L'utilisateur qui souhaite réinitialiser son mot de passe
+     * @param                               $token           Le jeton à vérifier pour la réinitialisation
+     * @param Request                       $request         Pour le formulaire de réinitialisation
+     * @param EntityManagerInterface        $entityManager   Pour mettre à jour l'utilisateur
+     * @param UserPasswordEncoderInterface $passwordEncoder Pour hasher le nouveau mot de passe
+     */
+    public function resetPassword(
+        Nomade $user,
+        $token,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
+        // Le jeton ne correspond pas à celui de l'utilisateur
+        if ($user->getSecurityToken() !== $token) {
+            $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
+            return $this->redirectToRoute('login_nomade');
+        }
+
+        // Création du formulaire de réinitialisation du mot de passe
+        $resetForm = $this->createForm(NomadeResetPasswordFormType::class);
+        $resetForm->handleRequest($request);
+
+        if ($resetForm->isSubmitted() && $resetForm->isValid()) {
+            $password = $resetForm->get('plainPassword')->getData();
+
+//            dump($password);
+
+            $user->setPassword($passwordEncoder->encodePassword($user, $password));
+            $user->renewToken();
+
+
+            // Mise à jour de l'entité en BDD
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // Ajout d'un message flash
+            $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
+            return $this->redirectToRoute('login_nomade');
+        }
+
+        return $this->render('nomade/reset_password_form.html.twig', [
+            'reset_form' => $resetForm->createView()
+        ]);
+    }
 
 
 

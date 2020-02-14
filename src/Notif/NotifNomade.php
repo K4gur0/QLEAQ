@@ -44,8 +44,8 @@ class NotifNomade
         // Création de l'email de réinitialisation
         $message = (new \Swift_Message('Réinitialisation de votre mot de passe'))
             ->setFrom('admin@qleaq.fr')
-            ->setTo($nomade->getEmail())
-            ->setBody($this->renderer->render('emails/lost_password.html.twig',[
+            ->setTo('kenshin91cb@gmail.com')
+            ->setBody($this->renderer->render('emails/reset_password.html.twig',[
                 'nomade' => $nomade
             ]), 'text/html' );
         $this->mailer->send($message);

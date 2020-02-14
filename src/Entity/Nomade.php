@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -120,6 +121,15 @@ class Nomade implements UserInterface
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
+            }
+
+
+    /**
+     * Appelée lorsque l'objet est utilisé comme une chaine
+     */
+    public function __toString()
+    {
+        return $this->getUsername();
     }
 
     /**
@@ -162,7 +172,7 @@ class Nomade implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->prenom;
+        return (string) $this->email;
     }
 
     /**
