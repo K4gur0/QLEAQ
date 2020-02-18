@@ -21,7 +21,10 @@ const vision = require('../images/svg/vision.svg');
 const best_place = require('../images/svg/best_place.svg');
 const mission = require('../images/svg/mission.svg');
 const solution = require('../images/svg/solution.svg');
-const offres = require('../images/svg/offres.svg')
+const offres = require('../images/svg/offres.svg');
+const gestion_nomades = require('../images/svg/gestion_nomades.svg');
+const gestion_proprios = require('../images/svg/gestion_proprios.svg');
+const gestion_admins = require('../images/svg/gestion_admins.svg');
 
 
 var html = "<img src='${fondEcran}'>";

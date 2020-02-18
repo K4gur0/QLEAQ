@@ -23,24 +23,42 @@
             </section>
 
 
-            <section class="section">
+            <section class="section columns is-vcentered">
 
                 {% include 'includes/flash_message.html.twig' %}
 
-{#                {% if form_errors(deleteProprioForm) != null %}#}
-{#                    <div class="notification is-danger">#}
-{#                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
-{#                        {{ form_errors(deleteProprioForm) }}#}
-{#                    </div>#}
-{#                {% endif %}#}
+                <div class="has-text-centered list-nomades is-small">
+                    <div class="column illustration is-centered">
+                        <img src="{{ asset('build/images/gestion_nomades.08547eff.svg') }}" >
+                        <a href="{{ path('admin_liste_nomades') }}"  class="button is-large has-background-primary has-text-white">
+                            Gestion des comptes Nomades
+                        </a>
+                    </div>
 
-{#                <h2>Liste des comptes Nomades : </h2>#}
-{#                {% include 'includes/InfoNomade.html.twig' with {nomades: nomade} %}#}
+                </div>
 
-{#                <hr style="border: #0a0a0a 1px solid">#}
 
-{#                <h2>Liste des comptes Propriétaires : </h2>#}
-{#                {% include 'includes/InfoProprio.html.twig' with {proprietaires: proprietaire} %}#}
+                <div class="has-text-centered list-proprios">
+
+                    <div class="column illustration">
+                        <img src="{{ asset('build/images/gestion_proprios.a35c342f.svg') }}" >
+                        <a href="{{ path('admin_liste_proprios') }}" class="button is-large has-background-info has-text-white">
+                            Gestion des comptes Propriétaires
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="has-text-centered list-admins">
+
+                    <div class="column illustration">
+                        <img src="{{ asset('build/images/gestion_admins.097d9088.svg') }}" >
+                        <a href="#" class="button is-large has-background-success has-text-white">
+                            Gestion des comptes Administrateurs
+                        </a>
+                    </div>
+
+                </div>
 
             </section>
 

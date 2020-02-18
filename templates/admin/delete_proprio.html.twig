@@ -10,23 +10,26 @@
             <section class="hero is-medium is-success is-bold">
                 <div class="hero-body">
                     <div class="container">
-                        <h1 class="title">
+
+                        <h1 class="title is-1">
                             Suppression du compte Propriétaire
                         </h1>
+                        <hr>
                         <h2 class="subtitle">
-                            Vous êtes sur le point de supprimer le compte Propriétaire suivant : {{ proprio.raisonsocial }}
+                            Vous êtes sur le point de supprimer le compte Propriétaire suivant : <div class="tag is-medium is-info">{{ proprio.raisonsocial }}</div>
                         </h2>
-{#                        <p>{{ proprio.raisonsocial }}</p>#}
 
                     </div>
                 </div>
             </section>
 
+            <div class="notification is-warning  has-text-centered">
+                <h2 class="title is-2" >Etes vous sur de vouloir supprimer ce compte ?</h2>
+                <i>(Irréversible)</i>
+            </div>
 
 
-            <div class="columns is-centered section">
-
-
+            <div class="columns is-centered section has-text-centered">
 
                 <div class="column is-one-third">
 
@@ -44,7 +47,7 @@
 {#                        </div>#}
 
                         <div class="column is-centered">
-                            <button type="submit" style="width: 100%;" class="button is-danger">Supprimer le compte</button>
+                            <button type="submit" style="width: 100%;" class="button is-danger">Valider la suppression</button>
                         </div>
 
                         <div class="column is-centered">
