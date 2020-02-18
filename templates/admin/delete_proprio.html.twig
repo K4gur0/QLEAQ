@@ -1,0 +1,87 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Suppression de compte Propriétaire{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <section class="hero is-medium is-success is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Suppression du compte Propriétaire
+                        </h1>
+                        <h2 class="subtitle">
+                            Vous êtes sur le point de supprimer le compte Propriétaire suivant : {{ proprio.raisonsocial }}
+                        </h2>
+{#                        <p>{{ proprio.raisonsocial }}</p>#}
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <div class="columns is-centered section">
+
+
+
+                <div class="column is-one-third">
+
+                    {#                <h1 class="title has-text-primary has-text-centered">#}
+                    {#                    Gestion de votre profile#}
+                    {#                </h1>#}
+
+
+                    <div class="field" >
+                        {{ form_start(deleteProprioForm) }}
+
+{#                        <div class="column is-centered">#}
+{#                            <label for="">Compte créé le : </label>#}
+{#                            {{ form_row(deleteProprioForm.date_creation_compte, {'attr' : {'class' : 'button'}}) }}#}
+{#                        </div>#}
+
+                        <div class="column is-centered">
+                            <button type="submit" style="width: 100%;" class="button is-danger">Supprimer le compte</button>
+                        </div>
+
+                        <div class="column is-centered">
+                            <a href="{{ path('admin_gestion_proprietaire', {id: proprio.id}) }}" type="submit" style="width: 100%;" class="button is-success">Annuler</a>
+                        </div>
+
+                        {{ form_end(deleteProprioForm) }}
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+
+            <section class="hero is-dark is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
+
+        {% endif %}
+
+    </section>
+
+
+
+{% endblock %}
+
+
+
+
+

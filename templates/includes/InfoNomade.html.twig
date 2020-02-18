@@ -3,31 +3,86 @@
 
 {% for nomade in nomades %}
     {# @var record \App\Entity\Nomade #}
-    <div class="box">
-        <article class="media">
 
-            <div class="media-content">
-                <div class="content">
-                    <p>
 
-                        <a href="{{ path('nomade_profile', {id: nomade.id}) }}" class="has-text-primary">
-                            <span class="tag is-primary">
-                            {{ nomade.nom }}
-                        </span>
-                        </a>
-                        <span class="tag is-primary">
-                            {{ nomade.prenom }}
-                        </span>
-                        <span class="tag is-primary">
-                            {{ nomade.email }}
-                        </span>
-                        <span class="tag is-primary">
-                            {{ nomade.telephone }}
-                        </span>
 
-                    </p>
-                </div>
-            </div>
-        </article>
-    </div>
+
+
+                        <tr>
+
+                            <td>{{ nomade.nom }}</td>
+
+                            <td>{{ nomade.prenom }}</td>
+
+                            <td>{{ nomade.email }}</td>
+
+                            <td>{{ nomade.telephone }}</td>
+
+                            <td>
+                                {% if nomade.datenaissance == null %}
+                                        N/C
+                                {% else %}
+{#                                        {{ nomade.datenaissance }}#}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.adresse == null %}
+                                        N/C
+                                {% else %}
+                                        {{ nomade.adresse }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.cp == null %}
+                                        N/C
+                                {% else %}
+                                        {{ nomade.cp }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.ville == null %}
+                                        N/C
+                                {% else %}
+                                        {{ nomade.ville }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.statut == null %}
+                                        N/C
+                                {% else %}
+                                        {{ nomade.statut }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.typesejour == null %}
+                                        N/C
+                                {% else %}
+                                        {{ nomade.typesejour }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if nomade.datecreationcompte == null %}
+                                        N/C
+                                {% else %}
+{#                                        {{ nomade.datecreationcompte }}#}
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_gestion_nomade', {id: nomade.id}) }}" class="button is-primary has-text-white">Gérer
+                                </a>
+                            </td>
+
+                        </tr>
+
+
+
+
+
 {% endfor %}

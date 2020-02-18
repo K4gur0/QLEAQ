@@ -55,38 +55,43 @@
 
                             <div class="dropdown is-hoverable is-right">
                                 <div class="dropdown-trigger">
-                                    <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu2">
+                                    <button class="button is-success" aria-haspopup="true" aria-controls="dropdown-menu2">
                                         <strong>Vous êtes connecté : {{ app.user.username }}</strong>
                                         <span class="icon is-small">
                                                 <i class="fas fa-angle-down" aria-hidden="true"></i>
                                             </span>
                                     </button>
                                 </div>
-                                <div class="dropdown-menu is-dark" id="dropdown-menu2" role="menu">
-                                    <div class="dropdown-content has-background-dark">
+                                <div class="dropdown-menu is-success" id="dropdown-menu2" role="menu">
+                                    <div class="dropdown-content has-background-success">
 
 
-                                        <a class="button is-dark is-fullwidth" href="{{ path('admin_home', {id: app.user.id} )  }}">
+                                        <a class="button is-success is-fullwidth" href="{{ path('admin_home', {id: app.user.id} )  }}">
                                             <span>Accueil</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
-                                        <a class="button is-dark is-fullwidth" href="#">
+                                        <a class="button is-success is-fullwidth" href="{{ path('admin_liste_nomades') }}">
                                             <span>Gestion des comptes Locataires</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
-                                        <a class="button is-dark is-fullwidth" href="#">
+                                        <a class="button is-success is-fullwidth" href="{{ path('admin_liste_proprios') }}">
                                             <span>Gestion des comptes Propriétaires</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
-                                        <a class="button is-dark is-fullwidth" href="#">
-                                            <span>Gérer mon compte Admin</span>
+                                        <a class="button is-success is-fullwidth" href="{{ path('admin_register') }}">
+                                            <span>Gestion des comptes Admins</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
-                                        <a class="button is-dark is-fullwidth" href="{{ path('app_logout') }}">
+                                        <a class="button is-success is-fullwidth" href="#">
+                                            <span>Modifier mon compte</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-success is-fullwidth" href="{{ path('app_logout') }}">
                                             <span>Déconnexion</span>
                                         </a>
 

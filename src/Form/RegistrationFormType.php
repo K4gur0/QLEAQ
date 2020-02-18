@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Nomade;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -40,6 +41,20 @@ class RegistrationFormType extends AbstractType
                     )
             )
 
+            ->add('date_naissance', BirthdayType::class,
+                array('label' => false,
+                    'required' => false,
+                    'attr' => ['class' => 'input'],
+                    'placeholder' => [
+                        'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                    ],
+                    'format' => 'dd MM yyyy',
+                    'invalid_message' => 'Veuillez selectionnez une date valide.',
+                    'error_bubbling' => true,
+//                    'mapped' => false,
+                )
+            )
+
 
             ->add('nom',TextType::class, [
                 'label' => false,
@@ -73,12 +88,26 @@ class RegistrationFormType extends AbstractType
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'Etudiant' => 'Etudiant',
-                        'Salarié' => 'Salarie',
-                        'Profesionnel' => 'Profesionnel',
-                        'Expatrié' => 'Expatrié',
+                        'Etudiant(e)' => 'Etudiant',
+                        'Salarié(e)' => 'Salarie',
+                        'Profesionnel(le)' => 'Profesionnel',
+                        'Expatrié(e)' => 'Expatrié',
                         'Intérimaire' => 'Intérimaire',
-                        'Intérmitant' => 'Intérmitant',
+                        'Intérmitent(e)' => 'Intérmitent',
+                        'Autre' => 'Autre',
+                    ]
+                )
+            )
+
+            ->add('type_sejour', ChoiceType::class,
+                array('label' => false,
+                    'required' => true,
+                    'choices' => [
+                        'Études' => 'etudes',
+                        'Stage' => 'stage',
+                        'Formation' => 'formation',
+                        'Mission' => 'mission',
+                        'Salon' => 'salon',
                         'Autre' => 'Autre',
                     ]
                 )

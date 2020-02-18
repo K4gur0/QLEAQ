@@ -33,74 +33,83 @@
 
     {% if is_granted('ROLE_ADMIN') %}
 
-{#        {% include('includes/footer_admin.html.twig') %}#}
+        {% include('includes/footer_admin.html.twig') %}
 
-        <footer class="footer" style="position: relative;bottom:0 ;width: 100%;">
+{#        <footer class="footer has-background-success" style="position: relative;bottom:0 ;width: 100%;">#}
 
-            <hr style="background: rgba(255,255,255,0.5);height: 2px;width: 95%;margin: 0 auto 50px auto;">
+{#            <hr style="background: rgba(255,255,255,0.5);height: 2px;width: 95%;margin: 0 auto 50px auto;">#}
 
-            <div class="content has-text-centered columns">
+{#            <div class="content has-text-centered columns">#}
 
-                <div class="column">
-                    <a class="is-link" href="{{ path('footer_contact') }}">Contact</a>
-                    <a class="is-link" href="{{ path('footer_cgu') }}">CGU/CGV</a>
-                    <a class="is-link" href="{{ path('footer_mentions') }}">Mentions légales</a>
-                </div>
-
-
-                <div class="column">
-                    <a class="is-link" href="{{ path('footer_pro') }}">Professionnels</a>
-                    <a class="is-link" href="{{ path('footer_partenariats') }}">Partenariats</a>
-                    <a class="is-link" href="{{ path('footer_annonceurs') }}">Annonceurs</a>
-                    <a class="is-link" href="{{ path('footer_presse') }}">Presse</a>
-                </div>
+{#                <div class="column">#}
+{#                    <a class="is-link" href="{{ path('footer_contact') }}">Contact</a>#}
+{#                    <a class="is-link" href="{{ path('footer_cgu') }}">CGU/CGV</a>#}
+{#                    <a class="is-link" href="{{ path('footer_mentions') }}">Mentions légales</a>#}
+{#                </div>#}
 
 
-                <div class="column">
-
-                    {#                <button class="button is-primary">#}
-                    {#                <span class="icon">#}
-                    {#                  <i class="fab fa-twitter"></i>#}
-                    {#                </span>#}
-                    {#                    <span><a href="https://twitter.com/MigMnty" target="_blank">Twitter</a></span>#}
-                    {#                </button>#}
-
-                    <span>
-                        <a target="_blank" href="https://www.facebook.com/Qleaq.Officiel/">
-                            <span class="icon">
-                            <i class="fab fa-facebook"></i>
-                            </span>Facebook
-                        </a>
-                    </span>
-
-                    {#                <button class="button is-primary">#}
-                    {#                <span class="icon">#}
-                    {#                  <i class="fab fa-youtube"></i>#}
-                    {#                </span>#}
-                    {#                    <span><a target="_blank" href="#">Youtube</a></span>#}
-                    {#                </button>#}
-
-                    <span><a  target="_blank"href="https://www.instagram.com/Qleaq_Officiel/">
-                            <span class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </span>Instagram
-                        </a>
-                    </span>
+{#                <div class="column">#}
+{#                    <a class="is-link" href="{{ path('footer_pro') }}">Professionnels</a>#}
+{#                    <a class="is-link" href="{{ path('footer_partenariats') }}">Partenariats</a>#}
+{#                    <a class="is-link" href="{{ path('footer_annonceurs') }}">Annonceurs</a>#}
+{#                    <a class="is-link" href="{{ path('footer_presse') }}">Presse</a>#}
+{#                </div>#}
 
 
+{#                <div class="column">#}
 
-                    <span><a  target="_blank"href="https://au.linkedin.com/company/qleaq-officiel">
-                            <span class="icon">
-                                <i class="fab fa-linkedin"></i>
-                            </span>Linkedin
-                        </a>
-                    </span>
+{#                    #}{#                <button class="button is-primary">#}
+{#                    #}{#                <span class="icon">#}
+{#                    #}{#                  <i class="fab fa-twitter"></i>#}
+{#                    #}{#                </span>#}
+{#                    #}{#                    <span><a href="https://twitter.com/MigMnty" target="_blank">Twitter</a></span>#}
+{#                    #}{#                </button>#}
 
-                </div>
+{#                    <span>#}
+{#                        <a target="_blank" href="https://www.facebook.com/Qleaq.Officiel/">#}
+{#                            <span class="icon">#}
+{#                            <i class="fab fa-facebook"></i>#}
+{#                            </span>Facebook#}
+{#                        </a>#}
+{#                    </span>#}
+
+{#                    #}{#                <button class="button is-primary">#}
+{#                    #}{#                <span class="icon">#}
+{#                    #}{#                  <i class="fab fa-youtube"></i>#}
+{#                    #}{#                </span>#}
+{#                    #}{#                    <span><a target="_blank" href="#">Youtube</a></span>#}
+{#                    #}{#                </button>#}
+
+{#                    <span><a  target="_blank"href="https://www.instagram.com/Qleaq_Officiel/">#}
+{#                            <span class="icon">#}
+{#                                <i class="fab fa-instagram"></i>#}
+{#                            </span>Instagram#}
+{#                        </a>#}
+{#                    </span>#}
 
 
-            </div>
-        </footer>
+
+{#                    <span><a  target="_blank"href="https://au.linkedin.com/company/qleaq-officiel">#}
+{#                            <span class="icon">#}
+{#                                <i class="fab fa-linkedin"></i>#}
+{#                            </span>Linkedin#}
+{#                        </a>#}
+{#                    </span>#}
+
+{#                </div>#}
+
+
+{#            </div>#}
+
+{#            <hr style="background: rgba(255,255,255,0.5);height: 1px;width: 100%;margin:auto;">#}
+
+{#            <div class="column has-text-centered has-text-white">#}
+{#        <span>#}
+{#            © 2020 | www.qleaq.com [BETA] | Propriété de MEUNIETY Miguel. Tout droits réservés.#}
+{#        </span>#}
+{#            </div>#}
+
+{#        </footer>#}
 
     {% elseif is_granted('ROLE_PROPRIO') %}
 

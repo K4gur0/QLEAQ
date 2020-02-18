@@ -1,0 +1,122 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Administration Nomades{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+
+
+            <section class="hero is-medium is-success is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Administration des Profiles Nomades
+                        </h1>
+{#                        <h2 class="subtitle">#}
+{#                            #}
+{#                        </h2>#}
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section">
+
+                {% include 'includes/flash_message.html.twig' %}
+
+                {#                {% if form_errors(deleteProprioForm) != null %}#}
+                {#                    <div class="notification is-danger">#}
+                {#                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
+                {#                        {{ form_errors(deleteProprioForm) }}#}
+                {#                    </div>#}
+                {#                {% endif %}#}
+
+                <h2 class="title is-2">Liste des comptes Nomades : </h2>
+
+                <div class="notification is-primary">
+
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><abbr title="Nom">Nom</abbr></th>
+                            <th><abbr title="Prenom">Prénom</abbr></th>
+                            <th><abbr title="email">@Mail</abbr></th>
+                            <th><abbr title="Telephone">Téléphone</abbr></th>
+                            <th><abbr title="Date_de_naissance">Date de naissance</abbr></th>
+                            <th><abbr title="Adresse">Adresse</abbr></th>
+                            <th><abbr title="Code_postale">Code postale</abbr></th>
+                            <th><abbr title="Ville">Ville</abbr></th>
+                            <th><abbr title="Statut">Statut</abbr></th>
+                            <th><abbr title="Type_sejour">Type de séjour</abbr></th>
+                            <th><abbr title="Date_creation_compte">Compte créé le :</abbr></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+
+                        {% include 'includes/InfoNomade.html.twig' with {nomades: nomade} %}
+
+                        </tbody>
+
+                <tfoot>
+                <tr>
+                    <th><abbr title="Nom">Nom</abbr></th>
+                    <th><abbr title="Prenom">Prénom</abbr></th>
+                    <th><abbr title="email">@Mail</abbr></th>
+                    <th><abbr title="Telephone">Téléphone</abbr></th>
+                    <th><abbr title="Date_de_naissance">Date de naissance</abbr></th>
+                    <th><abbr title="Adresse">Adresse</abbr></th>
+                    <th><abbr title="Code_postale">Code postale</abbr></th>
+                    <th><abbr title="Ville">Ville</abbr></th>
+                    <th><abbr title="Statut">Statut</abbr></th>
+                    <th><abbr title="Type_sejour">Type de séjour</abbr></th>
+                    <th><abbr title="Date_creation_compte">Compte créé le :</abbr></th>
+                </tr>
+                </tfoot>
+                </table>
+
+
+
+
+
+                </div>
+
+{#                <hr style="border: #0a0a0a 1px solid">#}
+
+{#                <h2>Liste des comptes Propriétaires : </h2>#}
+{#                {% include 'includes/InfoProprio.html.twig' with {proprietaires: proprietaire} %}#}
+
+            </section>
+
+
+
+
+        {% else %}
+
+
+            <section class="hero is-success is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
+
+
+        {% endif %}
+
+    </section>
+
+
+
+
+
+{% endblock %}

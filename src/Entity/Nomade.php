@@ -100,6 +100,7 @@ class Nomade implements UserInterface
 
     /**
      * @ORM\Column(type="datetime")
+     * @var string A "Y-m-d H:i:s" formatted value
      */
     private $date_creation_compte;
 
@@ -118,10 +119,15 @@ class Nomade implements UserInterface
      */
     private $securityToken;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type_sejour;
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
-            }
+    }
 
 
     /**
@@ -130,6 +136,7 @@ class Nomade implements UserInterface
     public function __toString()
     {
         return $this->getUsername();
+
     }
 
     /**
@@ -416,6 +423,18 @@ class Nomade implements UserInterface
         $token = bin2hex(random_bytes(16));
 
         return $this->setSecurityToken($token);
+    }
+
+    public function getTypeSejour(): ?string
+    {
+        return $this->type_sejour;
+    }
+
+    public function setTypeSejour(string $type_sejour): self
+    {
+        $this->type_sejour = $type_sejour;
+
+        return $this;
     }
 
 

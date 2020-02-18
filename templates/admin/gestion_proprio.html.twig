@@ -1,0 +1,194 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Gestion de compte Propriétaire{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <section class="hero is-medium is-success is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Gestion du propriétaire : {{ proprio.raisonsocial }}
+                        </h1>
+                        <h2 class="subtitle">
+                            Ici vous pouvez compléter les informations de votre profile
+                        </h2>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <div class="columns is-centered section">
+
+
+
+                <div class="column is-one-third">
+
+                    {#                <h1 class="title has-text-primary has-text-centered">#}
+                    {#                    Gestion de votre profile#}
+                    {#                </h1>#}
+
+
+                    <div class="field" >
+                        {{ form_start(gestionProprioForm) }}
+
+
+                        {% include 'includes/flash_message.html.twig' %}
+
+                        {% if form_errors(gestionProprioForm) != null %}
+                            <div class="notification is-danger">
+                                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                                {{ form_errors(gestionProprioForm) }}
+                            </div>
+                        {% endif %}
+
+
+                        <div class="field">
+                            <label class="label">Nom ou Raison social</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom' , 'alt' : 'raison social'},
+                                }) }}
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email' , 'alt' : 'email'}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Numéro de téléphone</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Adresse</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Entrez votre code postale</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Entrez votre Ville</label>
+                            <div class="control">
+                                {{ form_row(gestionProprioForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville' , 'alt' : 'ville'}
+                                }) }}
+                            </div>
+                        </div>
+
+                        {#                        <div class="field">#}
+                        {#                            <label class="label">Présentez vous</label>#}
+                        {#                            <div class="control">#}
+                        {#                                {{ form_row(gestionProprioForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}#}
+                        {#                                }) }}#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+
+                        <div class="field">
+                            <label class="label">Votre statut</label>
+                            <div class="select" style="width: 100%">
+                                {{ form_row(gestionProprioForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" >Compte créé le : </label>
+                            <div class="has-text-centered">
+                                {{ form_row(gestionProprioForm.date_creation_compte, {'attr' : {'class' : 'button' , 'alt' : 'date creation compte'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Compte validé :
+
+                                <div class="checkbox">
+                                    {{ form_row(gestionNomadeForm.isconfirmed, {'attr' : {'class' : 'checkbox', 'alt' : 'is confirmed'}
+                                    }) }}
+                                </div>
+
+                            </label>
+
+                        </div>
+
+
+
+
+
+                        <div class="column is-centered">
+                            <button type="submit" style="width: 100%;" class="button is-success">Valider les modifications</button>
+                        </div>
+
+
+                        {{ form_end(gestionProprioForm) }}
+
+
+                        <div class="column is-centered">
+                            <a href="{{ path('admin_delete_proprietaire', {id: proprio.id}) }}" type="submit" style="width: 100%;" class="button is-danger">Supprimer le compte</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+
+            <section class="hero is-dark is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
+
+        {% endif %}
+
+    </section>
+
+
+
+    {#    VERIFICATION REMPLISSAGE DES CHAMPS EN JAVASCRIPT   #}
+    <script language="Javascript">
+        function verif_nombre(champ)
+        {
+            var chiffres = new RegExp("[0-9]");
+            var verif;
+            var points = 0;
+
+            for(x = 0; x < champ.value.length; x++)
+            {
+                verif = chiffres.test(champ.value.charAt(x));
+                if(champ.value.charAt(x) == "."){points++;}
+                if(points > 1){verif = false; points = 1;}
+                if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
+            }
+        }
+    </script>
+
+{% endblock %}
+
+
+

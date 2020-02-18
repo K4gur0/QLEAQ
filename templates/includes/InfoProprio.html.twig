@@ -1,0 +1,85 @@
+{% for proprietaire in proprietaires %}
+    {# @var record \App\Entity\Proprietaire #}
+
+
+
+
+
+
+            <tr>
+
+                <td>{{ proprietaire.raisonsocial }}</td>
+
+{#                <td>{{ proprietaire.prenom }}</td>#}
+
+                <td>{{ proprietaire.email }}</td>
+
+                <td>{{ proprietaire.telephone }}</td>
+
+{#                <td>#}
+{#                    {% if proprietaire.datenaissance == null %}#}
+{#                        N/C#}
+{#                    {% else %}#}
+{#                        #}{#                                        {{ proprietaire.datenaissance }}#}
+{#                    {% endif %}#}
+{#                </td>#}
+
+                <td>
+                    {% if proprietaire.adresse == null %}
+                        N/C
+                    {% else %}
+                        {{ proprietaire.adresse }}
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if proprietaire.cp == null %}
+                        N/C
+                    {% else %}
+                        {{ proprietaire.cp }}
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if proprietaire.ville == null %}
+                        N/C
+                    {% else %}
+                        {{ proprietaire.ville }}
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if proprietaire.statut == null %}
+                        N/C
+                    {% else %}
+                        {{ proprietaire.statut }}
+                    {% endif %}
+                </td>
+
+{#                <td>#}
+{#                    {% if proprietaire.typesejour == null %}#}
+{#                        N/C#}
+{#                    {% else %}#}
+{#                        {{ proprietaire.typesejour }}#}
+{#                    {% endif %}#}
+{#                </td>#}
+
+                <td>
+                    {% if proprietaire.datecreationcompte == null %}
+                        N/C
+                    {% else %}
+                        {#                                        {{ proprietaire.datecreationcompte }}#}
+                    {% endif %}
+
+                </td>
+                <td>
+                    <a href="{{ path('admin_gestion_proprietaire', {id: proprietaire.id}) }}" class="button is-primary has-text-white">Gérer
+                    </a>
+                </td>
+
+            </tr>
+
+
+
+
+{% endfor %}

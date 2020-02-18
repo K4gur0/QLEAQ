@@ -44,13 +44,15 @@
                     Inscription
                 </h1>
 
+                <h2 class="title is-6 has-text-centered has-text-danger"> <i>Les champs mentionnés d'un astérisque (*) sont obligatoires</i> </h2>
+
                 {% include 'includes/flash_message.html.twig' %}
 
                 {{ form_start(registrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
 
 
                 <div class="field">
-                    <label class="label">Civilité</label>
+                    <label class="label">Civilité *</label>
 
                     <div class="select" style="width: 100%;">
 
@@ -62,7 +64,7 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Nom</label>
+                    <label class="label">Nom *</label>
                     <div class="control">
                         {{ form_row(registrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom'}
                         }) }}
@@ -70,12 +72,25 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Prénom</label>
+                    <label class="label">Prénom *</label>
                     <div class="control">
                         {{ form_row(registrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom'}
                         }) }}
                     </div>
                 </div>
+
+
+                <div class="field">
+                    <label class="label">Selectionnez votre date de naissance</label>
+                    <div class="control">
+
+                        <div class="select">{{ form_row( registrationForm.date_naissance.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                        <div class="select">{{ form_row( registrationForm.date_naissance.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                        <div class="select">{{ form_row( registrationForm.date_naissance.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+
+                    </div>
+                </div>
+
 
                 <div class="field">
                     <label class="label">Téléphone</label>
@@ -86,7 +101,7 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Email</label>
+                    <label class="label">Email *</label>
                     <div class="control">
                         {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
                         }) }}
@@ -94,7 +109,7 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Mot de passe</label>
+                    <label class="label">Mot de passe *</label>
                     <div class="control">
                         {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
                         }) }}
@@ -103,7 +118,7 @@
 
 
                 <div class="field">
-                    <label class="label">Comfirmez votre mot de passe</label>
+                    <label class="label">Comfirmez votre mot de passe *</label>
                     <div class="control">
                         {{ form_row(registrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
                         }) }}
@@ -111,9 +126,17 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Votre statut</label>
+                    <label class="label">Votre statut *</label>
                     <div class="select" style="width: 100%">
                         {{ form_row(registrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Type de séjour *</label>
+                    <div class="select" style="width: 100%">
+                        {{ form_row(registrationForm.type_sejour, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
                         }) }}
                     </div>
                 </div>

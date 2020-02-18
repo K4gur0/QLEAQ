@@ -76,7 +76,11 @@
                     <div class="field">
                         <label class="label">Selectionnez votre date de naissance</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.date_naissance) }}
+
+                            <div class="select">{{ form_row( nomadeForm.date_naissance.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                            <div class="select">{{ form_row( nomadeForm.date_naissance.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                            <div class="select">{{ form_row( nomadeForm.date_naissance.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+
                         </div>
                     </div>
 
@@ -132,6 +136,14 @@
                         <label class="label">Votre statut</label>
                         <div class="select" style="width: 100%">
                             {{ form_row(nomadeForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Type de séjour</label>
+                        <div class="select" style="width: 100%">
+                            {{ form_row(nomadeForm.type_sejour, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
                             }) }}
                         </div>
                     </div>

@@ -9,7 +9,7 @@
 
 
 
-            <section class="hero is-medium is-dark is-bold">
+            <section class="hero is-medium is-success is-bold">
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
@@ -25,7 +25,22 @@
 
             <section class="section">
 
-                {% include 'includes/InfoNomade.html.twig' with {nomades: nomade} %}
+                {% include 'includes/flash_message.html.twig' %}
+
+{#                {% if form_errors(deleteProprioForm) != null %}#}
+{#                    <div class="notification is-danger">#}
+{#                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
+{#                        {{ form_errors(deleteProprioForm) }}#}
+{#                    </div>#}
+{#                {% endif %}#}
+
+{#                <h2>Liste des comptes Nomades : </h2>#}
+{#                {% include 'includes/InfoNomade.html.twig' with {nomades: nomade} %}#}
+
+{#                <hr style="border: #0a0a0a 1px solid">#}
+
+{#                <h2>Liste des comptes Propriétaires : </h2>#}
+{#                {% include 'includes/InfoProprio.html.twig' with {proprietaires: proprietaire} %}#}
 
             </section>
 
@@ -35,7 +50,7 @@
         {% else %}
 
 
-            <section class="hero is-dark is-bold is-large">
+            <section class="hero is-success is-bold is-large">
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
