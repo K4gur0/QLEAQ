@@ -10,20 +10,6 @@
         <section class="section">
             <div class="is-centered section">
 
-{#        <section class="hero is-primary is-medium">#}
-{#            <div class="hero-body">#}
-{#                <div class="container" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">#}
-{#                    <h1 class="title">#}
-{#                        Vous êtes déjà connecté !#}
-{#                    </h1>#}
-{#                    <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>#}
-{#                </div>#}
-{#            </div>#}
-{#        </section>#}
-
-        {#        <div class="column illustration">#}
-        {#            <img src="{{ asset('build/images/login_nomade.b67e2a5c.svg') }}" >#}
-        {#        </div>#}
 
         <div class="columns is-centered section">
             <div class="field">
@@ -35,22 +21,10 @@
                 {{ form_start(AdminRegistrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
 
 
-                {#                <div class="field">#}
-                {#                    <label class="label">Civilité</label>#}
-
-                {#                    <div class="select" style="width: 100%;">#}
-
-                {#                        {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input'}#}
-                {#                        }) }}#}
-
-                {#                    </div>#}
-
-                {#                </div>#}
-
                 <div class="field">
                     <label class="label">Nom</label>
                     <div class="control">
-                        {{ form_row(AdminRegistrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom'}
+                        {{ form_row(AdminRegistrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom', 'alt' : 'Nom'}
                         }) }}
                     </div>
                 </div>
@@ -58,7 +32,7 @@
                 <div class="field">
                     <label class="label">Prénom</label>
                     <div class="control">
-                        {{ form_row(AdminRegistrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom'}
+                        {{ form_row(AdminRegistrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom', 'alt' : 'Prenom'}
                         }) }}
                     </div>
                 </div>
@@ -66,25 +40,16 @@
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        {{ form_row(AdminRegistrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                        {{ form_row(AdminRegistrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com', 'alt' : 'email'}
                         }) }}
                     </div>
                 </div>
-
-                {#                <div class="field">#}
-                {#                    <label class="label">Téléphone</label>#}
-                {#                    <div class="control">#}
-                {#                        {{ form_row(registrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }#}
-                {#                        }) }}#}
-                {#                    </div>#}
-                {#                </div>#}
-
 
 
                 <div class="field">
                     <label class="label">Mot de passe</label>
                     <div class="control">
-                        {{ form_row(AdminRegistrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                        {{ form_row(AdminRegistrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input', 'alt' : 'password'}
                         }) }}
                     </div>
                 </div>
@@ -93,7 +58,7 @@
                 <div class="field">
                     <label class="label">Comfirmez votre mot de passe</label>
                     <div class="control">
-                        {{ form_row(AdminRegistrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                        {{ form_row(AdminRegistrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input', 'alt' : 'confirm password'}
                         }) }}
                     </div>
                 </div>

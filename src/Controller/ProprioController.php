@@ -37,6 +37,19 @@ class ProprioController extends AbstractController
         return $this->render('proprietaire/espace.html.twig');
         }
 
+
+    /**
+     * @Route("/ajouter-annonce", name="add_annonce")
+     */
+        public function postAnnonce(){
+
+            return $this->render('proprietaire/proprio.html.twig', [
+                'proprioForm' => $proprioForm->createView()
+            ]);
+        }
+
+
+
         /**
          * @Route("/profile", name="profile")
          * @IsGranted("ROLE_PROPRIO")

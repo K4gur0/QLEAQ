@@ -41,7 +41,7 @@
 
             <div class="column is-two-fifths register">
                 <h1 class="title has-text-centered has-text-primary">
-                    Inscription
+                    Inscription Nomade
                 </h1>
 
                 <h2 class="title is-6 has-text-centered has-text-danger"> <i>Les champs mentionnés d'un astérisque (*) sont obligatoires</i> </h2>
@@ -56,7 +56,7 @@
 
                     <div class="select" style="width: 100%;">
 
-                        {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input'}
+                        {{ form_row(registrationForm.sexe, {'attr' : {'class' : 'select input', 'alt' : 'civilite'}
                         }) }}
 
                     </div>
@@ -66,7 +66,7 @@
                 <div class="field">
                     <label class="label">Nom *</label>
                     <div class="control">
-                        {{ form_row(registrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom'}
+                        {{ form_row(registrationForm.nom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom', 'alt' : 'Nom'}
                         }) }}
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="field">
                     <label class="label">Prénom *</label>
                     <div class="control">
-                        {{ form_row(registrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom'}
+                        {{ form_row(registrationForm.prenom, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre adresse Prénom', 'alt' : 'Prenom'}
                         }) }}
                     </div>
                 </div>
@@ -84,9 +84,9 @@
                     <label class="label">Selectionnez votre date de naissance</label>
                     <div class="control">
 
-                        <div class="select">{{ form_row( registrationForm.date_naissance.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
-                        <div class="select">{{ form_row( registrationForm.date_naissance.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
-                        <div class="select">{{ form_row( registrationForm.date_naissance.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                        <div class="select">{{ form_row( registrationForm.date_naissance.day, {'label' : ' ', 'attr' : {'class' : 'select', 'alt' : 'jour'}} ) }}</div>
+                        <div class="select">{{ form_row( registrationForm.date_naissance.month, {'label' : ' ', 'attr' : {'class' : 'select', 'alt' : 'mois'}} ) }}</div>
+                        <div class="select">{{ form_row( registrationForm.date_naissance.year, {'label' : ' ', 'attr' : {'class' : 'select', 'alt' : 'annee'}} ) }}</div>
 
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                 <div class="field">
                     <label class="label">Email *</label>
                     <div class="control">
-                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                        {{ form_row(registrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com', 'alt' : 'email'}
                         }) }}
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                 <div class="field">
                     <label class="label">Mot de passe *</label>
                     <div class="control">
-                        {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                        {{ form_row(registrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input', 'alt' : 'password'}
                         }) }}
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 <div class="field">
                     <label class="label">Comfirmez votre mot de passe *</label>
                     <div class="control">
-                        {{ form_row(registrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                        {{ form_row(registrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input', 'alt' : 'confirm password'}
                         }) }}
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                 <div class="field">
                     <label class="label">Votre statut *</label>
                     <div class="select" style="width: 100%">
-                        {{ form_row(registrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                        {{ form_row(registrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input', 'alt' : 'statut'}
                         }) }}
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 <div class="field">
                     <label class="label">Type de séjour *</label>
                     <div class="select" style="width: 100%">
-                        {{ form_row(registrationForm.type_sejour, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
+                        {{ form_row(registrationForm.type_sejour, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'type sejour'}
                         }) }}
                     </div>
                 </div>

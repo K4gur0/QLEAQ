@@ -36,31 +36,33 @@
                             Inscription Propriétaire
                         </h1>
 
+                        <h2 class="title is-6 has-text-centered has-text-danger"> <i>Les champs mentionnés d'un astérisque (*) sont obligatoires</i> </h2>
+
                         {% include 'includes/flash_message.html.twig' %}
 
                         {{ form_start(ProprioRegistrationForm, {'attr' : {'class' : 'has-text-primary', 'style' : "max-width:400px; margin:auto"} }) }}
 
 
                         <div class="field">
-                            <label class="label">Nom d'entreprise / Raison Social</label>
+                            <label class="label">Nom d'entreprise / Raison Social *</label>
                             <div class="control">
-                                {{ form_row(ProprioRegistrationForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez le Nom/Raison Social de l\'entreprise'}
+                                {{ form_row(ProprioRegistrationForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez le Nom/Raison Social de l\'entreprise', 'alt' : 'raison social'}
                                 }) }}
                             </div>
                         </div>
 
 
                         <div class="field">
-                            <label class="label">Email</label>
+                            <label class="label">Email *</label>
                             <div class="control">
-                                {{ form_row(ProprioRegistrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com'}
+                                {{ form_row(ProprioRegistrationForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'ex : mail@mail.com', 'alt' : 'email'}
                                 }) }}
                             </div>
                         </div>
 
 
                         <div class="field">
-                            <label class="label">Téléphone</label>
+                            <label class="label">Téléphone *</label>
                             <div class="control">
                                 {{ form_row(ProprioRegistrationForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
                                 }) }}
@@ -70,33 +72,33 @@
 
 
                          <div class="field">
-                             <label class="label">Adresse du siège social</label>
+                             <label class="label">Adresse du siège social *</label>
                              <div style="width: 100%">
-                                 {{ form_row(ProprioRegistrationForm.adresse, {'attr' : {'placeholder' : 'Entrez l\'adresse du siège de l\'entreprise'}
+                                 {{ form_row(ProprioRegistrationForm.adresse, {'attr' : {'placeholder' : 'Entrez l\'adresse du siège de l\'entreprise', 'alt' : 'adresse'}
                                  }) }}
                              </div>
                          </div>
 
                             <div class="field">
-                                <label class="label">Entrez votre code postale</label>
+                                <label class="label">Entrez votre code postale *</label>
                                 <div class="control">
-                                    {{ form_row(ProprioRegistrationForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                    {{ form_row(ProprioRegistrationForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code postale'  }
                                     }) }}
                                 </div>
                             </div>
 
                             <div class="field">
-                                <label class="label">Ville</label>
+                                <label class="label">Ville *</label>
                                 <div style="width: 100%">
-                                    {{ form_row(ProprioRegistrationForm.ville, {'attr' : {'placeholder' : 'Entrez la ville de l\'entreprise'}
+                                    {{ form_row(ProprioRegistrationForm.ville, {'attr' : {'placeholder' : 'Entrez la ville de l\'entreprise', 'alt' : 'ville'}
                                     }) }}
                                 </div>
                             </div>
 
                             <div class="field">
-                                <label class="label">Votre statut</label>
+                                <label class="label">Votre statut *</label>
                                 <div class="select" style="width: 100%">
-                                    {{ form_row(ProprioRegistrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input'}
+                                    {{ form_row(ProprioRegistrationForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input', 'alt' : 'statut'}
                                     }) }}
                                 </div>
                             </div>
@@ -104,18 +106,18 @@
 
 
                             <div class="field">
-                                <label class="label">Mot de passe</label>
+                                <label class="label">Mot de passe *</label>
                                 <div class="control">
-                                    {{ form_row(ProprioRegistrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input'}
+                                    {{ form_row(ProprioRegistrationForm.plainPassword.first, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Mot de passe', 'class' : 'input', 'alt' : 'password'}
                                     }) }}
                                 </div>
                             </div>
 
 
                             <div class="field">
-                                <label class="label">Comfirmez votre mot de passe</label>
+                                <label class="label">Comfirmez votre mot de passe *</label>
                                 <div class="control">
-                                    {{ form_row(ProprioRegistrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input'}
+                                    {{ form_row(ProprioRegistrationForm.plainPassword.second, {'attr' : {'class' : 'input', 'placeholder' : 'Répétez votre mot de passe', 'class' : 'input', 'alt' : 'confirm password'}
                                     }) }}
                                 </div>
                             </div>
