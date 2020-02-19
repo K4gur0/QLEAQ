@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
+use App\Entity\Proprietaire;
+use App\Form\AnnonceFormType;
 use App\Form\ProprioType;
+use App\Repository\ProprietaireRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,10 +45,16 @@ class ProprioController extends AbstractController
     /**
      * @Route("/ajouter-annonce", name="add_annonce")
      */
-        public function postAnnonce(){
+        public function addAnnonce(Request $request, ProprietaireRepository $proprietaireRepository){
 
-            return $this->render('proprietaire/proprio.html.twig', [
-                'proprioForm' => $proprioForm->createView()
+            $proprio = $this->getUser();
+            $idProprio = $proprio->getId();
+//            dump($proprio->getId());
+//            die();
+            $annonceForm = $this->createForm(AnnonceFormType::class);
+
+            return $this->render('proprietaire/add_annonce.html.twig', [
+                'annonceForm' => $annonceForm->createView(),
             ]);
         }
 

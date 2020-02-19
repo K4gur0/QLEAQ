@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -90,9 +92,11 @@ class Proprietaire implements UserInterface
      */
     private $refusToken;
 
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
+        $this->id_annonce = new ArrayCollection();
     }
 
     /**
@@ -352,7 +356,6 @@ class Proprietaire implements UserInterface
 
         return $this->setRefusToken($token);
     }
-
 
 
 

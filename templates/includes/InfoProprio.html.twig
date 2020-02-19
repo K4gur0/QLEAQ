@@ -20,7 +20,7 @@
 {#                    {% if proprietaire.datenaissance == null %}#}
 {#                        N/C#}
 {#                    {% else %}#}
-{#                        #}{#                                        {{ proprietaire.datenaissance }}#}
+{#                        {{ proprietaire.datenaissance|date("d/m/Y") }}#}
 {#                    {% endif %}#}
 {#                </td>#}
 
@@ -68,7 +68,7 @@
                     {% if proprietaire.datecreationcompte == null %}
                         N/C
                     {% else %}
-                        {#                                        {{ proprietaire.datecreationcompte }}#}
+                        {{ proprietaire.datecreationcompte|date("d/m/Y") }}
                     {% endif %}
 
                 </td>

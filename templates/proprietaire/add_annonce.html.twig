@@ -1,0 +1,95 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Creation d'annonce{% endblock %}
+
+{% block content %}
+    <section>
+
+        {% if is_granted('ROLE_PROPRIO') %}
+
+
+
+            <section class="hero is-medium is-info is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Espace de creation d'annonce
+                        </h1>
+{#                        <h2 class="subtitle">#}
+{#                            Bienvenue sur votre espace Propriétaire#}
+{#                        </h2>#}
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+
+            {{ form_start(annonceForm) }}
+
+                <div class="field">
+                    <label class="label">Titre *</label>
+
+                    <div class="select" style="width: 100%;">
+
+                        {{ form_row(annonceForm.titre, {'attr' : {'class' : 'select input', 'alt' : 'titre'}
+                        }) }}
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label class="label">Description </label>
+
+                    <div class="select" style="width: 100%;">
+
+                        {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'description'}
+                        }) }}
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label class="label">Capacité résidents </label>
+
+                    <div class="select" style="width: 100%;">
+
+                        {{ form_row(annonceForm.nombre_max_residents, {'attr' : {'class' : 'input', 'placeholder' : 'nombre de résidents max', 'alt' : 'nombre de residents max'}
+                        }) }}
+
+                    </div>
+
+                </div>
+
+
+
+            {{ form_end(annonceForm) }}
+
+
+
+            </section>
+
+
+        {% else %}
+
+            <section class="hero is-dark is-bold is-large">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Vous n'êtes pas éligible à cette page
+                        </h1>
+                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                    </div>
+                </div>
+            </section>
+
+        {% endif %}
+
+    </section>
+
+
+
+
+
+{% endblock %}

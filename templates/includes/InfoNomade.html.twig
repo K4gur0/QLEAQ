@@ -23,6 +23,7 @@
                                         N/C
                                 {% else %}
 {#                                        {{ nomade.datenaissance }}#}
+                                    {{ nomade.datenaissance|date("d/m/Y") }}
                                 {% endif %}
                             </td>
 
@@ -70,7 +71,7 @@
                                 {% if nomade.datecreationcompte == null %}
                                         N/C
                                 {% else %}
-{#                                        {{ nomade.datecreationcompte }}#}
+                                    {{ nomade.datecreationcompte|date("d/m/Y") }}
                                 {% endif %}
 
                             </td>

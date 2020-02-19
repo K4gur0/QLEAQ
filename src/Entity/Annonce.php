@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
  */
@@ -65,6 +66,15 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="id_annonce")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_proprio;
+
+
+
 
     public function getId(): ?int
     {
@@ -190,4 +200,18 @@ class Annonce
 
         return $this;
     }
+
+    public function getIdProprio(): ?Proprietaire
+    {
+        return $this->id_proprio;
+    }
+
+    public function setIdProprio(?Proprietaire $id_proprio): self
+    {
+        $this->id_proprio = $id_proprio;
+
+        return $this;
+    }
+
+
 }

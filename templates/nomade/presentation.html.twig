@@ -12,12 +12,16 @@
                     Locataire avec Qleaq
                 </h1>
 
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+
+                {% else %}
                 <a class="button is-info" href="{{ path('login_nomade') }}">
                     Connexion
                 </a>
                 <a class="button is-info" href="{{ path('app_register') }}">
                     Inscription
                 </a>
+                {% endif %}
 
             </div>
         </div>

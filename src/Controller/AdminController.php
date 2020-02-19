@@ -112,6 +112,8 @@ class AdminController extends AbstractController
      */
     public function listeNomade(NomadeRepository $nomadeRepository){
         $nomade = $nomadeRepository->findAll();
+//        $date = $nomade[0]->getDateNaissance();
+//        dump($date);die;
 
         return $this->render('admin/liste_nomades.html.twig', [
             'nomade' => $nomade,
