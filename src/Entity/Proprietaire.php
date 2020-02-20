@@ -92,11 +92,18 @@ class Proprietaire implements UserInterface
      */
     private $refusToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="proprio", orphanRemoval=true)
+     */
+    private $annonces;
+
+
+
 
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
-        $this->id_annonce = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
     /**
@@ -356,6 +363,39 @@ class Proprietaire implements UserInterface
 
         return $this->setRefusToken($token);
     }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setProprio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->contains($annonce)) {
+            $this->annonces->removeElement($annonce);
+            // set the owning side to null (unless already changed)
+            if ($annonce->getProprio() === $this) {
+                $annonce->setProprio(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 

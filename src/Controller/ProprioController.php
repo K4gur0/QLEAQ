@@ -6,7 +6,9 @@ use App\Entity\Annonce;
 use App\Entity\Proprietaire;
 use App\Form\AnnonceFormType;
 use App\Form\ProprioType;
+use App\Repository\AnnonceRepository;
 use App\Repository\ProprietaireRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +38,12 @@ class ProprioController extends AbstractController
          * @IsGranted("ROLE_PROPRIO")
          */
 
-        public function espace(){
+        public function espace(Request $request, EntityManagerInterface $entityManager, AnnonceRepository $annonceRepository){
+
+            $annonces = $annonceRepository->findAll();
+            $annonces = $this->getUser()->getAnnonces();
+
+            dd($annonces);
 
         return $this->render('proprietaire/espace.html.twig');
         }
@@ -44,14 +51,39 @@ class ProprioController extends AbstractController
 
     /**
      * @Route("/ajouter-annonce", name="add_annonce")
+     * @IsGranted("ROLE_PROPRIO")
      */
-        public function addAnnonce(Request $request, ProprietaireRepository $proprietaireRepository){
+        public function addAnnonce(Request $request, EntityManagerInterface $entityManager){
 
+
+            $annonce = new Annonce();
             $proprio = $this->getUser();
-            $idProprio = $proprio->getId();
-//            dump($proprio->getId());
-//            die();
-            $annonceForm = $this->createForm(AnnonceFormType::class);
+            $annonce->setProprio($proprio);
+
+
+            $annonceForm = $this->createForm(AnnonceFormType::class, $annonce);
+            $annonceForm->handleRequest($request);
+
+
+            if ($annonceForm->isSubmitted() && $annonceForm->isValid()) {
+
+                /**
+                 * @Var Annonce $annonce
+                 */
+
+                $annonce = $annonceForm->getData();
+
+                $entityManager->persist($annonce);
+                $entityManager->flush();
+
+
+                $this->addFlash('success', 'Votre Annonce à bien été créer.');
+
+
+
+            }else if ($annonceForm->isSubmitted()) {
+                $this->addFlash('danger', 'Echec lors de la création de l\'annonce.');
+            }
 
             return $this->render('proprietaire/add_annonce.html.twig', [
                 'annonceForm' => $annonceForm->createView(),

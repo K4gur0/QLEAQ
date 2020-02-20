@@ -68,10 +68,10 @@ class Annonce
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="id_annonce")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_proprio;
+    private $proprio;
 
 
 
@@ -201,17 +201,20 @@ class Annonce
         return $this;
     }
 
-    public function getIdProprio(): ?Proprietaire
+    public function getProprio(): ?Proprietaire
     {
-        return $this->id_proprio;
+        return $this->proprio;
     }
 
-    public function setIdProprio(?Proprietaire $id_proprio): self
+    public function setProprio(?Proprietaire $proprio): self
     {
-        $this->id_proprio = $id_proprio;
+        $this->proprio = $proprio;
 
         return $this;
     }
+
+
+
 
 
 }

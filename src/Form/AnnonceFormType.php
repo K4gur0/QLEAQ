@@ -38,53 +38,60 @@ class AnnonceFormType extends AbstractType
                 )
             )
 
-            ->add('nombre_max_residents', NumberType::class,
+            ->add('nombre_max_residents', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'choices' => [
+                        '1' => '1',
+                        '2' => '2',
+                        '3' => '3',
+                        '4' => '4',
+                        '5' => '5',
+                        ]
                     )
             )
             ->add('description', TextType::class,
                 array('label' => false,
+                    'required' => false,
+                    )
+            )
+            ->add('superficie', NumberType::class,
+                array('label' => false,
                     'required' => true,
                     )
             )
-//            ->add('superficie', NumberType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
-//            ->add('tarif', NumberType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
-//            ->add('date_disponible', DateType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
-//            ->add('adresse', TextType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
-//            ->add('cp', NumberType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
-//            ->add('ville', TextType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
+            ->add('tarif', NumberType::class,
+                array('label' => false,
+                    'required' => true,
+                    )
+            )
+            ->add('date_disponible', DateType::class,
+                array('label' => false,
+                    'required' => true,
+                    )
+            )
+            ->add('adresse', TextType::class,
+                array('label' => false,
+                    'required' => false,
+                    )
+            )
+            ->add('cp', NumberType::class,
+                array('label' => false,
+                    'required' => true,
+                    )
+            )
+            ->add('ville', TextType::class,
+                array('label' => false,
+                    'required' => true,
+                    )
+            )
 //            ->add('auteur', TextType::class,
 //                array('label' => false,
 //                    'required' => true,
 //                    )
 //            )
-//        ;
-//    }
+        ;
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
