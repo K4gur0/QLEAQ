@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use App\Form\AdminRegistrationType;
 use App\Form\DeleteNomadeType;
 use App\Form\DeleteProprioType;
 use App\Form\GestionNomadeType;
 use App\Form\GestionProprioType;
 use App\Form\NomadeType;
+use App\Notif\NotifProprio;
 use App\Repository\AdminRepository;
 use App\Repository\NomadeRepository;
 use App\Repository\ProprietaireRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -242,6 +245,51 @@ class AdminController extends AbstractController
             $this->addFlash('danger', 'Echec de mise à jour.');
         }
 
+        return $this->render('admin/gestion_proprio.html.twig', [
+            'gestionProprioForm' => $gestionProprioForm->createView(),
+            'proprio' => $proprio
+        ]);
+    }
+
+    /**
+     * @Route("/gestion/proprietaire{id}/valide", name="confirm_proprio")
+     *
+     * @param Proprietaire           $proprio          L'utilisateur qui tente de confirmer son compte
+     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
+     */
+    public function confirmProprioViaAdmin(EntityManagerInterface $entityManager, ProprietaireRepository $proprietaireRepository, $id, NotifProprio $notifProprio){
+
+        $proprio = $proprietaireRepository->find($id);
+        $proprio = $proprio->setRefus(1);
+        $proprio->setIsConfirmed(true);
+        $gestionProprioForm = $this->createForm(GestionProprioType::class, $proprio);
+
+        $entityManager->persist($proprio);
+        $entityManager->flush();
+        $notifProprio->confirmationProprio($proprio);
+        $this->addFlash('success', 'Compte Validé !');
+        return $this->render('admin/gestion_proprio.html.twig', [
+            'gestionProprioForm' => $gestionProprioForm->createView(),
+            'proprio' => $proprio
+        ]);
+    }
+    /**
+     * @Route("/gestion/proprietaire{id}/refus", name="refus_proprio")
+     *
+     * @param Proprietaire           $proprio          L'utilisateur qui tente de confirmer son compte
+     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
+     */
+    public function refusProprioViaAdmin(EntityManagerInterface $entityManager, ProprietaireRepository $proprietaireRepository, $id, NotifProprio $notifProprio){
+
+        $proprio = $proprietaireRepository->find($id);
+        $proprio = $proprio->setRefus(2);
+
+        $gestionProprioForm = $this->createForm(GestionProprioType::class, $proprio);
+
+        $entityManager->persist($proprio);
+        $entityManager->flush();
+        $notifProprio->refusProprio($proprio);
+        $this->addFlash('danger', 'Compte Refusé !');
         return $this->render('admin/gestion_proprio.html.twig', [
             'gestionProprioForm' => $gestionProprioForm->createView(),
             'proprio' => $proprio

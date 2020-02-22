@@ -42,6 +42,7 @@ class NomadeRegistrationController extends AbstractController
              * @var Nomade $user
              */
             $user = $form->getData();
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -50,16 +51,18 @@ class NomadeRegistrationController extends AbstractController
                 )
             );
 
-//            $entityManager = $this->getDoctrine()->getManager();
+            $plainPassword = $form->get('plainPassword')->getData();
+
+//            dd($form->get('plainPassword')->getData());
+
             $entityManager->persist($user);
+
             $entityManager->flush();
 
-            $notifNomade->notify($user);
+            $notifNomade->notify($user, $plainPassword);
 
-//            $this->sendConfirmationEmail($mailer, $user);
-
-            $this->addFlash('success', 'Votre compte a bien été créée');
-            $this->addFlash('info', 'Vous devrez confirmez votre compte, un lien vous a été envoyé par email.');
+//            $this->addFlash('success', 'Votre compte a bien été créée');
+            $this->addFlash('info', 'Votre compte a bien été créé ! Un mail de confirmation vous à été envoyer');
 
             return $this->redirectToRoute('login_nomade');
         }
@@ -87,7 +90,7 @@ class NomadeRegistrationController extends AbstractController
     {
         // L'utilisateur a déjà confirmé son compte
         if ($user->getIsConfirmed()) {
-            $this->addFlash('warning', 'Votre compte est déjà confirmé, vous pouvez vous connecter.');
+            $this->addFlash('warning', 'Votre inscription est déjà confirmé, vous pouvez vous connecter.');
             return $this->redirectToRoute('login_nomade');
         }
 
@@ -104,7 +107,7 @@ class NomadeRegistrationController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Votre compte est confirmé, vous pouvez vous connecter.');
+        $this->addFlash('success', 'Bienvenue ' . $user->getPrenom() . ', vous pouvez maintenant vous connecter !');
         return $this->redirectToRoute('login_nomade');
     }
 

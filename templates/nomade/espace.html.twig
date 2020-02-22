@@ -22,6 +22,39 @@
                 </div>
             </section>
 
+            <section class="section">
+
+                <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
+
+                <h2 class="subtitle is-3">Annonces hébergement :</h2>
+
+                <hr style="border:black 1px solid">
+
+                <div class="columns is-centered">
+                    {% include 'includes/flash_message.html.twig' %}
+                </div>
+
+                <div class="columns is-vcentered">
+
+                    <div class="column">
+
+                        <div class="">{% include('includes/listeAnnonces.html.twig') %}</div>
+
+                    </div>
+
+                    <div class="column is-one-fifth">
+{#                        {% include('includes/listeAnnonces.html.twig') %}#}
+                    </div>
+
+                </div>
+
+
+
+            </section>
+
+
+
+
         {% else %}
 
             <section class="hero is-dark is-bold is-large">

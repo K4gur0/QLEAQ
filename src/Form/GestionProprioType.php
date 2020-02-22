@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -96,10 +97,6 @@ class GestionProprioType extends AbstractType
                     'disabled' => true,
                     ])
 
-            ->add('isconfirmed', CheckboxType::class,
-                array('disabled' => true,
-                    'label' => false,)
-            )
         ;
     }
 

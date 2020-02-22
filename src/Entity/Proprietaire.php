@@ -83,9 +83,9 @@ class Proprietaire implements UserInterface
     private $date_creation_compte;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $refus;
+    private $refus = 0;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -97,13 +97,18 @@ class Proprietaire implements UserInterface
      */
     private $annonces;
 
+//    /**
+//     * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="proprio")
+//     */
+//    private $annonces;
+
 
 
 
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
-        $this->annonces = new ArrayCollection();
+//        $this->annonces = new ArrayCollection();
     }
 
     /**
@@ -124,9 +129,9 @@ class Proprietaire implements UserInterface
             $this->setIsConfirmed(false);
         }
 
-        if ($this->refus === null) {
-            $this->setRefus(false);
-        }
+//        if ($this->refus === null) {
+//            $this->setRefus(false);
+//        }
 
         // Définir un jeton s'il n'y en a pas
         if ($this->securityToken === null) {
@@ -333,12 +338,12 @@ class Proprietaire implements UserInterface
         return $this;
     }
 
-    public function getRefus(): ?bool
+    public function getRefus()
     {
         return $this->refus;
     }
 
-    public function setRefus(?bool $refus): self
+    public function setRefus(int $refus): self
     {
         $this->refus = $refus;
 
@@ -394,6 +399,37 @@ class Proprietaire implements UserInterface
 
         return $this;
     }
+
+//    /**
+//     * @return Collection|Annonce[]
+//     */
+//    public function getAnnonces(): Collection
+//    {
+//        return $this->annonces;
+//    }
+//
+//    public function addAnnonce(Annonce $annonce): self
+//    {
+//        if (!$this->annonces->contains($annonce)) {
+//            $this->annonces[] = $annonce;
+//            $annonce->setProprio($this);
+//        }
+//
+//        return $this;
+//    }
+
+//    public function removeAnnonce(Annonce $annonce): self
+//    {
+//        if ($this->annonces->contains($annonce)) {
+//            $this->annonces->removeElement($annonce);
+//            // set the owning side to null (unless already changed)
+//            if ($annonce->getProprio() === $this) {
+//                $annonce->setProprio(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
 
 

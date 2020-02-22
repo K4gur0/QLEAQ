@@ -3,7 +3,6 @@
 
 namespace App\Notif;
 
-
 use App\Entity\Annonce;
 use App\Entity\Proprietaire;
 use Twig\Environment;
@@ -24,27 +23,46 @@ class NotifProprio
         $this->renderer = $renderer;
     }
 
-    public function notifyProprio(Proprietaire $proprio)
+    public function notifyProprio(Proprietaire $proprio, $password)
     {
-        $message = (new \Swift_Message('Demande de création de compte Propriétaire Qleaq'))
+        /**
+         * Ci dessous entrez l'adresse administrateur pour recevoir les demandes d'inscriptions Propriétaires : ->setTo('admin@qleaq.com')
+         * Email : admin@qleaq.com
+         */
+        $message = (new \Swift_Message('Demande de création de compte Propriétaire'))
             ->setFrom('qleaq@gmail.com')
-            /**
-             * Ci dessous entrez l'adresse administrateur pour gérer les inscriptions Propriétaires
-             */
+
             ->setTo('kenshin91cb@gmail.com')
 //            ->setReplyTo($proprio->getEmail())
             ->setBody($this->renderer->render('emails/confirmation_proprio.html.twig',[
                 'proprio' => $proprio
             ]), 'text/html' );
         $this->mailer->send($message);
+
+        /**
+         * Ci dessous récupérer l'adresse du Propriétaire pour qu'il reçoive un accusé de reception lors de sa demande : ->setTo($proprio->getEmail())
+         * Email : $proprio->getEmail()
+         */
+        $messageSecondaire = (new \Swift_Message('Votre demande de création de compte Propriétaire'))
+            ->setFrom('qleaq@gmail.com')
+
+            ->setTo('kenshin91cb@gmail.com')
+//            ->setReplyTo($proprio->getEmail())
+            ->setBody($this->renderer->render('emails/accusee_demande_proprio.html.twig',[
+                'proprio' => $proprio,
+                'password' => $password
+            ]), 'text/html' );
+        $this->mailer->send($messageSecondaire);
     }
+
 
     public function confirmationProprio(Proprietaire $proprio)
     {
         $message = (new \Swift_Message('Confirmation de création de compte Propriétaire Qleaq'))
             ->setFrom('qleaq@gmail.com')
             /**
-             * Ci dessous entrez l'adresse administrateur pour gérer les inscriptions Propriétaires
+             * Ci dessous récupérer l'adresse du Propriétaire pour qu'il reçoive la réponse suite à validation des admin Qleaq : ->setTo($proprio->getEmail())
+             * Email : $proprio->getEmail()
              */
             ->setTo('kenshin91cb@gmail.com')
             ->setReplyTo($proprio->getEmail())
@@ -59,7 +77,8 @@ class NotifProprio
         $message = (new \Swift_Message('Refus de création de compte Propriétaire Qleaq'))
             ->setFrom('qleaq@gmail.com')
             /**
-             * Ci dessous entrez l'adresse administrateur pour gérer les inscriptions Propriétaires
+             * Ci dessous récupérer l'adresse du Propriétaire pour qu'il reçoive la réponse suite à refus des admin Qleaq : ->setTo($proprio->getEmail())
+             * Email : $proprio->getEmail()
              */
             ->setTo('kenshin91cb@gmail.com')
             ->setReplyTo($proprio->getEmail())
@@ -82,40 +101,17 @@ class NotifProprio
 
     }
 
-    public function demandePublicationAnnonce(Proprietaire $proprio, Annonce $annonce)
+    public function NewAnnonce(Proprietaire $proprio, Annonce $annonce)
     {
         // Création de l'email de réinitialisation
-        $message = (new \Swift_Message('Demande de publication d\'Annonce'))
+        $message = (new \Swift_Message('Annonce créée'))
             ->setFrom('admin@qleaq.fr')
             ->setTo('kenshin91cb@gmail.com')
-            ->setBody($this->renderer->render('emails/demande_publication_annonce.html.twig',[
+            ->setBody($this->renderer->render('emails/annonce_cree.html.twig', [
                 'proprio' => $proprio,
                 'annonce' => $annonce
-            ]), 'text/html' );
-        $this->mailer->send($message);
-
-        $messageSecondaire = (new \Swift_Message('Demande de publication d\'Annonce'))
-            ->setFrom('admin@qleaq.fr')
-            ->setTo('kenshin91cb@gmail.com')
-            ->setBody($this->renderer->render('emails/accuse_demande_publication_annonce.html.twig',[
-                'proprio' => $proprio,
-                'annonce' => $annonce
-            ]), 'text/html' );
-        $this->mailer->send($messageSecondaire);
-    }
-
-
-    public function confirmPublication(Proprietaire $proprio, Annonce $annonce){
-        // Création de l'email de réinitialisation
-        $message = (new \Swift_Message('Validation pour la publication d\'annonce'))
-            ->setFrom('admin@qleaq.fr')
-            ->setTo('kenshin91cb@gmail.com')
-            ->setBody($this->renderer->render('emails/validation_publication.html.twig',[
-                'proprio' => $proprio,
-                'annonce' => $annonce
-            ]), 'text/html' );
+            ]), 'text/html');
         $this->mailer->send($message);
     }
-
 
 }

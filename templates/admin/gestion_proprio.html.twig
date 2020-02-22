@@ -105,7 +105,7 @@
                         {#                        </div>#}
 
                         <div class="field">
-                            <label class="label">Votre statut</label>
+                            <label class="label">Type</label>
                             <div class="select" style="width: 100%">
                                 {{ form_row(gestionProprioForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
                                 }) }}
@@ -120,12 +120,25 @@
                         </div>
 
                         <div class="field">
-                            <label class="label">Compte validé :
+                            <label class="label">Statut :
 
-                                <div class="checkbox">
-                                    {{ form_row(gestionProprioForm.isconfirmed, {'attr' : {'class' : 'checkbox', 'alt' : 'is confirmed'}
-                                    }) }}
-                                </div>
+                                    {% if proprio.refus == 0 %}
+                                        <div class="tag is-warning">
+                                            En attente
+                                        </div>
+
+                                        <a class="button is-success is-outlined" href="{{ path('admin_confirm_proprio', {id: proprio.id}) }}">Valider</a>
+                                        <a class="button is-danger is-outlined" href="{{ path('admin_refus_proprio', {id: proprio.id}) }}">Refuser</a>
+                                    {% elseif proprio.refus == 1 %}
+                                        <div class="tag is-success">
+                                            Validé
+                                        </div>
+                                    {% else %}
+                                        <div class="tag is-danger">
+                                            Refusé
+                                        </div>
+                                    {% endif %}
+
 
                             </label>
 

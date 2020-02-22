@@ -24,14 +24,18 @@
 
             <section class="section">
 
-                {% include 'includes/flash_message.html.twig' %}
 
-                <a class="button is-success is-outlined" href="{{ path('proprio_presentation') }}"> <strong>Accueil Propriétaire</strong></a>
+
+                <a class="button is-info is-outlined" href="{{ path('proprio_presentation') }}"> <strong>Accueil Propriétaire</strong></a>
                 <a class="button is-info is-outlined" href="{{ path('proprio_add_annonce') }}"><strong>Ajouter une annonce</strong></a>
 
                 <h2 class="subtitle is-3">Mes annonces :</h2>
+
                 <hr style="border:black 1px solid">
 
+                <div class="columns is-centered">
+                    {% include 'includes/flash_message.html.twig' %}
+                </div>
 
 {#                #}{#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
 {#                #}{#                        }) }}#}

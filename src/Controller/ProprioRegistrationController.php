@@ -57,11 +57,14 @@ class ProprioRegistrationController extends AbstractController
                 )
             );
 
+            $password = $form->get('plainPassword')->getData();
+//            dd($password);
+
 //            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $notifProprio->notifyProprio($user);
+            $notifProprio->notifyProprio($user, $password);
 
 //            $this->sendConfirmationEmail($mailer, $user);
 
@@ -95,9 +98,10 @@ class ProprioRegistrationController extends AbstractController
                                    NotifProprio $notifProprio)
     {
 
-        $refus = $user->getRefus();
+        $refus = $user->setRefus(1);
+//        dd($user->getRefus());
 
-        if($refus == false ){
+        if($refus !== 2 ){
 
             // L'utilisateur a déjà confirmé son compte
             if ($user->getIsConfirmed()) {
@@ -125,12 +129,13 @@ class ProprioRegistrationController extends AbstractController
             return $this->redirectToRoute('login_proprietaire');
 
         }else{
-            $this->addFlash('warning', 'Ce compte à été refusé et ne peut être confirmé');
+            $this->addFlash('warning', 'Ce compte à déjà été refusé et ne peut être confirmé');
             return $this->redirectToRoute('login_proprietaire');
         }
 
-
     }
+
+
 
 
 
@@ -156,25 +161,25 @@ class ProprioRegistrationController extends AbstractController
             // Le jeton ne correspond pas à celui de l'utilisateur
             if ($user->getRefusToken() !== $refusToken) {
                 $this->addFlash('danger', 'Le jeton de sécurité est invalide.');
-                return $this->redirectToRoute('login_proprietaire');
+                return $this->redirectToRoute('admin_login');
             }
 
             // Le jeton est valide: mettre à jour le jeton et confirmer le compte
 
             $user->renewRefusToken();
 
-            $user->setRefus(true);
+            $user->setRefus(2);
 
             $entityManager->persist($user);
             $entityManager->flush();
 
             $notifProprio->refusProprio($user);
 
-            $this->addFlash('warning', 'La création du compte Porpriétaire a été refusé');
-            return $this->redirectToRoute('login_proprietaire');
+            $this->addFlash('warning', 'La création du compte Porpriétaire ' . $user->getRaisonSocial() . ' a été refusé');
+            return $this->redirectToRoute('admin_login');
         }else{
             $this->addFlash('warning', 'Ce compte est déjà validé et ne peut être refusé');
-            return $this->redirectToRoute('login_proprietaire');
+            return $this->redirectToRoute('admin_login');
         }
 
 
@@ -214,7 +219,7 @@ class ProprioRegistrationController extends AbstractController
 
                 $notifProprio->lostPasswordProprio($user);
 
-                $this->addFlash('info', 'Un email de réinitialisation vous a été renvoyé.');
+                $this->addFlash('info', 'Un email de réinitialisation vous a été envoyé.');
                 return $this->redirectToRoute('login_proprietaire');
 
             }

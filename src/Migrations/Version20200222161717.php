@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200220102536 extends AbstractMigration
+final class Version20200222161717 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,8 @@ final class Version20200220102536 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE annonce DROP FOREIGN KEY FK_F65593E5A332A6D7');
-        $this->addSql('DROP INDEX IDX_F65593E5A332A6D7 ON annonce');
-        $this->addSql('ALTER TABLE annonce DROP id_proprio_id');
+        $this->addSql('ALTER TABLE annonce ADD CONSTRAINT FK_F65593E56B82600 FOREIGN KEY (proprio_id) REFERENCES proprietaire (id)');
+        $this->addSql('CREATE INDEX IDX_F65593E56B82600 ON annonce (proprio_id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +31,7 @@ final class Version20200220102536 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE annonce ADD id_proprio_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE annonce ADD CONSTRAINT FK_F65593E5A332A6D7 FOREIGN KEY (id_proprio_id) REFERENCES proprietaire (id)');
-        $this->addSql('CREATE INDEX IDX_F65593E5A332A6D7 ON annonce (id_proprio_id)');
+        $this->addSql('ALTER TABLE annonce DROP FOREIGN KEY FK_F65593E56B82600');
+        $this->addSql('DROP INDEX IDX_F65593E56B82600 ON annonce');
     }
 }

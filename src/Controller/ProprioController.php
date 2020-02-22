@@ -61,7 +61,7 @@ class ProprioController extends AbstractController
      * @Route("/ajouter-annonce", name="add_annonce")
      * @IsGranted("ROLE_PROPRIO")
      */
-        public function addAnnonce(Request $request, EntityManagerInterface $entityManager){
+        public function addAnnonce(Request $request, EntityManagerInterface $entityManager, NotifProprio $notifProprio){
 
 
             $annonce = new Annonce();
@@ -85,7 +85,9 @@ class ProprioController extends AbstractController
                 $entityManager->flush();
 
 
-                $this->addFlash('success', 'Votre Annonce à bien été créer. Vous pouvez maintenant effectué une demande de publication sur l\'espace "Mes annonces"');
+                $this->addFlash('success', 'Votre Annonce à bien été créée. Vous pouvez dès à présent la modifier, publier ou supprimer à partir de la rubrique "Mes Annonces"');
+
+                $notifProprio->NewAnnonce($proprio, $annonce);
 
                 return $this->redirectToRoute('proprio_home');
 
@@ -101,62 +103,71 @@ class ProprioController extends AbstractController
         }
 
     /**
-     * @Route("/demande-publication-annonce-{id}", name="ask_publication")
+     * @Route("/demande-publication-annonce-{id}", name="publication_annonce")
      * @IsGranted("ROLE_PROPRIO")
      */
-    public function askPublication(Request $request, EntityManagerInterface $entityManager, NotifProprio $notifProprio,AnnonceRepository $annonceRepository, $id){
-
-        $annonce = $annonceRepository->find($id);
-        $proprio = $this->getUser();
-
-            $this->addFlash('success', 'Votre demande à bien étée envoyer. Nos équipe vont à présent l\'étudier pour validation avant publication');
-            $notifProprio->demandePublicationAnnonce($proprio, $annonce);
-
-            return $this->redirectToRoute('proprio_home');
-
-    }
-
-
-
-    /**
-     * Confirmation de l'annonce (lien envoyé par email)
-     * @Route("/confirm_publication_{id}", name="annonce_confirmation")
-     *
-     * @param Proprietaire           $user          Le Propriétaire qui souhaite publié l'annonce
-     * @param Annonce                $annonce       L'annonce concernée
-     * @param                        $token         Le jeton à vérifier pour confirmer le compte
-     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
-     */
-
-    public function confirmAnnonce(AnnonceRepository $annonceRepository,
-                                   $id,
-                                   EntityManagerInterface $entityManager,
-                                   NotifProprio $notifProprio)
-    {
+    public function publicationAnnonce(Request $request, EntityManagerInterface $entityManager, NotifProprio $notifProprio,AnnonceRepository $annonceRepository, $id){
         $proprio = $this->getUser();
         $annonce = $annonceRepository->find($id);
+        $publication = $annonce->getPublicationAuth();
 
-        $publicationStatus = $annonce->getPublicationAuth();
-
-        if($publicationStatus != true ){
-
+        if ($publication == false or null){
             $annonce->setPublicationAuth(true);
-
             $entityManager->persist($annonce);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre Annonce : ' . $annonce->getTitre() . ' est maintenant visible par les Locataires');
 
-            $notifProprio->confirmPublication($proprio, $annonce);
+        }else{
+            $annonce->setPublicationAuth(false);
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+            $this->addFlash('warning', 'Votre Annonce : ' . $annonce->getTitre() . ' vient d\'être retiréé des publications');
 
-            $this->addFlash('success', 'Vous avez bien valider la publication de l\'annonce');
-            return $this->redirectToRoute('admin_login');
-
-        }elseif($publicationStatus == false){
-            $this->addFlash('warning', 'Vous avez refuser la publication de l\'annonce');
-            return $this->redirectToRoute('admin_login');
         }
-
-
+        return $this->redirectToRoute('proprio_home');
     }
+
+
+
+//    /**
+//     * Confirmation de l'annonce (lien envoyé par email)
+//     * @Route("/confirm_publication_{id}", name="annonce_confirmation")
+//     *
+//     * @param Proprietaire           $user          Le Propriétaire qui souhaite publié l'annonce
+//     * @param Annonce                $annonce       L'annonce concernée
+//     * @param                        $token         Le jeton à vérifier pour confirmer le compte
+//     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
+//     */
+//
+//    public function confirmAnnonce(AnnonceRepository $annonceRepository,
+//                                   $id,
+//                                   EntityManagerInterface $entityManager,
+//                                   NotifProprio $notifProprio)
+//    {
+//        $proprio = $this->getUser();
+//        $annonce = $annonceRepository->find($id);
+//
+//        $publicationStatus = $annonce->getPublicationAuth();
+//
+//        if($publicationStatus != true ){
+//
+//            $annonce->setPublicationAuth(true);
+//
+//            $entityManager->persist($annonce);
+//            $entityManager->flush();
+//
+//            $notifProprio->confirmPublication($proprio, $annonce);
+//
+//            $this->addFlash('success', 'Vous avez bien valider la publication de l\'annonce');
+//            return $this->redirectToRoute('admin_login');
+//
+//        }elseif($publicationStatus == false){
+//            $this->addFlash('warning', 'Vous avez refuser la publication de l\'annonce');
+//            return $this->redirectToRoute('admin_login');
+//        }
+//
+//
+//    }
 
 
     /**

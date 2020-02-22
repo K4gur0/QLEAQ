@@ -151,7 +151,7 @@
                     <div class="field">
                         <label class="label">Code postale</label>
                         <div class="control">
-                            {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 5)', 'alt' : 'code postale'  }
+                            {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'pattern' : '{5}' , 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 5)', 'alt' : 'code postale'  }
                             }) }}
                         </div>
                     </div>

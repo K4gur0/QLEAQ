@@ -70,8 +70,18 @@
                     {% else %}
                         {{ proprietaire.datecreationcompte|date("d/m/Y") }}
                     {% endif %}
-
                 </td>
+
+                <td>
+                    {% if proprietaire.refus == 2 %}
+                        <div class="tag is-danger">Refusé</div>
+                    {% elseif proprietaire.refus == 1 %}
+                        <div class="tag is-success">Validé</div>
+                    {% else %}
+                        <div class="tag is-warning">En attente</div>
+                    {% endif %}
+                </td>
+
                 <td>
                     <a href="{{ path('admin_gestion_proprietaire', {id: proprietaire.id}) }}" class="button is-info has-text-white">Gérer
                     </a>

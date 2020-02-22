@@ -95,38 +95,52 @@
                 <div class="columns" style="justify-content: space-between;">
 
                     <a href="{{ path('proprio_edit_annonce', {id: annonce.id} ) }}" class="button is-success">
-{#                        <span class="icon is-small">#}
-{#                          <i class="fas fa-check"></i>#}
-{#                        </span>#}
+
                             <span>Modifier</span>
+
                     </a>
 
                     {% if annonce.publicationauth == null %}
-                    <a href="{{ path('proprio_ask_publication', {id: annonce.id} ) }}" class="button is-success is-outlined">
-                        <span>Demande de publication</span>
 
-                    </a>
-                    {% elseif annonce.publicationauth == false %}
-                        <a href="#" class="button is-danger">
-                            <span>Publication refusée</span>
+                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined">
 
-                        </a>
-                    {% elseif annonce.publicationauth == true %}
-                        <a href="#" class="button is-success" title="disabled button" disabled>
+                            <span>Publier</span>
 
-                            <span>Publication validée</span>
                             <span class="icon is-small">
-                              <i class="fas fa-check"></i>
+                                <i class="fas fa-check"></i>
                             </span>
+
                         </a>
+
+                    {% elseif annonce.publicationauth == false %}
+
+                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-danger">
+                            <span>Retirer la publication</span>
+
+                        </a>
+
+                    {% elseif annonce.publicationauth == true %}
+
+                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-danger">
+
+                            <span>Retirer la publication</span>
+
+                            <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                            </span>
+
+                        </a>
+
                     {% endif %}
 
-                    <a href="{{ path('proprio_delete_annonce', {id: annonce.id} ) }}" class="button is-danger is-outlined">
+                        <a href="{{ path('proprio_delete_annonce', {id: annonce.id} ) }}" class="button is-danger is-outlined">
+
                             <span>Supprimer</span>
+
                             <span class="icon is-small">
-                          <i class="fas fa-times"></i>
-                        </span>
-                    </a>
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </a>
 
 
 

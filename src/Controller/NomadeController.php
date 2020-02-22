@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Nomade;
 use App\Form\NomadeType;
+use App\Repository\AnnonceRepository;
+use App\Repository\ProprietaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +24,7 @@ class NomadeController extends AbstractController
 {
 
     /**
+     * Presentation et "Comment ça marche" de l'espace Nomade (Locataire)
      * @Route("/", name="presentation")
      *
      */
@@ -41,14 +44,18 @@ class NomadeController extends AbstractController
 
 
     /**
+     * Page d'accueil une foi le Nomade connecté
      * @Route("/accueil", name="home")
      * @IsGranted("ROLE_USER")
      *
      */
-
-    public function espace(){
-
-        return $this->render('nomade/espace.html.twig');
+    public function espace(AnnonceRepository $annonceRepository, Request $request, ProprietaireRepository $proprietaireRepository){
+        $proprio = $proprietaireRepository->findAll();
+        $annonce = $annonceRepository->findAll();
+        return $this->render('nomade/espace.html.twig',[
+            'annonce' => $annonce,
+            'proprio' => $proprio,
+        ]);
     }
 
     /**

@@ -1,0 +1,100 @@
+{#{% for annonce in annonce %}#}
+{#    {{ annonce.titre }}#}
+{#{% endfor %}#}
+{#            {% for proprio in proprio %}#}
+{#                {{ proprio.raisonsocial }}#}
+{#            {% endfor %}#}
+
+{% for annonce in annonce %}
+
+    {% if annonce.publicationauth == true %}
+        <div class="column is-centered box">
+
+            <div class="columns">
+                <div class="media-content column has-text-centered">
+                    <div class="column" style="margin-bottom: 30px;">
+                        <h2> <strong class="is-size-3">{{ annonce.titre }}</strong> </h2>
+                        <time > <i class="tag has-background-info has-text-white is-small">Créée : {{ annonce.datecreation|date('d/m/Y à H:i') }}</i> </time>
+                        <h3 class="subtitle is-size-6">
+                            {#                                Par <strong>{{ proprio.raisonsocial }}</strong>#}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="card-image column is-half">
+
+                    <div class="columns is-fullwidth is-mobile" style="justify-content: space-around;">
+                        <div><h4 class="is-size-4"><strong>{{ annonce.typelogement }}</strong> </h4> </div>
+                        <div><h4 class="is-size-4"><strong>{{ annonce.superficie }}m²</strong> </h4> </div>
+                        <div><h4 class="is-size-4"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4> </div>
+                    </div>
+
+                    <figure class="image is-5by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class=" column is-half is-flex" style="align-items: end;">
+
+                    <div class="card-content columns">
+                        <div class="content">
+
+                            <p>
+                            <h4 class="tag is-info is-size-6">Type de logement</h4> : {{ annonce.typelogement }} <br>
+
+                            <h4 class="tag is-info is-size-6">Loyer</h4> : {{ annonce.tarif }}€ (Charges Comprises) <br>
+
+                            <h4 class="tag is-info is-size-6">Superficie</h4> : {{ annonce.superficie }}m² <br>
+
+                            <h4 class="tag is-info is-size-6">Capacité</h4> : {{ annonce.nombremaxresidents }} locataire(s)<br>
+
+                            <h4 class="tag is-info is-size-6">Adresse</h4> :
+                            {% if annonce.adresse is null %}
+                            N/C
+                            {% else %}
+                                {{  annonce.adresse }}
+                            {% endif %}<br>
+
+                            <h4 class="tag is-info is-size-6">Code postale</h4> : {{ annonce.cp }} <br>
+
+                            <h4 class="tag is-info is-size-6">Ville</h4> : {{ annonce.ville }} <br>
+
+                            <h4 class="tag is-info is-size-6">Disponible dès le </h4> : {{ annonce.datedisponible|date('d/m/Y') }}<br>
+                            <br>
+
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="columns is-centered is-vcentered">
+                <div class="column">
+                    <h4 class="tag is-info is-size-6">Détails</h4> :
+                    {% if annonce.description is null %}
+                        <i>Aucuns détails complémentaire n'a été apportés à cette annonce</i>
+                    {% else %}
+                        <i>
+                            {{  annonce.description }}
+                        </i>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+
+        <hr style="border:black 1px solid">
+
+
+    {% else %}
+
+
+
+    {% endif %}
+
+{% endfor %}

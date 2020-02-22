@@ -67,11 +67,11 @@ class Annonce
      */
     private $ville;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $proprio;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="annonces")
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $proprio;
 
     /**
      * @ORM\Column(type="datetime")
@@ -82,6 +82,12 @@ class Annonce
      * @ORM\Column(type="boolean")
      */
     private $publicationAuth;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proprietaire", inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $proprio;
 
     public function __construct()
     {
@@ -215,17 +221,7 @@ class Annonce
         return $this;
     }
 
-    public function getProprio(): ?Proprietaire
-    {
-        return $this->proprio;
-    }
 
-    public function setProprio(?Proprietaire $proprio): self
-    {
-        $this->proprio = $proprio;
-
-        return $this;
-    }
 
     public function getDateCreation(): ?\DateTimeInterface
     {
@@ -250,6 +246,30 @@ class Annonce
 
         return $this;
     }
+
+    public function getProprio(): ?Proprietaire
+    {
+        return $this->proprio;
+    }
+
+    public function setProprio(?Proprietaire $proprio): self
+    {
+        $this->proprio = $proprio;
+
+        return $this;
+    }
+
+    //    public function getProprio(): ?Proprietaire
+//    {
+//        return $this->proprio;
+//    }
+//
+//    public function setProprio(?Proprietaire $proprio): self
+//    {
+//        $this->proprio = $proprio;
+//
+//        return $this;
+//    }
 
 
 
