@@ -34,6 +34,23 @@
                     {% include 'includes/flash_message.html.twig' %}
                 </div>
 
+                {% if noAnnonces == false %}
+                    <div class="columns is-centered is-vcentered">
+                        <article class="message is-info">
+                            <div class="message-header">
+                                <p>Oops !</p>
+                                <button class="delete" aria-label="delete"></button>
+                            </div>
+                            <div class="message-body">
+                                <p>
+                                    Malheureusement, il n'y a encore aucune annonces de publiées... <br>
+                                    A très vite !
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                {% endif %}
+
                 <div class="columns is-vcentered">
 
                     <div class="column">

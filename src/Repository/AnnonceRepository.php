@@ -28,6 +28,15 @@ class AnnonceRepository extends ServiceEntityRepository
             ;
     }
 
+    public function  findByPublication($value){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.publicationAuth = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

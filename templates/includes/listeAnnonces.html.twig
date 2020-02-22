@@ -1,11 +1,9 @@
-{#{% for annonce in annonce %}#}
-{#    {{ annonce.titre }}#}
-{#{% endfor %}#}
-{#            {% for proprio in proprio %}#}
-{#                {{ proprio.raisonsocial }}#}
-{#            {% endfor %}#}
 
 {% for annonce in annonce %}
+
+
+
+
 
     {% if annonce.publicationauth == true %}
         <div class="column is-centered box">
@@ -90,11 +88,9 @@
 
         <hr style="border:black 1px solid">
 
-
-    {% else %}
-
-
-
     {% endif %}
+
+
+
 
 {% endfor %}
