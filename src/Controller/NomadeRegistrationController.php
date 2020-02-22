@@ -30,10 +30,9 @@ class NomadeRegistrationController extends AbstractController
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
                              EntityManagerInterface $entityManager,
-                             NotifNomade $notifNomade,
-                             MailerInterface $mailer): Response
+                             NotifNomade $notifNomade): Response
     {
-//        $user = new Nomade();
+
         $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 

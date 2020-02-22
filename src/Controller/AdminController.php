@@ -112,8 +112,6 @@ class AdminController extends AbstractController
      */
     public function listeNomade(NomadeRepository $nomadeRepository){
         $nomade = $nomadeRepository->findAll();
-//        $date = $nomade[0]->getDateNaissance();
-//        dump($date);die;
 
         return $this->render('admin/liste_nomades.html.twig', [
             'nomade' => $nomade,
@@ -126,10 +124,9 @@ class AdminController extends AbstractController
      */
     public function gestionNomade(Request $request, NomadeRepository $nomadeRepository,$id): Response
     {
-        // Récupération de l'utilisateur courant
 
         $nomade = $nomadeRepository->find($id);
-        // Passage de l'utilisateur au formulaire pour pré-remplir les champs
+
         $gestionNomadeForm = $this->createForm(GestionNomadeType::class, $nomade);
 
         $gestionNomadeForm->handleRequest($request);

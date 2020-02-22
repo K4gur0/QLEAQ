@@ -68,6 +68,9 @@ class AnnonceFormType extends AbstractType
             ->add('date_disponible', DateType::class,
                 array('label' => false,
                     'required' => true,
+                    'years' => range(date('Y'), date('Y')+100),
+                    'months' => range(date('m'), 12),
+//                    'days' => range(date('d'), 31),
                     )
             )
             ->add('adresse', TextType::class,
@@ -85,11 +88,7 @@ class AnnonceFormType extends AbstractType
                     'required' => true,
                     )
             )
-//            ->add('auteur', TextType::class,
-//                array('label' => false,
-//                    'required' => true,
-//                    )
-//            )
+
         ;
     }
 

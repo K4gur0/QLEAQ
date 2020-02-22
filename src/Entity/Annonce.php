@@ -73,7 +73,21 @@ class Annonce
      */
     private $proprio;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_creation;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $publicationAuth;
+
+    public function __construct()
+    {
+        $this->date_creation = new \DateTime();
+        $this->publicationAuth = false;
+    }
 
 
     public function getId(): ?int
@@ -209,6 +223,30 @@ class Annonce
     public function setProprio(?Proprietaire $proprio): self
     {
         $this->proprio = $proprio;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->date_creation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $date_creation): self
+    {
+        $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    public function getPublicationAuth(): ?bool
+    {
+        return $this->publicationAuth;
+    }
+
+    public function setPublicationAuth(bool $publicationAuth): self
+    {
+        $this->publicationAuth = $publicationAuth;
 
         return $this;
     }

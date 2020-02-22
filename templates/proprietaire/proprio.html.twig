@@ -28,10 +28,6 @@
 
                 <div class="column is-one-third">
 
-                    {#                <h1 class="title has-text-primary has-text-centered">#}
-                    {#                    Gestion de votre profile#}
-                    {#                </h1>#}
-
 
                     <div class="field" >
                         {{ form_start(proprioForm) }}
@@ -67,7 +63,7 @@
                         <div class="field">
                             <label class="label">Numéro de téléphone</label>
                             <div class="control">
-                                {{ form_row(proprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                                {{ form_row(proprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
                                 }) }}
                             </div>
                         </div>
@@ -83,7 +79,7 @@
                         <div class="field">
                             <label class="label">Entrez votre code postale</label>
                             <div class="control">
-                                {{ form_row(proprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                {{ form_row(proprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
                                 }) }}
                             </div>
                         </div>
@@ -95,14 +91,6 @@
                                 }) }}
                             </div>
                         </div>
-
-{#                        <div class="field">#}
-{#                            <label class="label">Présentez vous</label>#}
-{#                            <div class="control">#}
-{#                                {{ form_row(proprioForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}#}
-{#                                }) }}#}
-{#                            </div>#}
-{#                        </div>#}
 
                         <div class="field">
                             <label class="label">Votre statut</label>

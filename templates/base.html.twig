@@ -23,7 +23,12 @@
             <header>
                 {% block header %}{% endblock %}
             </header>
+
             {% block content %}{% endblock %}
+
+
+
+
 
         {% endblock %}
 
@@ -35,82 +40,6 @@
 
         {% include('includes/footer_admin.html.twig') %}
 
-{#        <footer class="footer has-background-success" style="position: relative;bottom:0 ;width: 100%;">#}
-
-{#            <hr style="background: rgba(255,255,255,0.5);height: 2px;width: 95%;margin: 0 auto 50px auto;">#}
-
-{#            <div class="content has-text-centered columns">#}
-
-{#                <div class="column">#}
-{#                    <a class="is-link" href="{{ path('footer_contact') }}">Contact</a>#}
-{#                    <a class="is-link" href="{{ path('footer_cgu') }}">CGU/CGV</a>#}
-{#                    <a class="is-link" href="{{ path('footer_mentions') }}">Mentions légales</a>#}
-{#                </div>#}
-
-
-{#                <div class="column">#}
-{#                    <a class="is-link" href="{{ path('footer_pro') }}">Professionnels</a>#}
-{#                    <a class="is-link" href="{{ path('footer_partenariats') }}">Partenariats</a>#}
-{#                    <a class="is-link" href="{{ path('footer_annonceurs') }}">Annonceurs</a>#}
-{#                    <a class="is-link" href="{{ path('footer_presse') }}">Presse</a>#}
-{#                </div>#}
-
-
-{#                <div class="column">#}
-
-{#                    #}{#                <button class="button is-primary">#}
-{#                    #}{#                <span class="icon">#}
-{#                    #}{#                  <i class="fab fa-twitter"></i>#}
-{#                    #}{#                </span>#}
-{#                    #}{#                    <span><a href="https://twitter.com/MigMnty" target="_blank">Twitter</a></span>#}
-{#                    #}{#                </button>#}
-
-{#                    <span>#}
-{#                        <a target="_blank" href="https://www.facebook.com/Qleaq.Officiel/">#}
-{#                            <span class="icon">#}
-{#                            <i class="fab fa-facebook"></i>#}
-{#                            </span>Facebook#}
-{#                        </a>#}
-{#                    </span>#}
-
-{#                    #}{#                <button class="button is-primary">#}
-{#                    #}{#                <span class="icon">#}
-{#                    #}{#                  <i class="fab fa-youtube"></i>#}
-{#                    #}{#                </span>#}
-{#                    #}{#                    <span><a target="_blank" href="#">Youtube</a></span>#}
-{#                    #}{#                </button>#}
-
-{#                    <span><a  target="_blank"href="https://www.instagram.com/Qleaq_Officiel/">#}
-{#                            <span class="icon">#}
-{#                                <i class="fab fa-instagram"></i>#}
-{#                            </span>Instagram#}
-{#                        </a>#}
-{#                    </span>#}
-
-
-
-{#                    <span><a  target="_blank"href="https://au.linkedin.com/company/qleaq-officiel">#}
-{#                            <span class="icon">#}
-{#                                <i class="fab fa-linkedin"></i>#}
-{#                            </span>Linkedin#}
-{#                        </a>#}
-{#                    </span>#}
-
-{#                </div>#}
-
-
-{#            </div>#}
-
-{#            <hr style="background: rgba(255,255,255,0.5);height: 1px;width: 100%;margin:auto;">#}
-
-{#            <div class="column has-text-centered has-text-white">#}
-{#        <span>#}
-{#            © 2020 | www.qleaq.com [BETA] | Propriété de MEUNIETY Miguel. Tout droits réservés.#}
-{#        </span>#}
-{#            </div>#}
-
-{#        </footer>#}
-
     {% elseif is_granted('ROLE_PROPRIO') %}
 
         {% include('includes/footer_proprietaire.html.twig') %}
@@ -121,12 +50,39 @@
 
     {% endif %}
 
-
-        {% block javascripts %}{% endblock %}
-
 {% endblock %}
 
+{% block javascripts %}
+    <script>
+        function verif_nombre(champ)
+        {
+        var chiffres = new RegExp("[0-9]");
+        var verif;
+        var points = 0;
+
+        for(x = 0; x < champ.value.length; x++)
+        {
+        verif = chiffres.test(champ.value.charAt(x));
+        if(champ.value.charAt(x) == "."){points++;}
+        if(points > 1){verif = false; points = 1;}
+        if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
+        }
+        }
+
+        function verif_nombre_max(champ, max){
+
+        let x = champ.value;
+        let xsub = x.toString().substr(0,max);
+        champ.value = xsub;
+
+        }
+    </script>
+{% endblock %}
+
+
     </body>
+
+
 
 
 

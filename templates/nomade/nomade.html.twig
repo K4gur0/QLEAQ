@@ -28,9 +28,7 @@
 
             <div class="column is-one-third">
 
-{#                <h1 class="title has-text-primary has-text-centered">#}
-{#                    Gestion de votre profile#}
-{#                </h1>#}
+
 
 
                 <div class="field" >
@@ -38,8 +36,7 @@
 
 
                     {% include 'includes/flash_message.html.twig' %}
-{#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
-{#                        }) }}#}
+
                     {% if form_errors(nomadeForm) != null %}
                         <div class="notification is-danger">
                             <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
@@ -95,7 +92,7 @@
                     <div class="field">
                         <label class="label">Numéro de téléphone</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                            {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
                             }) }}
                         </div>
                     </div>
@@ -111,7 +108,7 @@
                     <div class="field">
                         <label class="label">Entrez votre code postale</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                            {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
                             }) }}
                         </div>
                     </div>
@@ -148,32 +145,6 @@
                         </div>
                     </div>
 
-{#                    <div class="field">#}
-{#                        <label class="label">Photo de profile</label>#}
-{#                        <div class="control">#}
-{#                            <a href="{{ asset('uploads/' ~ Nomade.photo_profile) }}">View brochure (PDF)</a>#}
-
-{#                            {{ form_row(nomadeForm.photo_profile, {'attr' : {'class' : 'input'}#}
-{#                            }) }}#}
-{#                        </div>#}
-{#                    </div>#}
-
-
-
-
-    {#                <div class="file">#}
-    {#                    <label class="file-label">#}
-    {#                        <input class="file-input" type="file" name="resume">#}
-    {#                        <span class="file-cta">#}
-    {#                          <span class="file-icon">#}
-    {#                            <i class="fas fa-upload"></i>#}
-    {#                          </span>#}
-    {#                          <span class="file-label">#}
-    {#                            Uploadez votre photo…#}
-    {#                          </span>#}
-    {#                        </span>#}
-    {#                    </label>#}
-    {#                </div>#}
 
                     <div class="column is-centered ">
                         <a class="button is-primary" style="width: 100%;" href="{{ path('change_password') }}">Changer votre mot de passe</a>
@@ -188,9 +159,7 @@
                         <button type="submit" style="width: 100%;" class="button is-info">Valider les modifications</button>
                     </div>
 
-{#                    <div class="columns column is-centered">#}
-{#                        <a class="button is-danger">Supprimer mon compte</a>#}
-{#                    </div>#}
+
 
                     {{ form_end(nomadeForm) }}
                 </div>

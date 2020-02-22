@@ -19,6 +19,15 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
+    public function  findById($value){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.proprio = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

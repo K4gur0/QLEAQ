@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Proprietaire;
 use App\Form\AnnonceFormType;
+use App\Form\DeleteAnnonceFormType;
 use App\Form\ProprioType;
+use App\Notif\NotifProprio;
 use App\Repository\AnnonceRepository;
 use App\Repository\ProprietaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,12 +42,18 @@ class ProprioController extends AbstractController
 
         public function espace(Request $request, EntityManagerInterface $entityManager, AnnonceRepository $annonceRepository){
 
-            $annonces = $annonceRepository->findAll();
-            $annonces = $this->getUser()->getAnnonces();
 
-            dd($annonces);
+            $annonces = $annonceRepository->findById($this->getUser()->getId());
+            $proprio = $this->getUser();
+//            dd($annonces);
 
-        return $this->render('proprietaire/espace.html.twig');
+
+
+        return $this->render('proprietaire/espace.html.twig',
+            [
+                'annonce' => $annonces,
+                'proprio' => $proprio,
+            ]);
         }
 
 
@@ -77,7 +85,9 @@ class ProprioController extends AbstractController
                 $entityManager->flush();
 
 
-                $this->addFlash('success', 'Votre Annonce à bien été créer.');
+                $this->addFlash('success', 'Votre Annonce à bien été créer. Vous pouvez maintenant effectué une demande de publication sur l\'espace "Mes annonces"');
+
+                return $this->redirectToRoute('proprio_home');
 
 
 
@@ -90,9 +100,143 @@ class ProprioController extends AbstractController
             ]);
         }
 
+    /**
+     * @Route("/demande-publication-annonce-{id}", name="ask_publication")
+     * @IsGranted("ROLE_PROPRIO")
+     */
+    public function askPublication(Request $request, EntityManagerInterface $entityManager, NotifProprio $notifProprio,AnnonceRepository $annonceRepository, $id){
+
+        $annonce = $annonceRepository->find($id);
+        $proprio = $this->getUser();
+
+            $this->addFlash('success', 'Votre demande à bien étée envoyer. Nos équipe vont à présent l\'étudier pour validation avant publication');
+            $notifProprio->demandePublicationAnnonce($proprio, $annonce);
+
+            return $this->redirectToRoute('proprio_home');
+
+    }
 
 
-        /**
+
+    /**
+     * Confirmation de l'annonce (lien envoyé par email)
+     * @Route("/confirm_publication_{id}", name="annonce_confirmation")
+     *
+     * @param Proprietaire           $user          Le Propriétaire qui souhaite publié l'annonce
+     * @param Annonce                $annonce       L'annonce concernée
+     * @param                        $token         Le jeton à vérifier pour confirmer le compte
+     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
+     */
+
+    public function confirmAnnonce(AnnonceRepository $annonceRepository,
+                                   $id,
+                                   EntityManagerInterface $entityManager,
+                                   NotifProprio $notifProprio)
+    {
+        $proprio = $this->getUser();
+        $annonce = $annonceRepository->find($id);
+
+        $publicationStatus = $annonce->getPublicationAuth();
+
+        if($publicationStatus != true ){
+
+            $annonce->setPublicationAuth(true);
+
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+
+            $notifProprio->confirmPublication($proprio, $annonce);
+
+            $this->addFlash('success', 'Vous avez bien valider la publication de l\'annonce');
+            return $this->redirectToRoute('admin_login');
+
+        }elseif($publicationStatus == false){
+            $this->addFlash('warning', 'Vous avez refuser la publication de l\'annonce');
+            return $this->redirectToRoute('admin_login');
+        }
+
+
+    }
+
+
+    /**
+     * @Route("/modif-annonce{id}", name="edit_annonce")
+     * @IsGranted("ROLE_PROPRIO")
+     */
+    public function editAnnonce(Request $request, AnnonceRepository $annonceRepository, $id){
+
+
+        $annonce = $annonceRepository->find($id);
+        $editAnnonceForm = $this->createForm(AnnonceFormType::class, $annonce);
+        $editAnnonceForm->handleRequest($request);
+
+        if ($editAnnonceForm->isSubmitted() && $editAnnonceForm->isValid()) {
+            // Formulaire lié à une classe entité: getData() retourne l'entité
+            $annonce = $editAnnonceForm->getData();
+
+            // Mise à jour de l'entité en BDD
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+
+
+            // Ajout d'un message flash
+            $this->addFlash('success', 'L\'annonce a été mise à jour.');
+
+
+
+        }else if ($editAnnonceForm->isSubmitted()) {
+            $this->addFlash('danger', 'Echec de modification.');
+        }
+
+        return $this->render('proprietaire/add_annonce.html.twig', [
+            'annonceForm' => $editAnnonceForm->createView(),
+            'annonce' => $annonce,
+        ]);
+    }
+
+    /**
+     * @Route("/supprimer-annonce{id}", name="delete_annonce")
+     * @IsGranted("ROLE_PROPRIO")
+     */
+    public function deleteAnnonce(Request $request, AnnonceRepository $annonceRepository, $id){
+
+
+        $annonce = $annonceRepository->find($id);
+        $deleteAnnonceForm = $this->createForm(DeleteAnnonceFormType::class, $annonce);
+        $deleteAnnonceForm->handleRequest($request);
+
+        if ($deleteAnnonceForm->isSubmitted() && $deleteAnnonceForm->isValid()) {
+            // Formulaire lié à une classe entité: getData() retourne l'entité
+            $annonce = $deleteAnnonceForm->getData();
+
+            // Mise à jour de l'entité en BDD
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+
+
+            $this->addFlash('warning', 'L\'annonce ' . $annonce->getTitre() . ' a été supprimer.');
+
+            return $this->redirectToRoute('proprio_home');
+
+
+        }else if ($deleteAnnonceForm->isSubmitted()) {
+            $this->addFlash('danger', 'Echec lors de la suppression');
+        }
+
+        return $this->render('proprietaire/delete_annonce.html.twig', [
+            'deleteAnnonceForm' => $deleteAnnonceForm->createView(),
+            'annonce' => $annonce,
+        ]);
+    }
+
+
+
+
+    /**
          * @Route("/profile", name="profile")
          * @IsGranted("ROLE_PROPRIO")
          *

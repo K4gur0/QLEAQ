@@ -31,10 +31,9 @@ class ProprioRegistrationController extends AbstractController
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
                              EntityManagerInterface $entityManager,
-                             NotifProprio $notifProprio,
-                             MailerInterface $mailer): Response
+                             NotifProprio $notifProprio): Response
     {
-//        $proprio = new Proprietaire();
+
         $form = $this->createForm(ProprioRegistrationType::class);
         $form->handleRequest($request);
 

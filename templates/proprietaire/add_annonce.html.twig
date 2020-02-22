@@ -22,75 +22,89 @@
                 </div>
             </section>
 
-            <section class="section columns is-centered">
+            <section class="section">
+                <a class="button is-success is-outlined" href="{{ path('proprio_home', {id: app.user.id} ) }}">
+                    <strong>Retour</strong>
+                </a>
 
-            {{ form_start(annonceForm) }}
+                {#            <div class="navbar">#}
+                {#                <div class="navbar-end"><a class="button is-info is-fullwidth" href="{{ path('proprio_home', {id: app.user.id} ) }}">#}
+                {#                        <span>Mes Annonces</span>#}
+                {#                    </a></div>#}
+                {#            </div>#}
 
 
-                {% include 'includes/flash_message.html.twig' %}
-                {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
-                {#                        }) }}#}
-                {% if form_errors(annonceForm) != null %}
-                    <div class="notification is-danger">
-                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
-                        {{ form_errors(annonceForm) }}
-                    </div>
-                {% endif %}
-
+                <section class="section columns is-centered">
 
 
 
-                <div class="field">
-                    <label class="label">Titre *</label>
-
-                    <div class="" style="width: 100%;">
-
-                        {{ form_row(annonceForm.titre, {'attr' : {'class' : 'select input', 'placeholder' : 'Entrez le titre de votre Annonce', 'alt' : 'titre'}
-                        }) }}
-
-                    </div>
-
-                </div>
-
-                <div class="field">
-                    <label class="label">Type de logment </label>
-
-                    <div class="select" style="width: 100%;">
-
-                        {{ form_row(annonceForm.type_logement, {'attr' : {'class' : 'select input', 'placeholder' : 'Choisissez...', 'alt' : 'type logement'}
-                        }) }}
-
-                    </div>
-
-                </div>
+                    {{ form_start(annonceForm) }}
 
 
-                <div class="field">
-                    <label class="label">Nombre de résidents max</label>
-                    <div class="select">
-                        {{ form_row(annonceForm.nombre_max_residents, {'attr' : {'class' : 'input select', 'placeholder' : 'ex : Choisissez', 'alt' : 'nombre residents max'  }
-                        }) }}
-                    </div>
-                </div>
+                    {% include 'includes/flash_message.html.twig' %}
+                    {#                        {{ form_row(nomadeForm.nom, {'attr' : {'placeholder' : 'Entrez votre Nom'}#}
+                    {#                        }) }}#}
+                    {% if form_errors(annonceForm) != null %}
+                        <div class="notification is-danger">
+                            <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                            {{ form_errors(annonceForm) }}
+                        </div>
+                    {% endif %}
 
-                <div class="field">
-                    <label class="label">Détails</label>
 
-                    <div class="" style="width: 100%;">
 
-                        {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea', 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;rows:10;' , 'alt' : 'description'}
-                        }) }}
+
+                    <div class="field">
+                        <label class="label">Titre *</label>
+
+                        <div class="" style="width: 100%;">
+
+                            {{ form_row(annonceForm.titre, {'attr' : {'class' : 'select input', 'placeholder' : 'Entrez le titre de votre Annonce', 'alt' : 'titre'}
+                            }) }}
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <div class="field">
+                        <label class="label">Type de logment </label>
 
-                <div class="field">
+                        <div class="select" style="width: 100%;">
 
-                    <label class="label">Superficie (en m²)</label>
+                            {{ form_row(annonceForm.type_logement, {'attr' : {'class' : 'select input', 'placeholder' : 'Choisissez...', 'alt' : 'type logement'}
+                            }) }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+                        <label class="label">Nombre de résidents max</label>
+                        <div class="select">
+                            {{ form_row(annonceForm.nombre_max_residents, {'attr' : {'class' : 'input select', 'placeholder' : 'ex : Choisissez', 'alt' : 'nombre residents max'  }
+                            }) }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Détails</label>
+
+                        <div class="" style="width: 100%;">
+
+                            {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea', 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;rows:10;' , 'alt' : 'description'}
+                            }) }}
+
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label class="label">Superficie (en m²)</label>
 
                         <div class="control">
-                            {{ form_row(annonceForm.superficie, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 45m²', 'onkeyup' : 'verif_nombre(this);' , 'alt' : 'superficie'  }
+                            {{ form_row(annonceForm.superficie, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 45', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 3)' , 'alt' : 'superficie'  }
                             }) }}
                             {#                        <strong class=""> m²</strong>#}
                         </div>
@@ -98,111 +112,94 @@
 
 
 
-                </div>
+                    </div>
 
-                <div class="field">
+                    <div class="field">
 
-                    <label class="label">Tarif (en € / CC)</label>
+                        <label class="label">Tarif (en € / CC)</label>
 
                         <div class="control">
 
-                            {{ form_row(annonceForm.tarif, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 450€/CC', 'onkeyup' : 'verif_nombre(this);' , 'alt' : 'tarif'  }
+                            {{ form_row(annonceForm.tarif, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 450', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 4);', 'alt' : 'tarif'  }
                             }) }}
-{#                            <div class="">/ CC</div>#}
+                            {#                            <div class="">/ CC</div>#}
 
                         </div>
 
-                </div>
-
-                <div class="field">
-                    <label class="label">Selectionnez la date de disponibilité du logement</label>
-
-                    <div class="control">
-
-                        <div class="select">{{ form_row( annonceForm.date_disponible.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
-                        <div class="select">{{ form_row( annonceForm.date_disponible.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
-                        <div class="select">{{ form_row( annonceForm.date_disponible.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
-
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Adresse</label>
-                    <div class="control">
-                        {{ form_row(annonceForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
-                        }) }}
+                    <div class="field">
+                        <label class="label">Selectionnez la date de disponibilité du logement</label>
+
+                        <div class="control">
+
+                            <div class="select">{{ form_row( annonceForm.date_disponible.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                            <div class="select">{{ form_row( annonceForm.date_disponible.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                            <div class="select">{{ form_row( annonceForm.date_disponible.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Code postale</label>
-                    <div class="control">
-                        {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code postale'  }
-                        }) }}
+                    <div class="field">
+                        <label class="label">Adresse</label>
+                        <div class="control">
+                            {{ form_row(annonceForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
+                            }) }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Ville</label>
-                    <div class="control">
-                        {{ form_row(annonceForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez la ville' , 'alt' : 'ville'}
-                        }) }}
+                    <div class="field">
+                        <label class="label">Code postale</label>
+                        <div class="control">
+                            {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 5)', 'alt' : 'code postale'  }
+                            }) }}
+                        </div>
                     </div>
-                </div>
+
+                    <div class="field">
+                        <label class="label">Ville</label>
+                        <div class="control">
+                            {{ form_row(annonceForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez la ville' , 'alt' : 'ville'}
+                            }) }}
+                        </div>
+                    </div>
 
 
 
-                <div class="column is-centered">
-                    <button type="submit" style="width: 100%;" class="button is-info">Suivant</button>
-                </div>
+                    <div class="column is-centered">
+                        <button type="submit" style="width: 100%;" class="button is-success">Valider</button>
+                    </div>
 
 
 
 
-                {{ form_end(annonceForm) }}
+                    {{ form_end(annonceForm) }}
 
 
+
+                </section>
+
+
+                {% else %}
+
+                    <section class="hero is-dark is-bold is-large">
+                        <div class="hero-body">
+                            <div class="container">
+                                <h1 class="title">
+                                    Vous n'êtes pas éligible à cette page
+                                </h1>
+                                <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                            </div>
+                        </div>
+                    </section>
+
+                {% endif %}
 
             </section>
 
-
-        {% else %}
-
-            <section class="hero is-dark is-bold is-large">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            Vous n'êtes pas éligible à cette page
-                        </h1>
-                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
-                    </div>
-                </div>
-            </section>
-
-        {% endif %}
 
     </section>
 
-
-
-
-    {#    VERIFICATION REMPLISSAGE DES CHAMPS EN JAVASCRIPT   #}
-    <script language="Javascript">
-        function verif_nombre(champ)
-        {
-            var chiffres = new RegExp("[0-9]");
-            var verif;
-            var points = 0;
-
-            for(x = 0; x < champ.value.length; x++)
-            {
-                verif = chiffres.test(champ.value.charAt(x));
-                if(champ.value.charAt(x) == "."){points++;}
-                if(points > 1){verif = false; points = 1;}
-                if(verif == false){champ.value = champ.value.substr(0,x) + champ.value.substr(x+1,champ.value.length-x+1); x--;}
-            }
-        }
-    </script>
 
 
 {% endblock %}

@@ -4,6 +4,7 @@
 namespace App\Notif;
 
 
+use App\Entity\Annonce;
 use App\Entity\Proprietaire;
 use Twig\Environment;
 
@@ -80,5 +81,41 @@ class NotifProprio
         $this->mailer->send($message);
 
     }
+
+    public function demandePublicationAnnonce(Proprietaire $proprio, Annonce $annonce)
+    {
+        // Création de l'email de réinitialisation
+        $message = (new \Swift_Message('Demande de publication d\'Annonce'))
+            ->setFrom('admin@qleaq.fr')
+            ->setTo('kenshin91cb@gmail.com')
+            ->setBody($this->renderer->render('emails/demande_publication_annonce.html.twig',[
+                'proprio' => $proprio,
+                'annonce' => $annonce
+            ]), 'text/html' );
+        $this->mailer->send($message);
+
+        $messageSecondaire = (new \Swift_Message('Demande de publication d\'Annonce'))
+            ->setFrom('admin@qleaq.fr')
+            ->setTo('kenshin91cb@gmail.com')
+            ->setBody($this->renderer->render('emails/accuse_demande_publication_annonce.html.twig',[
+                'proprio' => $proprio,
+                'annonce' => $annonce
+            ]), 'text/html' );
+        $this->mailer->send($messageSecondaire);
+    }
+
+
+    public function confirmPublication(Proprietaire $proprio, Annonce $annonce){
+        // Création de l'email de réinitialisation
+        $message = (new \Swift_Message('Validation pour la publication d\'annonce'))
+            ->setFrom('admin@qleaq.fr')
+            ->setTo('kenshin91cb@gmail.com')
+            ->setBody($this->renderer->render('emails/validation_publication.html.twig',[
+                'proprio' => $proprio,
+                'annonce' => $annonce
+            ]), 'text/html' );
+        $this->mailer->send($message);
+    }
+
 
 }
