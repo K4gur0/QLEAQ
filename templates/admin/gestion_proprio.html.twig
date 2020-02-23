@@ -67,7 +67,7 @@
                         <div class="field">
                             <label class="label">Numéro de téléphone</label>
                             <div class="control">
-                                {{ form_row(gestionProprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}' , 'alt' : 'telephone' }
+                                {{ form_row(gestionProprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10)', 'pattern' : '[0-9]{10}', 'alt' : 'telephone' }
                                 }) }}
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="field">
                             <label class="label">Entrez votre code postale</label>
                             <div class="control">
-                                {{ form_row(gestionProprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);', 'pattern' : '[0-9]{5}' , 'alt' : 'code_postale'  }
+                                {{ form_row(gestionProprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5)', 'pattern' : '[0-9]{5}', 'alt' : 'code_postale'  }
                                 }) }}
                             </div>
                         </div>
@@ -120,22 +120,32 @@
                         </div>
 
                         <div class="field">
-                            <label class="label">Statut :
+                            <label class="label">Statut inscription :
 
                                     {% if proprio.refus == 0 %}
-                                        <div class="tag is-warning">
-                                            En attente
+
+
+                                            <div class="tag is-warning">
+                                                En attente
+                                            </div>
+
+
+                                        <div>
+                                            <div class="column is-flex" style="justify-content: space-evenly;">
+                                                <a class="button is-success is-outlined is-small" href="{{ path('admin_confirm_proprio', {id: proprio.id}) }}">Valider l'inscription</a>
+                                                <a class="button is-danger is-outlined is-small" href="{{ path('admin_refus_proprio', {id: proprio.id}) }}">Refuser l'inscription</a>
+                                            </div>
                                         </div>
 
-                                        <a class="button is-success is-outlined" href="{{ path('admin_confirm_proprio', {id: proprio.id}) }}">Valider</a>
-                                        <a class="button is-danger is-outlined" href="{{ path('admin_refus_proprio', {id: proprio.id}) }}">Refuser</a>
+
+
                                     {% elseif proprio.refus == 1 %}
                                         <div class="tag is-success">
-                                            Validé
+                                            Validée
                                         </div>
                                     {% else %}
                                         <div class="tag is-danger">
-                                            Refusé
+                                            Refusée
                                         </div>
                                     {% endif %}
 

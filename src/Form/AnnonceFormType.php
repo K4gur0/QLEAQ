@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,25 +16,28 @@ class AnnonceFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('titre', TextType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     )
             )
 
             ->add('type_logement', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     'choices' => [
-//                        'Propriétaire' => 'Proprietaire',
-//                        'Mandataire' => 'Mandataire',
-//                        'Agence Immo' => 'Agence_immo',
-//                        'Hôtel' => 'Hotel',
-//                        'Aparthôtel' => 'Aparthotel',
-//                        'Auberge de Jeunesse' => 'Aubrege_de_jeunesse',
-//                        'Résidence étudiante' => 'Residence_etudiante',
-                        'Autre' => 'Autre',
+                        'Appartement' => 'Appartement',
+                        'Colocation' => 'Colocation',
+                        'Studio' => 'Studio',
+                        'Chambre' => 'Chambre',
+                        'Aparthôtel' => 'Aparthôtel',
+                        'Hôtel' => 'Hôtel',
+                        'Logement étudiant' => 'Logelement etudiant',
+                        'Auberge de Jeunesse' => 'Auberge de jeunesse',
                     ]
                 )
             )
@@ -41,6 +45,7 @@ class AnnonceFormType extends AbstractType
             ->add('nombre_max_residents', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     'choices' => [
                         '1' => '1',
                         '2' => '2',
@@ -50,42 +55,50 @@ class AnnonceFormType extends AbstractType
                         ]
                     )
             )
-            ->add('description', TextType::class,
+            ->add('description', TextareaType::class,
                 array('label' => false,
                     'required' => false,
+                    'error_bubbling' => true,
                     )
             )
             ->add('superficie', NumberType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     )
             )
             ->add('tarif', NumberType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     )
             )
             ->add('date_disponible', DateType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     'years' => range(date('Y'), date('Y')+100),
                     'months' => range(date('m'), 12),
 //                    'days' => range(date('d'), 31),
-                    )
+                )
             )
+
             ->add('adresse', TextType::class,
                 array('label' => false,
                     'required' => false,
+                    'error_bubbling' => true,
                     )
             )
             ->add('cp', NumberType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     )
             )
             ->add('ville', TextType::class,
                 array('label' => false,
                     'required' => true,
+                    'error_bubbling' => true,
                     )
             )
 

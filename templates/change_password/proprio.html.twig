@@ -1,18 +1,23 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}QLEAQ | Modification de mot de passe{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Modification de mot de passe{% endblock %}
 
 {% block content %}
 
     {% if is_granted('ROLE_PROPRIO') %}
 
+        <section class="hero is-medium is-info is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Modification de votre mot de passe
+                    </h1>
+                </div>
+            </div>
+        </section>
+
         <div class="columns is-centered section">
             <div class="column is-one-third">
-                <h1 class="title has-text-primary has-text-centered">
-                    Modification du mot de passe
-                </h1>
-
-
 
                 {{ form_start(changePasswordFormProprio) }}
 

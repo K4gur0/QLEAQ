@@ -8,6 +8,9 @@
 
         {% block css %}
             {{ encore_entry_link_tags('app') }}
+
+            <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
+
         {% endblock %}
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,900,900i&display=swap" rel="stylesheet">
         <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
@@ -54,6 +57,8 @@
 
 {% block javascripts %}
     <script>
+
+{#        SCRIPT POUR VERIF NOMBRE DANS FORMULAIRE          #}
         function verif_nombre(champ)
         {
         var chiffres = new RegExp("[0-9]");
@@ -76,7 +81,73 @@
         champ.value = xsub;
 
         }
+{#        FIN DE SCRIPT         #}
+
+
+
+
+
+{#     SCRIPT POUR POPUP       #}
+            document.querySelector('#open-modal').addEventListener('click', function(event) {
+            event.preventDefault();
+            var modal = document.querySelector('.modal');  // assuming you have only 1
+            var html = document.querySelector('html');
+            modal.classList.add('is-active');
+            html.classList.add('is-clipped');
+
+                modal.querySelector('.modal-background').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.remove('is-active');
+                    html.classList.remove('is-clipped');
+                });
+
+                modal.querySelector('.modal-close').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.remove('is-active');
+                    html.classList.remove('is-clipped');
+                });
+
+                modal.querySelector('.close-popup').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.remove('is-active');
+                    html.classList.remove('is-clipped');
+                });
+        });
+{#        FIN DE SCRIPT         #}
+
     </script>
+
+
+
+
+
+
+    <script src="~bulma-calendar/dist/js/bulma-calendar.min.js">
+
+
+        // Initialize all input of type date
+        var calendars = bulmaCalendar.attach('[type="date"]', options);
+
+        // Loop on each calendar initialized
+        for(var i = 0; i < calendars.length; i++) {
+            // Add listener to date:selected event
+            calendars[i].on('select', date => {
+                console.log(date);
+            });
+        }
+
+        // To access to bulmaCalendar instance of an element
+        var element = document.querySelector('#my-element');
+        if (element) {
+            // bulmaCalendar instance is available as element.bulmaCalendar
+            element.bulmaCalendar.on('select', function(datepicker) {
+                console.log(datepicker.data.value());
+            });
+        }
+
+
+    </script>
+
 {% endblock %}
 
 

@@ -11,10 +11,10 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        Gestion de votre profile {{ app.user.username }}
+                        Gestion de votre profile : {{ app.user.username }}
                     </h1>
                     <h2 class="subtitle">
-                        Ici vous pouvez compléter les informations de votre profile
+                        Ici vous pouvez compléter ou modifier les informations de votre profile
                     </h2>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div class="field">
                         <label class="label">Numéro de téléphone</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
+                            {{ form_row(nomadeForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
                             }) }}
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="field">
                         <label class="label">Entrez votre code postale</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
+                            {{ form_row(nomadeForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'pattern' : '[0-9]{5}', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
                             }) }}
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="field">
                         <label class="label">Présentez vous</label>
                         <div class="control">
-                            {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'textarea', 'placeholder' : 'Présentez vous', 'style' : 'resize:none;rows:10;' , 'alt' : 'presentation'}
+                            {{ form_row(nomadeForm.presentation, {'attr' : {'class' : 'textarea','rows' : 10 , 'placeholder' : 'Présentez vous', 'style' : 'resize:none;' , 'alt' : 'presentation'}
                             }) }}
                         </div>
                     </div>

@@ -27,6 +27,10 @@
 
                 {% include 'includes/flash_message.html.twig' %}
 
+                <a class="button is-success is-outlined" href="{{ path('admin_home', {id: app.user.id} )  }}">
+                    <strong>Retour</strong>
+                </a>
+
                 {#                {% if form_errors(deleteProprioForm) != null %}#}
                 {#                    <div class="notification is-danger">#}
                 {#                        <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}

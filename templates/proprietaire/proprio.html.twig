@@ -1,6 +1,6 @@
 {% extends 'home/index.html.twig' %}
 
-{% block title %}{% include 'includes/qleaq_title.html.twig' %}Gestion de compte Propriétaire{% endblock %}
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Modification du mot de passe{% endblock %}
 
 {% block content %}
     <section>
@@ -11,10 +11,10 @@
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
-                            Gestion du propriétaire {{ app.user.username }}
+                            Gestion du propriétaire : {{ app.user.username }}
                         </h1>
                         <h2 class="subtitle">
-                            Ici vous pouvez compléter les informations de votre profile
+                            Ici vous pouvez compléter ou modifier les informations de votre profile
                         </h2>
                     </div>
                 </div>
@@ -22,102 +22,109 @@
 
 
 
-            <div class="columns is-centered section">
+            <div class="section">
+
+                <a class="button is-info is-outlined" href="{{ path('proprio_presentation', {id: app.user.id} ) }}">
+                    <strong>Accueil Propriétaire</strong>
+                </a>
+
+                <div class="columns is-centered section">
+
+                    <div class="column is-one-third">
+
+                        <div class="field" >
+                            {{ form_start(proprioForm) }}
 
 
+                            {% include 'includes/flash_message.html.twig' %}
 
-                <div class="column is-one-third">
+                            {% if form_errors(proprioForm) != null %}
+                                <div class="notification is-danger">
+                                    <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                                    {{ form_errors(proprioForm) }}
+                                </div>
+                            {% endif %}
 
 
-                    <div class="field" >
-                        {{ form_start(proprioForm) }}
-
-
-                        {% include 'includes/flash_message.html.twig' %}
-
-                        {% if form_errors(proprioForm) != null %}
-                            <div class="notification is-danger">
-                                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
-                                {{ form_errors(proprioForm) }}
+                            <div class="field">
+                                <label class="label">Nom ou Raison social</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom' , 'alt' : 'nom'},
+                                    }) }}
+                                </div>
                             </div>
-                        {% endif %}
 
 
-                        <div class="field">
-                            <label class="label">Nom ou Raison social</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.raison_social, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Nom' , 'alt' : 'nom'},
-                                }) }}
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email' , 'alt' : 'email'}
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.email, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre Adresse Email' , 'alt' : 'email'}
-                                }) }}
+                            <div class="field">
+                                <label class="label">Numéro de téléphone</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'pattern' : '[0-9]{10}', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Numéro de téléphone</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.telephone, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 0102030405', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,10);' , 'alt' : 'telephone' }
-                                }) }}
+                            <div class="field">
+                                <label class="label">Adresse</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Adresse</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.adresse, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 1 rue qleaq' , 'alt' : 'adresse'}
-                                }) }}
+                            <div class="field">
+                                <label class="label">Entrez votre code postale</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'pattern' : '[0-9]{5}', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Entrez votre code postale</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code_postale'  }
-                                }) }}
+                            <div class="field">
+                                <label class="label">Entrez votre Ville</label>
+                                <div class="control">
+                                    {{ form_row(proprioForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville' , 'alt' : 'ville'}
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Entrez votre Ville</label>
-                            <div class="control">
-                                {{ form_row(proprioForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez votre ville' , 'alt' : 'ville'}
-                                }) }}
+                            <div class="field">
+                                <label class="label">Votre statut</label>
+                                <div class="select" style="width: 100%">
+                                    {{ form_row(proprioForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
+                                    }) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Votre statut</label>
-                            <div class="select" style="width: 100%">
-                                {{ form_row(proprioForm.statut, {placeholder: 'Choisissez ...', 'attr' : {'class' : 'select input' , 'alt' : 'statut'}
-                                }) }}
+
+                            <div class="column is-centered ">
+                                <a class="button is-primary" style="width: 100%;" href="{{ path('change_password_proprio') }}">Changer votre mot de passe</a>
                             </div>
+
+
+
+
+
+
+                            <div class="column is-centered">
+                                <button type="submit" style="width: 100%;" class="button is-info">Valider les modifications</button>
+                            </div>
+
+
+                            {{ form_end(proprioForm) }}
                         </div>
 
-
-                        <div class="column is-centered ">
-                            <a class="button is-primary" style="width: 100%;" href="{{ path('change_password_proprio') }}">Changer votre mot de passe</a>
-                        </div>
-
-
-
-
-
-
-                        <div class="column is-centered">
-                            <button type="submit" style="width: 100%;" class="button is-info">Valider les modifications</button>
-                        </div>
-
-
-                        {{ form_end(proprioForm) }}
                     </div>
+
                 </div>
+
             </div>
 
         {% else %}

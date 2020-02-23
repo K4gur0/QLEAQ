@@ -31,16 +31,62 @@
                 <i>(Irréversible)</i>
             </div>
 
+
+            {% include('includes/target_delete.html.twig') %}
+
+
+
+
+
+
+
+
+
             <div class="columns is-centered section">
 
                 <div class="column is-one-third">
 
                     <div class="field" >
+
                         {{ form_start(deleteAnnonceForm) }}
 
-                        <div class="column is-centered">
-                            <button type="submit" style="width: 100%;" class="button is-danger">Supprimer l'annonce</button>
-                        </div>
+                        {% if annonce.publicationauth == null or annonce.publicationauth == false %}
+
+                                <div class="column">
+                                    <button type="submit" style="width: 100%;" class="button is-danger">Supprimer l'annonce</button>
+                                </div>
+
+                        {% elseif annonce.publicationauth == true %}
+
+                            <div class="column">
+                                <button class="button is-danger" id="open-modal" style="width: 100%;">Supprimer l'annonce</button>
+                            </div>
+
+                            <div class="modal">
+                                <div class="modal-background"></div>
+                                <div class="modal-card">
+
+                                    <header class="modal-card-head has-background-warning">
+                                        <p class="modal-card-title">Attention</p>
+                                    </header>
+
+                                    <section class="modal-card-body">
+                                        L'annonce : <strong>{{ annonce.titre }}</strong> est actuellement <div class="tag is-success">publiée</div> . <br>
+                                        Souhaitez vous tout de même la supprimer définitivement? <br>
+                                        <i>(Cette annonce ne sera donc plus consultable)</i>
+                                    </section>
+
+                                    <footer class="modal-card-foot" style="justify-content: space-between;">
+                                        <button class="button close-popup">Annuler</button>
+                                        <button class="button is-success">Confirmer</button>
+                                    </footer>
+
+                                </div>
+                                <button class="modal-close is-large" aria-label="close">MODAL</button>
+                            </div>
+
+                        {% endif %}
+
 
                         <div class="column is-centered">
                             <a href="{{ path('proprio_home') }}" type="submit" style="width: 100%;" class="button is-success">Annuler</a>
@@ -75,3 +121,4 @@
 
 
 {% endblock %}
+

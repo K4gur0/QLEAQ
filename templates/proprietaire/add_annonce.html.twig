@@ -23,7 +23,7 @@
             </section>
 
             <section class="section">
-                <a class="button is-success is-outlined" href="{{ path('proprio_home', {id: app.user.id} ) }}">
+                <a class="button is-info is-outlined" href="{{ path('proprio_home', {id: app.user.id} ) }}">
                     <strong>Retour</strong>
                 </a>
 
@@ -87,17 +87,8 @@
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label class="label">Détails</label>
 
-                        <div class="" style="width: 100%;">
 
-                            {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea', 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;rows:10;' , 'alt' : 'description'}
-                            }) }}
-
-                        </div>
-
-                    </div>
 
                     <div class="field">
 
@@ -133,9 +124,11 @@
 
                         <div class="control">
 
-                            <div class="select">{{ form_row( annonceForm.date_disponible.day, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+                            <div class="select">{{ form_row( annonceForm.date_disponible.day, {'label' : ' ', 'attr' : {'class' : 'sel   '}} ) }}</div>
                             <div class="select">{{ form_row( annonceForm.date_disponible.month, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
                             <div class="select">{{ form_row( annonceForm.date_disponible.year, {'label' : ' ', 'attr' : {'class' : 'select'}} ) }}</div>
+
+{#                            <input type="date">#}
 
                         </div>
                     </div>
@@ -151,7 +144,7 @@
                     <div class="field">
                         <label class="label">Code postale</label>
                         <div class="control">
-                            {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'pattern' : '{5}' , 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 5)', 'alt' : 'code postale'  }
+                            {{ form_row(annonceForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'pattern' : '[0-9]{5}' , 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this, 5)', 'alt' : 'code postale'  }
                             }) }}
                         </div>
                     </div>
@@ -162,6 +155,19 @@
                             {{ form_row(annonceForm.ville, {'attr' : {'class' : 'input', 'placeholder' : 'Entrez la ville' , 'alt' : 'ville'}
                             }) }}
                         </div>
+                    </div>
+
+
+                    <div class="field">
+                        <label class="label">Détails</label>
+
+                        <div class="" style="width: 100%;">
+
+                            {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea','rows' : 10 , 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;' , 'alt' : 'description'}
+                            }) }}
+
+                        </div>
+
                     </div>
 
 

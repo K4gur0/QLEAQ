@@ -7,6 +7,7 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
+
 // import bulmaCalendar from '~bulma-calendar/dist/js/bulma-calendar.min.js';
 
 const fondEcran = require('../images/apart1.jpg');

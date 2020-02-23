@@ -25,6 +25,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ProprioController extends AbstractController
 {
 
+
+
         /**
          * @Route("/", name="presentation")
          *
@@ -55,6 +57,12 @@ class ProprioController extends AbstractController
                 'proprio' => $proprio,
             ]);
         }
+
+
+
+
+
+
 
 
     /**
@@ -102,6 +110,14 @@ class ProprioController extends AbstractController
             ]);
         }
 
+
+
+
+
+
+
+
+
     /**
      * @Route("/demande-publication-annonce-{id}", name="publication_annonce")
      * @IsGranted("ROLE_PROPRIO")
@@ -129,45 +145,7 @@ class ProprioController extends AbstractController
 
 
 
-//    /**
-//     * Confirmation de l'annonce (lien envoyé par email)
-//     * @Route("/confirm_publication_{id}", name="annonce_confirmation")
-//     *
-//     * @param Proprietaire           $user          Le Propriétaire qui souhaite publié l'annonce
-//     * @param Annonce                $annonce       L'annonce concernée
-//     * @param                        $token         Le jeton à vérifier pour confirmer le compte
-//     * @param EntityManagerInterface $entityManager Pour mettre à jour l'utilisateur
-//     */
-//
-//    public function confirmAnnonce(AnnonceRepository $annonceRepository,
-//                                   $id,
-//                                   EntityManagerInterface $entityManager,
-//                                   NotifProprio $notifProprio)
-//    {
-//        $proprio = $this->getUser();
-//        $annonce = $annonceRepository->find($id);
-//
-//        $publicationStatus = $annonce->getPublicationAuth();
-//
-//        if($publicationStatus != true ){
-//
-//            $annonce->setPublicationAuth(true);
-//
-//            $entityManager->persist($annonce);
-//            $entityManager->flush();
-//
-//            $notifProprio->confirmPublication($proprio, $annonce);
-//
-//            $this->addFlash('success', 'Vous avez bien valider la publication de l\'annonce');
-//            return $this->redirectToRoute('admin_login');
-//
-//        }elseif($publicationStatus == false){
-//            $this->addFlash('warning', 'Vous avez refuser la publication de l\'annonce');
-//            return $this->redirectToRoute('admin_login');
-//        }
-//
-//
-//    }
+
 
 
     /**
@@ -207,6 +185,12 @@ class ProprioController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
     /**
      * @Route("/supprimer-annonce{id}", name="delete_annonce")
      * @IsGranted("ROLE_PROPRIO")
@@ -241,8 +225,12 @@ class ProprioController extends AbstractController
         return $this->render('proprietaire/delete_annonce.html.twig', [
             'deleteAnnonceForm' => $deleteAnnonceForm->createView(),
             'annonce' => $annonce,
+            'proprio' => $this->getUser(),
         ]);
     }
+
+
+
 
 
 
@@ -289,6 +277,9 @@ class ProprioController extends AbstractController
             'proprioForm' => $proprioForm->createView()
         ]);
     }
+
+
+
 
 
 /**

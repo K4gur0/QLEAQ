@@ -105,15 +105,15 @@ class ProprioRegistrationController extends AbstractController
 
             // L'utilisateur a déjà confirmé son compte
             if ($user->getIsConfirmed()) {
-                $this->addFlash('warning', 'Ce compte est déjà confirmé !');
-                return $this->redirectToRoute('login_proprietaire');
+                $this->addFlash('warning', 'Le compte Propriétaire est déjà confirmé !');
+                return $this->redirectToRoute('admin_login');
             }
 
             // Le jeton ne correspond pas à celui de l'utilisateur
             if ($user->getSecurityToken() !== $token) {
 
                 $this->addFlash('danger', 'Le jeton est invalide');
-                return $this->redirectToRoute('login_proprietaire');
+                return $this->redirectToRoute('admin_login');
             }
 
             // Le jeton est valide: mettre à jour le jeton et confirmer le compte
@@ -125,12 +125,12 @@ class ProprioRegistrationController extends AbstractController
 
             $notifProprio->confirmationProprio($user);
 
-            $this->addFlash('success', 'La création de ce compte est maintenant confirmé, vous pouvez vous connecter.');
-            return $this->redirectToRoute('login_proprietaire');
+            $this->addFlash('success', 'Le compte Propriétaire : ' . $user->getRaisonSocial() . ' est maintenant confirmé. L\'information vient dêtre envoyer à l\'adresse mail : ' . $user->getEmail());
+            return $this->redirectToRoute('admin_login');
 
         }else{
             $this->addFlash('warning', 'Ce compte à déjà été refusé et ne peut être confirmé');
-            return $this->redirectToRoute('login_proprietaire');
+            return $this->redirectToRoute('admin_login');
         }
 
     }
