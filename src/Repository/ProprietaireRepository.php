@@ -36,6 +36,8 @@ class ProprietaireRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+
+
     /**
      * @return Proprietaire[] Returns an array of Proprietaire objects
      */

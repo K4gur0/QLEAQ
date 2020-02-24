@@ -36,6 +36,7 @@ class NomadeRepository extends ServiceEntityRepository implements PasswordUpgrad
         $this->_em->flush();
     }
 
+
      /**
       * @return Nomade[] Returns an array of Nomade objects
       */

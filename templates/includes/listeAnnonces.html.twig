@@ -1,6 +1,6 @@
 
-{% for annonce in annonce %}
-
+{% for annonce in annonce%}
+{#{% for proprio in proprio %}#}
 
 
 
@@ -13,9 +13,13 @@
                     <div class="column" style="margin-bottom: 30px;">
                         <h2> <strong class="is-size-3">{{ annonce.titre }}</strong> </h2>
                         <time > <i class="tag has-background-info has-text-white is-small">Créée : {{ annonce.datecreation|date('d/m/Y à H:i') }}</i> </time>
+
                         <h3 class="subtitle is-size-6">
-                            {#                                Par <strong>{{ proprio.raisonsocial }}</strong>#}
+
+                                Par <strong>{{ annonce.proprio }}</strong>
+
                         </h3>
+
                     </div>
                 </div>
             </div>
@@ -84,6 +88,25 @@
             </div>
 
 
+            <div class="columns">
+                <div class="media-content column has-text-centered">
+                    <div class="column" style="margin-bottom: 30px;">
+
+{#                        {% if nomade == nomadeId %}#}
+{#                            <div class="buttons">#}
+{#                                <a class="button is-outlined is-warning" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Retirer des favories</a>#}
+{#                            </div>#}
+{#                        {% else %}#}
+                            <div class="buttons">
+                                <a class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Mettre en favorie</a>
+                            </div>
+{#                        {% endif %}#}
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
         <hr style="border:black 1px solid">
@@ -92,5 +115,5 @@
 
 
 
-
+{#{% endfor %}#}
 {% endfor %}

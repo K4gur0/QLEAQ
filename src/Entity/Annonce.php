@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -91,10 +93,16 @@ class Annonce
      */
     private $proprio;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Nomade", inversedBy="annonces")
+     */
+    private $nomade;
+
     public function __construct()
     {
         $this->date_creation = new \DateTime();
         $this->publicationAuth = false;
+        $this->nomade = new ArrayCollection();
     }
 
 
@@ -257,6 +265,32 @@ class Annonce
     public function setProprio(?Proprietaire $proprio): self
     {
         $this->proprio = $proprio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Nomade[]
+     */
+    public function getNomade(): Collection
+    {
+        return $this->nomade;
+    }
+
+    public function addNomade(Nomade $nomade): self
+    {
+        if (!$this->nomade->contains($nomade)) {
+            $this->nomade[] = $nomade;
+        }
+
+        return $this;
+    }
+
+    public function removeNomade(Nomade $nomade): self
+    {
+        if ($this->nomade->contains($nomade)) {
+            $this->nomade->removeElement($nomade);
+        }
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -124,9 +125,15 @@ class Nomade implements UserInterface
      */
     private $type_sejour;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", mappedBy="nomade")
+     */
+    private $annonces;
+
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
+        $this->annonces = new ArrayCollection();
     }
 
 
@@ -433,6 +440,34 @@ class Nomade implements UserInterface
     public function setTypeSejour(string $type_sejour): self
     {
         $this->type_sejour = $type_sejour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->addNomade($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->contains($annonce)) {
+            $this->annonces->removeElement($annonce);
+            $annonce->removeNomade($this);
+        }
 
         return $this;
     }

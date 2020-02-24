@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
 use App\Entity\Nomade;
+use App\Entity\Proprietaire;
 use App\Form\NomadeType;
 use App\Repository\AnnonceRepository;
+use App\Repository\NomadeRepository;
 use App\Repository\ProprietaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -43,43 +46,53 @@ class NomadeController extends AbstractController
     }
 
 
+
+
+
+
+
+
+
     /**
      * Page d'accueil une foi le Nomade connecté
      * @Route("/accueil", name="home")
      * @IsGranted("ROLE_USER")
      *
      */
-    public function espace(AnnonceRepository $annonceRepository, Request $request, ProprietaireRepository $proprietaireRepository){
-        $proprio = $proprietaireRepository->findAll();
+    public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository){
+
         $annonce = $annonceRepository->findAll();
+        $proprio = $proprietaireRepository->findAll();
         $annonceNumber = $annonceRepository->findByPublication(true);
-//        dd($annonceNumber);
         if ($annonceNumber == false) {
-//            $this->addFlash('warning', 'Aucune annonce n\'a été publiéé');
+
              return $this->render('nomade/espace.html.twig',[
                  'annonce' => $annonce,
                  'proprio' => $proprio,
                  'noAnnonces' => $annonceNumber,
              ]);
             }
-//        dd($annonce);
+
         return $this->render('nomade/espace.html.twig',[
             'annonce' => $annonce,
             'proprio' => $proprio,
             'noAnnonces' => $annonceNumber,
         ]);
 
-
-
     }
+
+
+
+
+
+
 
     /**
      * @Route("/profile", name="profile")
      * @IsGranted("ROLE_USER")
      *
      */
-
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function index(Request $request): Response
     {
         // Récupération de l'utilisateur courant
         $nomade = $this->getUser();
@@ -113,6 +126,117 @@ class NomadeController extends AbstractController
             'nomadeForm' => $nomadeForm->createView()
         ]);
     }
+
+
+
+
+
+//    /**
+//     * @Route("/add_favorite_{id}", name="add_favorite")
+//     * @IsGranted("ROLE_USER")
+//     */
+//    public function addFavorite(AnnonceRepository $annonceRepository, $id){
+//        $annonce = $annonceRepository->find($id);
+//
+//        $nomade = $this->getUser();
+//
+//        $nomadeId = $annonce->getNomade($nomade)->current();
+//
+//        $annonce->addNomade($nomade);
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $entityManager->persist($annonce);
+//        $entityManager->flush();
+//
+//        $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
+//        return $this->redirectToRoute('nomade_home', [
+//            'nomade' => $nomade,
+//            'nomadeId' => $nomadeId,
+//            'annonce' => $annonce,
+//        ]);
+//
+//
+//    }
+//
+//
+//
+//    /**
+//     * @Route("/remove_favorite_{id}", name="remove_favorite")
+//     * @IsGranted("ROLE_USER")
+//     */
+//    public function removeFavorite(AnnonceRepository $annonceRepository, $id){
+//        $annonce = $annonceRepository->find($id);
+//
+//        $nomade = $this->getUser();
+//
+//        $nomadeId = $annonce->getNomade($nomade)->current();
+//
+//            $annonce->removeNomade($nomade);
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($annonce);
+//            $entityManager->flush();
+//
+//
+//
+//            $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
+//            return $this->redirectToRoute('nomade_home', [
+//                'nomade' => $nomade,
+//                'nomadeId' => $nomadeId,
+//                'annonce' => $annonce,
+//            ]);
+//
+//    }
+
+
+    /**
+     * @Route("/favorite_{id}", name="add_favorite")
+     * @IsGranted("ROLE_USER")
+     */
+    public function annonceFavorite(AnnonceRepository $annonceRepository, $id){
+        $annonce = $annonceRepository->find($id);
+
+        $nomade = $this->getUser();
+
+        $nomadeId = $annonce->getNomade($nomade)->current();
+
+
+
+        if ($nomade == $nomadeId){
+            $annonce->removeNomade($nomade);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+//
+//            $annonce_du_nomade_courant = $nomade->getAnnonces($annonce);
+//            dd($annonce_du_nomade_courant);
+
+            $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
+            return $this->redirectToRoute('nomade_home', [
+                'nomade' => $nomade,
+                'nomadeId' => $nomadeId,
+                'annonce' => $annonce,
+            ]);
+        }
+            $annonce->addNomade($nomade);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+
+//            $annonce_du_nomade_courant = $nomade->getAnnonces();
+//            dd($annonce_du_nomade_courant);
+
+            $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
+            return $this->redirectToRoute('nomade_home', [
+                'nomade' => $nomade,
+                'nomadeId' => $nomadeId,
+                'annonce' => $annonce,
+            ]);
+
+
+    }
+
+
+
+
 
 }
 
