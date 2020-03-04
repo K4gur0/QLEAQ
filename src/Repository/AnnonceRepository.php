@@ -23,6 +23,7 @@ class AnnonceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.proprio = :val')
             ->setParameter('val', $value)
+            ->orderBy('a.date_creation', 'DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -36,6 +37,15 @@ class AnnonceRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function orderByDate()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.date_creation', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects

@@ -18,7 +18,7 @@
 
     <div class="columns is-centered">
 
-        <div class="column is-half">
+        <div class="column is-half is-full-touch" style="margin: auto">
             <div class="card-image">
                 <div class="media-content column">
 
@@ -106,14 +106,14 @@
 
                 <div class="columns" style="justify-content: space-between;">
 
-                    <a href="{{ path('proprio_edit_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined">
+                    <a href="{{ path('proprio_edit_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined is-flex column" {% if annonce.publicationauth == true %}disabled title="Veuillez retirer la publication de l'annonce avant de la modifier" {% endif %}>
 
                             <span>Modifier</span>
 
                     </a>
                     {% if annonce.publicationauth == null or annonce.publicationauth == false %}
 
-                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined">
+                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined is-flex column">
 
                             <span>Publier</span>
 
@@ -125,7 +125,7 @@
 
                     {% else %}
 
-                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-danger is-outlined">
+                        <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-warning is-outlined is-flex column">
 
                             <span>Retirer la publication</span>
 
@@ -137,7 +137,7 @@
 
                     {% endif %}
 
-                        <a href="{{ path('proprio_delete_annonce', {id: annonce.id} ) }}" class="button is-danger is-outlined">
+                        <a href="{{ path('proprio_delete_annonce', {id: annonce.id} ) }}" class="button is-danger is-outlined is-flex column">
 
                             <span>Supprimer</span>
 

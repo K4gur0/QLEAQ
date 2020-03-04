@@ -61,22 +61,23 @@ class NomadeController extends AbstractController
      */
     public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository){
 
-        $annonce = $annonceRepository->findAll();
+        $annonce = $annonceRepository->orderByDate();
         $proprio = $proprietaireRepository->findAll();
-        $annonceNumber = $annonceRepository->findByPublication(true);
-        if ($annonceNumber == false) {
+        $annoncePublie = $annonceRepository->findByPublication(true);
+
+        if ($annoncePublie == false) {
 
              return $this->render('nomade/espace.html.twig',[
                  'annonce' => $annonce,
                  'proprio' => $proprio,
-                 'noAnnonces' => $annonceNumber,
+                 'noAnnonces' => $annoncePublie,
              ]);
             }
 
         return $this->render('nomade/espace.html.twig',[
             'annonce' => $annonce,
             'proprio' => $proprio,
-            'noAnnonces' => $annonceNumber,
+            'noAnnonces' => $annoncePublie,
         ]);
 
     }

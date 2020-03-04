@@ -46,6 +46,7 @@ class ProprioController extends AbstractController
 
 
             $annonces = $annonceRepository->findById($this->getUser()->getId());
+        //    dd($annonces);
             $proprio = $this->getUser();
 
 

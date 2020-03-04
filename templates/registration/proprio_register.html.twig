@@ -82,7 +82,7 @@
                             <div class="field">
                                 <label class="label">Entrez votre code postale *</label>
                                 <div class="control">
-                                    {{ form_row(ProprioRegistrationForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000', 'onkeyup' : 'verif_nombre(this,5);' , 'alt' : 'code postale'  }
+                                    {{ form_row(ProprioRegistrationForm.cp, {'attr' : {'class' : 'input', 'placeholder' : 'ex : 75000','pattern' : '[0-9]{5}', 'onkeyup' : 'verif_nombre(this);verif_nombre_max(this,5);' , 'alt' : 'code postale'  }
                                     }) }}
                                 </div>
                             </div>
