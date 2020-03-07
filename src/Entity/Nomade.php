@@ -6,13 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NomadeRepository")
  * @UniqueEntity(fields={"email"}, message="L'email indiquée est déjà utilisée")
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  *
  */
 class Nomade implements UserInterface
@@ -23,6 +25,18 @@ class Nomade implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomPhoto;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="photos_nomades", fileNameProperty="nomPhoto")
+     */
+    private $photoNomade;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -77,12 +91,6 @@ class Nomade implements UserInterface
      */
     private $ville;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(mimeTypes={ "application/pdf" })
-     *
-     */
-    private $photo_profile;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -129,6 +137,8 @@ class Nomade implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", mappedBy="nomade")
      */
     private $annonces;
+
+
 
     public function __construct()
     {
@@ -324,17 +334,6 @@ class Nomade implements UserInterface
         return $this;
     }
 
-    public function getPhotoProfile()
-    {
-        return $this->photo_profile;
-    }
-
-    public function setPhotoProfile($photo_profile)
-    {
-        $this->photo_profile = $photo_profile;
-
-        return $this;
-    }
 
     public function getBudget(): ?float
     {
@@ -472,6 +471,41 @@ class Nomade implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getNomPhoto(): ?string
+    {
+        return $this->nomPhoto;
+    }
+
+    /**
+     * @param string|null $nomPhoto
+     * @return Nomade
+     */
+    public function setNomPhoto(?string $nomPhoto): Nomade
+    {
+        $this->nomPhoto = $nomPhoto;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getPhotoNomade(): ?File
+    {
+        return $this->photoNomade;
+    }
+
+    /**
+     * @param File|null $photoNomade
+     * @return Nomade
+     */
+    public function setPhotoNomade(?File $photoNomade): Nomade
+    {
+        $this->photoNomade = $photoNomade;
+        return $this;
+    }
 
 
 }

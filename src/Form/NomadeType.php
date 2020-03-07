@@ -4,17 +4,14 @@ namespace App\Form;
 
 use App\Entity\Nomade;
 
-use Doctrine\ORM\Query\Expr\Select;
+
 use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,15 +19,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class NomadeType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
 
+        $builder
 
             ->add('nom',
                 TextType::class,
@@ -88,31 +86,6 @@ class NomadeType extends AbstractType
                 array('label' => false, 'required' => false,)
             )
 
-//            ->add('photo_profile', FileType::class,
-//                [
-//                'attr' => ['class' => 'input'],
-//
-//                'label' => false,
-//                // unmapped means that this field is not associated to any entity property
-//                'mapped' => false,
-//
-//                // make it optional so you don't have to re-upload the PDF file
-//                // everytime you edit the Product details
-//                'required' => false,
-//
-//                // unmapped fields can't define their validation using annotations
-//                // in the associated entity, so you can use the PHP constraint classes
-//                'constraints' => [
-//                    new File([
-//                        'maxSize' => '2048k',
-//                        'mimeTypes' => [
-//                            'application/pdf',
-//                            'application/pdf',
-//                        ],
-//                        'mimeTypesMessage' => 'Please upload a valid PDF document',
-//                    ])
-//                ],
-//            ])
 
 //            ->add('budget', NumberType::class, [
 //                'attr' => ['class' => 'input'],
@@ -160,13 +133,17 @@ class NomadeType extends AbstractType
                     ]
                 )
             )
+
+            ->add('photo_nomade', FileType::class, [
+                'required' => 'false',
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Nomade::class,
+            //'data_class' => Nomade::class,
         ]);
 
 
