@@ -44,9 +44,10 @@ class AppFixtures extends Fixture
             $nomade->setVille($faker->city);
             $nomade->setTelephone('0102030405');
             $nomade->setTypeSejour('Autre');
-            $nomade->setSexe(random_int(1,2));
+            $nomade->setSexe($faker->randomElement(array('Féminin','Masculin')));
             $nomade->setBudget(random_int(200,1000));
             $nomade->setStatut('Autre');
+            $nomade->setPresentation($faker->text(100));
             $nomade->setDateNaissance($faker->dateTime);
             $nomade->setIsConfirmed(1);
             $password = $this->encoder->encodePassword($nomade, 'nomade' . $i);
@@ -82,6 +83,7 @@ class AppFixtures extends Fixture
                 $annonce->setDateDisponible($faker->dateTimeBetween('0 years'));
                 $annonce->setSuperficie(random_int(5,50));
                 $annonce->setTarif(random_int(250,999));
+                $annonce->setDescription($faker->text(500));
                 $annonce->setProprio($proprietaire);
                 $annonce->setPublicationAuth(1);
                 $manager->persist($annonce);
