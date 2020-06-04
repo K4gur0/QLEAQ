@@ -134,9 +134,9 @@ class NomadeType extends AbstractType
                 )
             )
 
-            ->add('photo_nomade', FileType::class, [
-                'required' => 'false',
-            ])
+            //->add('photo_nomade', FileType::class, [
+            //    'required' => 'false',
+            //])
         ;
     }
 

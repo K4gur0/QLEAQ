@@ -24,11 +24,11 @@ class NomadeController extends AbstractController
      * @Route("/", name="presentation")
      *
      */
-
     public function presentationLoc(){
 
         return $this->render('nomade/presentation.html.twig');
     }
+
 
     /**
      * @Route("/offres", name="offres")
@@ -252,6 +252,7 @@ class NomadeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
+
 
 
             $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
