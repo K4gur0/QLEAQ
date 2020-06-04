@@ -6,7 +6,6 @@ use App\Repository\AnnonceRepository;
 use App\Repository\ProprietaireRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,11 +29,12 @@ class NomadeController extends AbstractController
     }
 
 
+
+
     /**
      * @Route("/offres", name="offres")
      */
     public function offres(){
-
         return $this->render('nomade/offres.html.twig');
     }
 
@@ -42,13 +42,9 @@ class NomadeController extends AbstractController
 
 
 
-
-
-
-
     /**
      * Page d'accueil une foi le Nomade connecté
-     * @Route("/accueil", name="home")
+     * @Route("/accueil-nomade", name="home")
      * @IsGranted("ROLE_USER")
      *
      */
@@ -57,6 +53,7 @@ class NomadeController extends AbstractController
         $annonce = $annonceRepository->orderByDate();
         $proprio = $proprietaireRepository->findAll();
         $annoncePublie = $annonceRepository->findByPublication(true);
+        $nomade = $this->getUser();
 
         if ($annoncePublie == false) {
 
@@ -64,6 +61,7 @@ class NomadeController extends AbstractController
                  'annonce' => $annonce,
                  'proprio' => $proprio,
                  'noAnnonces' => $annoncePublie,
+                 'nomade' => $nomade,
              ]);
             }
 
@@ -71,9 +69,12 @@ class NomadeController extends AbstractController
             'annonce' => $annonce,
             'proprio' => $proprio,
             'noAnnonces' => $annoncePublie,
+            'nomade' => $nomade,
         ]);
 
     }
+
+
 
 
     /**
@@ -91,36 +92,10 @@ class NomadeController extends AbstractController
 
             $nomade = $nomadeForm->getData();
 
-            //$photoProfile = $nomadeForm->get('photo_profile')->getData();
-
-            //if ($photoProfile) {
-
-            //    $originalFilename = pathinfo($photoProfile->getClientOriginalName(), PATHINFO_FILENAME);
-            //    // this is needed to safely include the file name as part of the URL
-            //    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-            //    $newFilename = $safeFilename.'-'.uniqid().'.'.$photoProfile->guessExtension();
-            //    //$newFilename = $nomade->getNom() . '.' . $nomade->getPrenom() . '-id_' . $nomade->getId() . '.' . $photoProfile->guessExtension();
-
-            //    try {
-            //        $photoProfile->move(
-            //            $this->getParameter('dossier_photo_nomade'),
-            //            $newFilename
-            //        );
-            //    } catch (FileException $e) {
-            //        // ... handle exception if something happens during file upload
-            //    }
-
-            //    $nomade->setPhotoProfile($newFilename);
-            //}
-
-            // Mise à jour de l'entité en BDD
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($nomade);
             $entityManager->flush();
 
-
-            // Ajout d'un message flash
             $this->addFlash('success', 'Votre profil a été mis à jour.');
 
         }else if ($nomadeForm->isSubmitted()) {
@@ -135,92 +110,6 @@ class NomadeController extends AbstractController
 
 
 
-    /*
-     * @Route("/remove_picture", name="remove_picture")
-     * @IsGranted("ROLE_USER")
-     */
-    /*
-    public function supprimerPhotoNomade(Filesystem $filesystem){
-
-        $nomade = $this->getUser();
-
-        $photoProfileActuelle = $nomade->getPhotoProfile();
-        $filesystem->remove($this->getParameter('dossier_photo_nomade') . '/' . $photoProfileActuelle);
-
-        $nomade->setPhotoProfile(null);
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($nomade);
-        $entityManager->flush();
-
-
-        // Ajout d'un message flash
-        $this->addFlash('warning', 'Photo de profile retirée !');
-
-        return $this->redirectToRoute('nomade_nomade');
-
-    }
-    */
-
-
-
-
-//    /**
-//     * @Route("/add_favorite_{id}", name="add_favorite")
-//     * @IsGranted("ROLE_USER")
-//     */
-//    public function addFavorite(AnnonceRepository $annonceRepository, $id){
-//        $annonce = $annonceRepository->find($id);
-//
-//        $nomade = $this->getUser();
-//
-//        $nomadeId = $annonce->getNomade($nomade)->current();
-//
-//        $annonce->addNomade($nomade);
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $entityManager->persist($annonce);
-//        $entityManager->flush();
-//
-//        $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
-//        return $this->redirectToRoute('nomade_home', [
-//            'nomade' => $nomade,
-//            'nomadeId' => $nomadeId,
-//            'annonce' => $annonce,
-//        ]);
-//
-//
-//    }
-//
-//
-//
-//    /**
-//     * @Route("/remove_favorite_{id}", name="remove_favorite")
-//     * @IsGranted("ROLE_USER")
-//     */
-//    public function removeFavorite(AnnonceRepository $annonceRepository, $id){
-//        $annonce = $annonceRepository->find($id);
-//
-//        $nomade = $this->getUser();
-//
-//        $nomadeId = $annonce->getNomade($nomade)->current();
-//
-//            $annonce->removeNomade($nomade);
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($annonce);
-//            $entityManager->flush();
-//
-//
-//
-//            $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
-//            return $this->redirectToRoute('nomade_home', [
-//                'nomade' => $nomade,
-//                'nomadeId' => $nomadeId,
-//                'annonce' => $annonce,
-//            ]);
-//
-//    }
-
-
     /**
      * @Route("/favorite_{id}", name="add_favorite")
      * @IsGranted("ROLE_USER")
@@ -232,14 +121,11 @@ class NomadeController extends AbstractController
 
         $nomadeId = $annonce->getNomade($nomade)->current();
 
-
-
         if ($nomade == $nomadeId){
             $annonce->removeNomade($nomade);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
-
 
             $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
             return $this->redirectToRoute('nomade_home', [

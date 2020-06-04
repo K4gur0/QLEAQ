@@ -88,11 +88,9 @@
                 <div class="media-content column has-text-centered">
                     <div class="column" style="margin-bottom: 30px;">
 
-
-                            <div class="buttons">
-                                <a class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Mettre en favorie</a>
+                            <div class="buttons" style="justify-content: end">
+                                    <a class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favories</a>
                             </div>
-
 
                     </div>
                 </div>
@@ -105,7 +103,4 @@
 
     {% endif %}
 
-
-
-{#{% endfor %}#}
 {% endfor %}
