@@ -1,9 +1,5 @@
 
 {% for annonce in annonce %}
-{#{% for proprio in proprio %}#}
-
-
-
 
     {% if annonce.publicationauth == true %}
         <div class="column is-centered box">
@@ -92,15 +88,11 @@
                 <div class="media-content column has-text-centered">
                     <div class="column" style="margin-bottom: 30px;">
 
-{#                        {% if nomade == nomadeId %}#}
-{#                            <div class="buttons">#}
-{#                                <a class="button is-outlined is-warning" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Retirer des favories</a>#}
-{#                            </div>#}
-{#                        {% else %}#}
+
                             <div class="buttons">
                                 <a class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Mettre en favorie</a>
                             </div>
-{#                        {% endif %}#}
+
 
                     </div>
                 </div>

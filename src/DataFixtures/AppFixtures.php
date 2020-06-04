@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Admin;
+use App\Entity\Annonce;
 use App\Entity\Nomade;
 use App\Entity\Proprietaire;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -53,9 +54,9 @@ class AppFixtures extends Fixture
             $manager->persist($nomade);
         }
 
-        for ($i=0 ; $i < 10; $i++){
+        for ($k=0 ; $k < 10; $k++){
             $proprietaire = new Proprietaire();
-            $proprietaire->setEmail('proprio' . $i . '@gmail.com');
+            $proprietaire->setEmail('proprio' . $k . '@gmail.com');
             $proprietaire->setRaisonSocial($faker->lastName);
             $proprietaire->setAdresse($faker->streetAddress);
             $proprietaire->setCp(random_int(12000,99000));
@@ -65,11 +66,30 @@ class AppFixtures extends Fixture
             $proprietaire->setStatut('Autre');
             $proprietaire->setIsConfirmed(1);
             $proprietaire->setRefus(1);
-            $password = $this->encoder->encodePassword($proprietaire, 'proprio' . $i);
+            $password = $this->encoder->encodePassword($proprietaire, 'proprio' . $k);
             $proprietaire->setPassword($password);
             $proprietaire->setRoles(['ROLE_PROPRIO']);
             $manager->persist($proprietaire);
+
+            for ($j=0 ; $j < 3; $j++){
+                $annonce = new Annonce();
+                $annonce->setTitre('Annonce N°' . $k . $j);
+                $annonce->setTypeLogement('Autre');
+                $annonce->setAdresse($faker->streetAddress);
+                $annonce->setCp(random_int(12000,99000));
+                $annonce->setVille($faker->city);
+                $annonce->setNombreMaxResidents(random_int(1,4));
+                $annonce->setDateDisponible($faker->dateTimeBetween('0 years'));
+                $annonce->setSuperficie(random_int(5,50));
+                $annonce->setTarif(random_int(250,999));
+                $annonce->setProprio($proprietaire);
+                $annonce->setPublicationAuth(1);
+                $manager->persist($annonce);
+            }
         }
+
+
+
 
         $manager->flush();
     }
