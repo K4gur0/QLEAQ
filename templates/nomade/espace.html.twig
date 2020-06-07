@@ -3,11 +3,13 @@
 {% block title %}{% include 'includes/qleaq_title.html.twig' %}Accueil Locataire{% endblock %}
 
 {% block content %}
+
+
+{% block espace_locataire %}
+
     <section>
 
         {% if is_granted('ROLE_USER') %}
-
-
 
             <section class="hero is-medium is-primary is-bold">
                 <div class="hero-body">
@@ -26,7 +28,9 @@
 
                 <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
 
-                <h2 class="subtitle is-3">Annonces hébergement :</h2>
+                <div class="column">
+                    <h2 class="subtitle is-3">Annonces hébergement :</h2>
+                </div>
 
                 <hr style="border:black 1px solid">
 
@@ -39,7 +43,6 @@
                         <article class="message is-info">
                             <div class="message-header">
                                 <p>Oops !</p>
-                                {#<button class="delete" aria-label="delete"></button>#}
                             </div>
                             <div class="message-body">
                                 <p>
@@ -51,23 +54,23 @@
                     </div>
                 {% endif %}
 
-                <div class="columns is-centered">
 
-                    <div class="column">
 
-                        <div class="">{% include('includes/listeAnnonces.html.twig') %}</div>
+                {% block annonces %}
 
+                    <div class="pagination" style="justify-content: center">
+                        {{ knp_pagination_render(annonce) }}
                     </div>
 
-                    <div class="column is-one-fifth box is-fullheight">
-
-                        <div class="">
-                            {#                        {% include('includes/listeAnnonces.html.twig') %}#}
-                        </div>
-
+                    <div class="is-multiline columns">
+                        {% include('nomade/listeAnnonces.html.twig') %}
                     </div>
 
-                </div>
+                    <div class="pagination" style="justify-content: center">
+                        {{ knp_pagination_render(annonce) }}
+                    </div>
+
+                {% endblock %}
 
 
 
@@ -92,6 +95,8 @@
         {% endif %}
 
     </section>
+
+    {% endblock %}
 
 
 

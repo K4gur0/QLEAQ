@@ -3,18 +3,7 @@
 {% if annonce == false %}
     N/C
 {% else %}
-{#    <div class="box">#}
-{#        {{ annonce.titre }}#}
-{#        {{ annonce.typelogement }}#}
-{#        {{ annonce.datedisponible|date('d/m/Y') }}#}
-{#        {{ annonce.nombremaxresidents }}#}
-{#        {{ annonce.superficie }}#}
-{#        {{ annonce.adresse }}#}
-{#        {{ annonce.cp }}#}
-{#        {{ annonce.ville }}#}
-{#        {{ annonce.description }}#}
-{#        {{ annonce.datecreation|date('d/m/Y à h:m:s') }}#}
-{#    </div>#}
+
 
     <div class="columns is-centered">
 
@@ -36,7 +25,7 @@
                                 <i class="fas fa-exclamation-triangle"></i>
                             </span>
                         {% elseif annonce.publicationauth == true %}
-                            <div class="tag is-success">Annonce publiée</div>
+                            <div class="tag is-success">Annonce publiée le {{ annonce.datepublication|date('d/m/Y à H:i') }}</div>
                         {% endif %}
 
                         <h3 class="subtitle is-size-6">
@@ -44,12 +33,6 @@
                         </h3>
                     </div>
 
-
-{#                    <div class="media-left">#}
-{#                        <figure class="image is-48x48">#}
-{#                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">#}
-{#                        </figure>#}
-{#                    </div>#}
 
                 </div>
 
@@ -104,13 +87,18 @@
 
                 </div>
 
-                <div class="columns" style="justify-content: space-between;">
+                <div class="columns buttons" style="justify-content: space-between;">
 
-                    <a href="{{ path('proprio_edit_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined is-flex column" {% if annonce.publicationauth == true %}disabled title="Veuillez retirer la publication de l'annonce avant de la modifier" {% endif %}>
-
+                    {% if annonce.publicationauth == true %}
+                        <a class="button is-success is-outlined is-flex column " disabled title="Veuillez retirer la publication de l'annonce avant de la modifier">
                             <span>Modifier</span>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('proprio_edit_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined is-flex column">
+                            <span>Modifier</span>
+                        </a>
+                    {% endif %}
 
-                    </a>
                     {% if annonce.publicationauth == null or annonce.publicationauth == false %}
 
                         <a href="{{ path('proprio_publication_annonce', {id: annonce.id} ) }}" class="button is-success is-outlined is-flex column">

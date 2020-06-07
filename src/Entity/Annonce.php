@@ -98,6 +98,11 @@ class Annonce
      */
     private $nomade;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $datePublication;
+
     public function __construct()
     {
         $this->date_creation = new \DateTime();
@@ -291,6 +296,18 @@ class Annonce
         if ($this->nomade->contains($nomade)) {
             $this->nomade->removeElement($nomade);
         }
+
+        return $this;
+    }
+
+    public function getDatePublication(): ?\DateTimeInterface
+    {
+        return $this->datePublication;
+    }
+
+    public function setDatePublication(?\DateTimeInterface $datePublication): self
+    {
+        $this->datePublication = $datePublication;
 
         return $this;
     }

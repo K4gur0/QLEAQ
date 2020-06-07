@@ -1,0 +1,36 @@
+
+{% for annonce in annonce %}
+
+    {% if annonce.publicationauth == true %}
+
+        <div class="column is-one-third">
+            <div class="card">
+
+                <header class="card-header">
+                    <p class="card-header-title is-size-5" style="justify-content: center;">
+                        {{ annonce.titre }}
+                    </p>
+                </header>
+
+                <div class="card-content">
+                    <div class="content">
+                        <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.typelogement }}</strong> </h4>
+                        <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.superficie }}m²</strong> </h4>
+                        <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4>
+                        <br>
+                        <time style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
+                    </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
+                    <a class="card-footer-item" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favories</a>
+                </footer>
+
+            </div>
+        </div>
+
+
+    {% endif %}
+
+{% endfor %}

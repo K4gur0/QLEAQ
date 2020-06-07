@@ -10,6 +10,7 @@ use App\Form\ProprioType;
 use App\Notif\NotifProprio;
 use App\Repository\AnnonceRepository;
 use App\Repository\ProprietaireRepository;
+use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +47,6 @@ class ProprioController extends AbstractController
 
 
             $annonces = $annonceRepository->findById($this->getUser()->getId());
-        //    dd($annonces);
             $proprio = $this->getUser();
 
 
@@ -127,19 +127,21 @@ class ProprioController extends AbstractController
         $proprio = $this->getUser();
         $annonce = $annonceRepository->find($id);
         $publication = $annonce->getPublicationAuth();
+        $date = new \DateTime();
 
         if ($publication == false or null){
             $annonce->setPublicationAuth(true);
+            $annonce->setDatePublication($date);
             $entityManager->persist($annonce);
             $entityManager->flush();
-            $this->addFlash('success', 'Votre Annonce : ' . $annonce->getTitre() . ' est maintenant visible par les Locataires');
+            $this->addFlash('success', 'Votre Annonce : "' . $annonce->getTitre() . '"" est maintenant visible par les Locataires');
 
         }else{
             $annonce->setPublicationAuth(false);
+            $annonce->setDatePublication(null);
             $entityManager->persist($annonce);
             $entityManager->flush();
-            $this->addFlash('warning', 'Votre Annonce : ' . $annonce->getTitre() . ' vient d\'être retiréé des publications');
-
+            $this->addFlash('warning', 'Votre Annonce : "' . $annonce->getTitre() . '" vient d\'être retiréé des publications');
         }
         return $this->redirectToRoute('proprio_home');
     }

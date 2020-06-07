@@ -39,13 +39,13 @@ class AppFixtures extends Fixture
             $nomade->setNom($faker->lastName);
             $nomade->setPrenom($faker->firstName);
             $nomade->setAdresse($faker->streetAddress);
-            $nomade->setCp('91000');
+            $nomade->setCp($faker->numberBetween(12,99) . "000");
             $nomade->setDateCreationCompte($faker->dateTime);
             $nomade->setVille($faker->city);
-            $nomade->setTelephone('0102030405');
+            $nomade->setTelephone('01' . $faker->numberBetween(10000000,99999999));
             $nomade->setTypeSejour('Autre');
             $nomade->setSexe($faker->randomElement(array('Féminin','Masculin')));
-            $nomade->setBudget(random_int(200,1000));
+            $nomade->setBudget($faker->numberBetween(200,1000));
             $nomade->setStatut('Autre');
             $nomade->setPresentation($faker->text(100));
             $nomade->setDateNaissance($faker->dateTime);
@@ -60,7 +60,7 @@ class AppFixtures extends Fixture
             $proprietaire->setEmail('proprio' . $k . '@gmail.com');
             $proprietaire->setRaisonSocial($faker->lastName);
             $proprietaire->setAdresse($faker->streetAddress);
-            $proprietaire->setCp(random_int(12000,99000));
+            $proprietaire->setCp($faker->numberBetween(12,99) . "000");
             $proprietaire->setDateCreationCompte($faker->dateTime);
             $proprietaire->setVille($faker->city);
             $proprietaire->setTelephone('0102030405');
@@ -74,15 +74,15 @@ class AppFixtures extends Fixture
 
             for ($j=0 ; $j < 3; $j++){
                 $annonce = new Annonce();
-                $annonce->setTitre('Annonce N°' . $k . $j);
+                $annonce->setTitre($faker->words(3,true));
                 $annonce->setTypeLogement('Autre');
                 $annonce->setAdresse($faker->streetAddress);
-                $annonce->setCp(random_int(12000,99000));
+                $annonce->setCp($faker->numberBetween(12,99) . "000");
                 $annonce->setVille($faker->city);
-                $annonce->setNombreMaxResidents(random_int(1,4));
+                $annonce->setNombreMaxResidents($faker->numberBetween(1,4));
                 $annonce->setDateDisponible($faker->dateTimeBetween('0 years'));
-                $annonce->setSuperficie(random_int(5,50));
-                $annonce->setTarif(random_int(250,999));
+                $annonce->setSuperficie($faker->numberBetween(5,50));
+                $annonce->setTarif($faker->numberBetween(250,999));
                 $annonce->setDescription($faker->text(500));
                 $annonce->setProprio($proprietaire);
                 $annonce->setPublicationAuth(1);

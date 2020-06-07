@@ -128,7 +128,7 @@ div.register label
   color: #006eaa;
 }
 
-footer a
+footer.footer a
 {
   color: white;
 }
@@ -137,13 +137,13 @@ select::placeholder{
   color: #dfdfdf;
 }
 
-footer div
+footer.footer div
 {
   width: 70%;
   margin: auto !important;
 }
 
-footer div div
+footer.footer div div
 {
   display: flex !important;
   flex-direction: column !important;
@@ -152,12 +152,12 @@ footer div div
   align-items: center;
   margin: auto;
 }
-footer div div a
+footer.footer div div a
 {
   width: auto;
   transition: 0.2s;
 }
-footer div div a:hover
+footer.footer div div a:hover
 {
   color: #dfdfdf;
 }

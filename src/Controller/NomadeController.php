@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Form\NomadeType;
 use App\Repository\AnnonceRepository;
 use App\Repository\ProprietaireRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,9 +49,14 @@ class NomadeController extends AbstractController
      * @IsGranted("ROLE_USER")
      *
      */
-    public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository){
+    public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository, PaginatorInterface $paginator, Request $request){
 
-        $annonce = $annonceRepository->orderByDate();
+//        $annonce = $annonceRepository->orderByDate();
+        $annonce = $paginator->paginate(
+            $annonceRepository->findByPublication(true),
+            $request->query->getInt('page', 1),
+            9
+        );
         $proprio = $proprietaireRepository->findAll();
         $annoncePublie = $annonceRepository->findByPublication(true);
         $nomade = $this->getUser();
@@ -73,6 +79,24 @@ class NomadeController extends AbstractController
         ]);
 
     }
+
+
+    /**
+     * Montrer en détail une annonce
+     * @Route("/annonce-{id}", name="annonce_detail")
+     * @IsGranted("ROLE_USER")
+     *
+     */
+    public function annonceDetail(AnnonceRepository $annonceRepository, $id){
+        $annonce = $annonceRepository->findById2($id);
+
+        return $this->render('nomade/annonceDetail.html.twig',[
+            'annonce' => $annonce,
+            'id' => $id,
+            'noAnnonces' => true,
+        ]);
+    }
+
 
 
 
