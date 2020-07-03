@@ -41,13 +41,11 @@ class NomadeRepository extends ServiceEntityRepository implements PasswordUpgrad
       * @return Nomade[] Returns an array of Nomade objects
       */
 
-//    public function findByExampleField($value)
+//    public function findByFavorie($value)
 //    {
 //        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
+//            ->andWhere('n.favorie = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;

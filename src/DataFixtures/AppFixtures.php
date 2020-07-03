@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
                 $annonce->setCp($faker->numberBetween(12,99) . "000");
                 $annonce->setVille($faker->city);
                 $annonce->setNombreMaxResidents($faker->numberBetween(1,4));
-                $annonce->setDateDisponible($faker->dateTimeBetween('0 years'));
+                $annonce->setDateDisponible($faker->dateTimeBetween('0 years','+1 year'));
                 $annonce->setSuperficie($faker->numberBetween(5,50));
                 $annonce->setTarif($faker->numberBetween(250,999));
                 $annonce->setDescription($faker->text(500));

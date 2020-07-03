@@ -93,15 +93,16 @@ class Annonce
      */
     private $proprio;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Nomade", inversedBy="annonces")
-     */
-    private $nomade;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datePublication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Nomade::class, inversedBy="favorie")
+     */
+    private $nomade;
 
     public function __construct()
     {
@@ -274,32 +275,6 @@ class Annonce
         return $this;
     }
 
-    /**
-     * @return Collection|Nomade[]
-     */
-    public function getNomade(): Collection
-    {
-        return $this->nomade;
-    }
-
-    public function addNomade(Nomade $nomade): self
-    {
-        if (!$this->nomade->contains($nomade)) {
-            $this->nomade[] = $nomade;
-        }
-
-        return $this;
-    }
-
-    public function removeNomade(Nomade $nomade): self
-    {
-        if ($this->nomade->contains($nomade)) {
-            $this->nomade->removeElement($nomade);
-        }
-
-        return $this;
-    }
-
     public function getDatePublication(): ?\DateTimeInterface
     {
         return $this->datePublication;
@@ -308,6 +283,18 @@ class Annonce
     public function setDatePublication(?\DateTimeInterface $datePublication): self
     {
         $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    public function getNomade(): ?Nomade
+    {
+        return $this->nomade;
+    }
+
+    public function setNomade(?Nomade $nomade): self
+    {
+        $this->nomade = $nomade;
 
         return $this;
     }

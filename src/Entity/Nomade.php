@@ -134,16 +134,16 @@ class Nomade implements UserInterface
     private $type_sejour;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", mappedBy="nomade")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="nomade")
      */
-    private $annonces;
-
+    private $favorie;
 
 
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
         $this->annonces = new ArrayCollection();
+        $this->favorie = new ArrayCollection();
     }
 
 
@@ -444,34 +444,6 @@ class Nomade implements UserInterface
     }
 
     /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonces(): Collection
-    {
-        return $this->annonces;
-    }
-
-    public function addAnnonce(Annonce $annonce): self
-    {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->addNomade($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        if ($this->annonces->contains($annonce)) {
-            $this->annonces->removeElement($annonce);
-            $annonce->removeNomade($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return string|null
      */
     public function getNomPhoto(): ?string
@@ -504,6 +476,37 @@ class Nomade implements UserInterface
     public function setPhotoNomade(?File $photoNomade): Nomade
     {
         $this->photoNomade = $photoNomade;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavorie(): Collection
+    {
+        return $this->favorie;
+    }
+
+    public function addFavorie(Annonce $favorie): self
+    {
+        if (!$this->favorie->contains($favorie)) {
+            $this->favorie[] = $favorie;
+            $favorie->setNomade($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorie(Annonce $favorie): self
+    {
+        if ($this->favorie->contains($favorie)) {
+            $this->favorie->removeElement($favorie);
+            // set the owning side to null (unless already changed)
+            if ($favorie->getNomade() === $this) {
+                $favorie->setNomade(null);
+            }
+        }
+
         return $this;
     }
 

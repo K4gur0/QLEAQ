@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Form\NomadeType;
 use App\Repository\AnnonceRepository;
+use App\Repository\NomadeRepository;
 use App\Repository\ProprietaireRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -138,39 +139,43 @@ class NomadeController extends AbstractController
      * @Route("/favorite_{id}", name="add_favorite")
      * @IsGranted("ROLE_USER")
      */
-    public function annonceFavorite(AnnonceRepository $annonceRepository, $id){
+    public function addFavorite(AnnonceRepository $annonceRepository, $id){
+        $annonce = $annonceRepository->find($id);
+        $nomade = $this->getUser();
+        $nomade->addFavorie($annonce);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($nomade);
+        $entityManager->flush();
+
+        dump($nomade->getFavorie());
+        dd($annonce);
+
+        $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
+        return $this->redirectToRoute('nomade_home', [
+            'nomade' => $nomade,
+            'annonce' => $annonce,
+        ]);
+
+    }
+
+    /**
+     * @Route("/favorite_{id}", name="remove_favorite")
+     * @IsGranted("ROLE_USER")
+     */
+    public function removeFavorite(AnnonceRepository $annonceRepository, $id){
         $annonce = $annonceRepository->find($id);
 
         $nomade = $this->getUser();
+        $nomade->removeFavorie($annonce);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($nomade);
+        $entityManager->flush();
 
-        $nomadeId = $annonce->getNomade($nomade)->current();
-
-        if ($nomade == $nomadeId){
-            $annonce->removeNomade($nomade);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
-
-            $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
-            return $this->redirectToRoute('nomade_home', [
-                'nomade' => $nomade,
-                'nomadeId' => $nomadeId,
-                'annonce' => $annonce,
-            ]);
-        }
-            $annonce->addNomade($nomade);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
-
-
-
-            $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favories');
-            return $this->redirectToRoute('nomade_home', [
-                'nomade' => $nomade,
-                'nomadeId' => $nomadeId,
-                'annonce' => $annonce,
-            ]);
+        $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favories');
+        return $this->redirectToRoute('nomade_home', [
+            'nomade' => $nomade,
+            'annonce' => $annonce,
+        ]);
 
 
     }
