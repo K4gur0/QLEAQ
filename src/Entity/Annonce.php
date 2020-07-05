@@ -100,15 +100,15 @@ class Annonce
     private $datePublication;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Nomade::class, inversedBy="favorie")
+     * @ORM\ManyToMany(targetEntity=Nomade::class, mappedBy="favori")
      */
-    private $nomade;
+    private $nomades;
 
     public function __construct()
     {
         $this->date_creation = new \DateTime();
         $this->publicationAuth = false;
-        $this->nomade = new ArrayCollection();
+        $this->nomades = new ArrayCollection();
     }
 
 
@@ -287,14 +287,30 @@ class Annonce
         return $this;
     }
 
-    public function getNomade(): ?Nomade
+    /**
+     * @return Collection|Nomade[]
+     */
+    public function getNomades(): Collection
     {
-        return $this->nomade;
+        return $this->nomades;
     }
 
-    public function setNomade(?Nomade $nomade): self
+    public function addNomade(Nomade $nomade): self
     {
-        $this->nomade = $nomade;
+        if (!$this->nomades->contains($nomade)) {
+            $this->nomades[] = $nomade;
+            $nomade->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNomade(Nomade $nomade): self
+    {
+        if ($this->nomades->contains($nomade)) {
+            $this->nomades->removeElement($nomade);
+            $nomade->removeFavori($this);
+        }
 
         return $this;
     }

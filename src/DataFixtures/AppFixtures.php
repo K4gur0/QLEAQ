@@ -81,6 +81,7 @@ class AppFixtures extends Fixture
                 $annonce->setVille($faker->city);
                 $annonce->setNombreMaxResidents($faker->numberBetween(1,4));
                 $annonce->setDateDisponible($faker->dateTimeBetween('0 years','+1 year'));
+                $annonce->setDatePublication($faker->dateTimeBetween('-1 years','0 year'));
                 $annonce->setSuperficie($faker->numberBetween(5,50));
                 $annonce->setTarif($faker->numberBetween(250,999));
                 $annonce->setDescription($faker->text(500));
@@ -89,8 +90,6 @@ class AppFixtures extends Fixture
                 $manager->persist($annonce);
             }
         }
-
-
 
 
         $manager->flush();

@@ -25,10 +25,10 @@
 
                 <footer class="card-footer">
                     <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
-                    {% if nomade.favorie == annonce %}
-                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}">Retirer des favories</a>
+                    {% if annonce in nomade.favori %}
+                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
                     {% else %}
-                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favories</a>
+                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favoris</a>
                     {% endif %}
                 </footer>
 

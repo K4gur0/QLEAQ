@@ -134,16 +134,14 @@ class Nomade implements UserInterface
     private $type_sejour;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="nomade")
+     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="nomades")
      */
-    private $favorie;
-
+    private $favori;
 
     public function __construct()
     {
         $this->date_creation_compte = new \DateTime();
-        $this->annonces = new ArrayCollection();
-        $this->favorie = new ArrayCollection();
+        $this->favori = new ArrayCollection();
     }
 
 
@@ -480,35 +478,29 @@ class Nomade implements UserInterface
     }
 
     /**
-     * @return Collection|Annonce[]
+     * @return Collection|annonce[]
      */
-    public function getFavorie(): Collection
+    public function getFavori(): Collection
     {
-        return $this->favorie;
+        return $this->favori;
     }
 
-    public function addFavorie(Annonce $favorie): self
+    public function addFavori(Annonce $favori): self
     {
-        if (!$this->favorie->contains($favorie)) {
-            $this->favorie[] = $favorie;
-            $favorie->setNomade($this);
+        if (!$this->favori->contains($favori)) {
+            $this->favori[] = $favori;
         }
 
         return $this;
     }
 
-    public function removeFavorie(Annonce $favorie): self
+    public function removeFavori(Annonce $favori): self
     {
-        if ($this->favorie->contains($favorie)) {
-            $this->favorie->removeElement($favorie);
-            // set the owning side to null (unless already changed)
-            if ($favorie->getNomade() === $this) {
-                $favorie->setNomade(null);
-            }
+        if ($this->favori->contains($favori)) {
+            $this->favori->removeElement($favori);
         }
 
         return $this;
     }
-
 
 }
