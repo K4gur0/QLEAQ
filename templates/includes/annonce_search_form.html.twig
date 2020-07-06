@@ -2,7 +2,7 @@
 
     <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
 
-    <div class="button">
+    <div class="button" id="dropdown-filtres">
         <span>Filtres</span>
         <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -14,9 +14,14 @@
 
 
 
-<div class="column" style="align-items: end;justify-content: end;display: flex">
+<div class="column" style="align-items: end;justify-content: end;display: flex;position: relative;">
 
-    <div class="box has-background-primary">
+
+
+    <div id="block-filtres" class="box" style="position: absolute;top: 0;z-index: 5;display: none;background: rgba(0,110,170,0.91)">
+
+        {{ form_start(form) }}
+
         <label class="has-text-centered has-text-weight-bold column box" for="">
             <p class="subtitle">
                 Loyer
@@ -24,25 +29,35 @@
 
             <div class="control" style="margin: 0 .20rem">
 
-                <div class="field has-addons">
+                <div class="field has-addons" style="justify-content: center;">
                     <p class="control">
                         <a class="button is-static has-text-weight-normal">
                             Max
                         </a>
                     </p>
+                    <div class="control">
+                        {{ form_row(form.tarifMax) }}
+                    </div>
                     <p class="control">
-                        <input class="input" type="text">
+                        <a class="button is-static">
+                            €
+                        </a>
                     </p>
                 </div>
 
-                <div class="field has-addons">
+                <div class="field has-addons" style="justify-content: center;">
                     <p class="control">
                         <a class="button is-static has-text-weight-normal">
                             Min
                         </a>
                     </p>
+                    <div class="control">
+                        {{ form_row(form.tarifMin) }}
+                    </div>
                     <p class="control">
-                        <input class="input" type="text">
+                        <a class="button is-static">
+                            €
+                        </a>
                     </p>
                 </div>
 
@@ -58,25 +73,35 @@
 
             <div class="control" style="margin: 0 .20rem">
 
-                <div class="field has-addons">
+                <div class="field has-addons" style="justify-content: center;">
                     <p class="control">
                         <a class="button is-static has-text-weight-normal">
                             Max
                         </a>
                     </p>
-                    <p class="control">
+                    <div class="control">
                         <input class="input" type="text">
+                    </div>
+                    <p class="control">
+                        <a class="button is-static">
+                            m²
+                        </a>
                     </p>
                 </div>
 
-                <div class="field has-addons">
+                <div class="field has-addons" style="justify-content: center;">
                     <p class="control">
                         <a class="button is-static has-text-weight-normal">
                             Min
                         </a>
                     </p>
-                    <p class="control">
+                    <div class="control">
                         <input class="input" type="text">
+                    </div>
+                    <p class="control">
+                        <a class="button is-static">
+                            m²
+                        </a>
                     </p>
                 </div>
 
@@ -85,12 +110,16 @@
 
         <div class="field has-addons column" style="justify-content: center">
             <p class="control">
-                <a class="button is-info">
+                <button class="button is-info" type="submit">
                     Rechercher
-                </a>
+                </button>
             </p>
         </div>
+
+        {{ form_end(form) }}
+
     </div>
+
 
 
 </div>

@@ -6,6 +6,7 @@ use App\Entity\AnnonceSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,18 +15,22 @@ class AnnonceSearchFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('loyerMin', IntegerType::class,[
+            ->add('tarifMin', NumberType::class,[
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'ex : 350'
+                    'class' => 'input',
+                    'title' => 'Loyer minimum',
+                    'placeholder' => 'ex : 350',
                 ]
             ])
-            ->add('loyerMax', IntegerType::class,[
+            ->add('tarifMax', NumberType::class,[
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'ex : 700'
+                    'class' => 'input',
+                    'title' => 'Loyer maximum',
+                    'placeholder' => 'ex : 700',
                 ]
             ])
         ;

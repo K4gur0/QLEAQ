@@ -54,27 +54,52 @@ class NomadeController extends AbstractController
      */
     public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository, PaginatorInterface $paginator, Request $request){
 
-
+        $proprio = $proprietaireRepository->findAll();
+        $annoncePublie = $annonceRepository->findByPublication(true);
+        $nomade = $this->getUser();
         $search = new AnnonceSearch();
         $form = $this->createForm(AnnonceSearchFormType::class, $search);
         $form->handleRequest($request);
-
-
-        if ($form->isSubmitted())
-        {
-
-        }
-
+        $tarifMin = $form->get('tarifMin')->getData();
+        $tarifMax = $form->get('tarifMax')->getData();
 
         $annonce = $paginator->paginate(
             $annonceRepository->findByPublication(true),
             $request->query->getInt('page', 1),
             9
         );
-        $proprio = $proprietaireRepository->findAll();
-        $annoncePublie = $annonceRepository->findByPublication(true);
-        $nomade = $this->getUser();
 
+
+        if ($form->isSubmitted())
+        {
+            if (($tarifMin > $tarifMax) and ($tarifMax != null)){
+                $this->addFlash('danger', 'Erreur d\'interval');
+            }elseif ( ($tarifMin == null) and ($tarifMax != null) ){
+                $annonce = $paginator->paginate(
+                    $annonceRepository->findByTarifMax($tarifMax),
+                    $request->query->getInt('page', 1),
+                    9
+                );
+            }elseif ( ($tarifMax == null) and ($tarifMin != null) ){
+            $annonce = $paginator->paginate(
+                $annonceRepository->findByTarifMin($tarifMin),
+                $request->query->getInt('page', 1),
+                9
+                );
+            }elseif ( ($tarifMax != null) and ($tarifMin != null) ){
+            $annonce = $paginator->paginate(
+                $annonceRepository->findByTarif($tarifMin, $tarifMax),
+                $request->query->getInt('page', 1),
+                9
+            );
+        }
+        }
+
+
+
+
+
+///////////////        IF NO PUBLISHED ARTICLES        ///////////////
         if ($annoncePublie == false) {
 
              return $this->render('nomade/espace.html.twig',[
@@ -84,7 +109,9 @@ class NomadeController extends AbstractController
                  'nomade' => $nomade,
                  'form' => $form->createView(),
              ]);
-            }
+        }
+/////////////////////////////////////////////////////////////////////
+
 
         return $this->render('nomade/espace.html.twig',[
             'annonce' => $annonce,

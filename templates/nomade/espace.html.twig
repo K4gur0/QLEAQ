@@ -101,7 +101,28 @@
     {% endblock %}
 
 
+    <script>
 
+        let dropdownFiltres = document.getElementById('dropdown-filtres');
+        let deployed = false;
+
+        dropdownFiltres.onclick = function () {
+            let blockFiltres = document.getElementById('block-filtres');
+            if (deployed === true)
+            {
+                blockFiltres.style.display = 'none';
+                deployed = false;
+                return deployed;
+            }
+            blockFiltres.style.display = 'initial';
+            deployed = true;
+            return deployed;
+        };
+
+
+
+
+    </script>
 
 
 {% endblock %}

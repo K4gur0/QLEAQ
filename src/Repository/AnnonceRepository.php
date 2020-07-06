@@ -47,6 +47,35 @@ class AnnonceRepository extends ServiceEntityRepository
             ;
     }
 
+    public function  findByTarifMin($value){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.tarif >= :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function  findByTarifMax($value){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.tarif <= :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function  findByTarif($min, $max){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.tarif <= :max AND a.tarif >= :min')
+            ->setParameter('min', $min)
+            ->setParameter('max', $max)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     public function orderByDate()
     {
         return $this->createQueryBuilder('a')

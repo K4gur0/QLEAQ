@@ -136,9 +136,9 @@
                                         <div class="buttons" style="justify-content: end">
                                             <a class="button is-outlined is-primary" href="{{ path('nomade_home', {id: annonce.id}) }}">Retour</a>
                                             {% if annonce in nomade.favori %}
-                                                <a class="button is-outlined is-warning" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
+                                                <a title="Retirer des favoris" class="button is-outlined is-warning" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
                                             {% else %}
-                                                <a class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favoris</a>
+                                                <a title="Ajouter aux favoris" class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favoris</a>
                                             {% endif %}
                                         </div>
 

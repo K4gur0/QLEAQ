@@ -8,46 +8,46 @@ class AnnonceSearch
     /**
      * @var int|null
      */
-    private $loyerMin;
+    private $TarifMin;
 
     /**
      * @var int|null
      */
-    private $loyerMax;
+    private $TarifMax;
 
     /**
      * @return int|null
      */
-    public function getLoyerMin()
+    public function getTarifMin()
     {
-        return $this->loyerMin;
+        return $this->TarifMin;
     }
 
     /**
-     * @param int|null $loyerMin
+     * @param int|null $TarifMin
      * @return AnnonceSearch
      */
-    public function setLoyerMin($loyerMin): AnnonceSearch
+    public function setTarifMin($TarifMin): AnnonceSearch
     {
-        $this->loyerMin = $loyerMin;
+        $this->TarifMin = $TarifMin;
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getLoyerMax()
+    public function getTarifMax()
     {
-        return $this->loyerMax;
+        return $this->TarifMax;
     }
 
     /**
-     * @param int|null $loyerMax
+     * @param int|null $TarifMax
      * @return AnnonceSearch
      */
-    public function setLoyerMax($loyerMax): AnnonceSearch
+    public function setTarifMax($TarifMax): AnnonceSearch
     {
-        $this->loyerMax = $loyerMax;
+        $this->TarifMax = $TarifMax;
         return $this;
     }
 
