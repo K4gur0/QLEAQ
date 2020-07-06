@@ -59,6 +59,13 @@ class NomadeController extends AbstractController
         $form = $this->createForm(AnnonceSearchFormType::class, $search);
         $form->handleRequest($request);
 
+
+        if ($form->isSubmitted())
+        {
+
+        }
+
+
         $annonce = $paginator->paginate(
             $annonceRepository->findByPublication(true),
             $request->query->getInt('page', 1),

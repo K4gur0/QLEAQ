@@ -6,36 +6,49 @@ class AnnonceSearch
 {
 
     /**
-     * @var string|null
+     * @var int|null
      */
-    private $datemin;
+    private $loyerMin;
 
     /**
-     * @var string|null
+     * @var int|null
      */
-    private $datemax;
+    private $loyerMax;
 
-    public function getDatemin()
+    /**
+     * @return int|null
+     */
+    public function getLoyerMin()
     {
-        return $this->datemin;
+        return $this->loyerMin;
     }
 
-    public function setDatemin($datemin): self
+    /**
+     * @param int|null $loyerMin
+     * @return AnnonceSearch
+     */
+    public function setLoyerMin($loyerMin): AnnonceSearch
     {
-        $this->datemin = $datemin;
-
+        $this->loyerMin = $loyerMin;
         return $this;
     }
 
-    public function getDatemax()
+    /**
+     * @return int|null
+     */
+    public function getLoyerMax()
     {
-        return $this->datemax;
+        return $this->loyerMax;
     }
 
-    public function setDatemax($datemax): self
+    /**
+     * @param int|null $loyerMax
+     * @return AnnonceSearch
+     */
+    public function setLoyerMax($loyerMax): AnnonceSearch
     {
-        $this->datemax = $datemax;
-
+        $this->loyerMax = $loyerMax;
         return $this;
     }
+
 }
