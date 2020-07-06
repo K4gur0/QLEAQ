@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\AnnonceSearch;
+use App\Form\AnnonceSearchFormType;
 use App\Form\NomadeType;
 use App\Repository\AnnonceRepository;
 use App\Repository\NomadeRepository;
@@ -52,7 +54,11 @@ class NomadeController extends AbstractController
      */
     public function espace(AnnonceRepository $annonceRepository, ProprietaireRepository $proprietaireRepository, PaginatorInterface $paginator, Request $request){
 
-//        $annonce = $annonceRepository->orderByDate();
+
+        $search = new AnnonceSearch();
+        $form = $this->createForm(AnnonceSearchFormType::class, $search);
+        $form->handleRequest($request);
+
         $annonce = $paginator->paginate(
             $annonceRepository->findByPublication(true),
             $request->query->getInt('page', 1),
@@ -69,6 +75,7 @@ class NomadeController extends AbstractController
                  'proprio' => $proprio,
                  'noAnnonces' => $annoncePublie,
                  'nomade' => $nomade,
+                 'form' => $form->createView(),
              ]);
             }
 
@@ -77,6 +84,7 @@ class NomadeController extends AbstractController
             'proprio' => $proprio,
             'noAnnonces' => $annoncePublie,
             'nomade' => $nomade,
+            'form' => $form->createView(),
         ]);
 
     }

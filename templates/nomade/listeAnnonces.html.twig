@@ -26,9 +26,9 @@
                 <footer class="card-footer">
                     <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
                     {% if annonce in nomade.favori %}
-                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
+                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}"><span class="icon is-medium"><i class="fas fa-2x fa-star"></i></span></a>
                     {% else %}
-                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favoris</a>
+                        <a class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon is-medium"><i class="far fa-2x fa-star"></i></span></a>
                     {% endif %}
                 </footer>
 

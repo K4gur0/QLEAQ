@@ -26,7 +26,33 @@
 
             <section class="section">
 
-                <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
+                <div class="columns is-flex" style="justify-content: space-between">
+
+                    <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
+
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Entrer un mot">
+                        </div>
+
+                        {#{{ form_start(form) }}
+                        <div class="control">
+                            <div class="select">{{ form_row(form.datemin.day) }}</div>
+                            <div class="select">{{ form_row(form.datemin.month) }}</div>
+                            <div class="select">{{ form_row(form.datemin.year) }}</div>
+                        </div>
+                        {{ form_end(form) }}#}
+
+
+                        <div class="control">
+                            <a class="button is-info">
+                                Rechercher
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div class="column">
                     <h2 class="subtitle is-3">Annonces hébergement :</h2>
