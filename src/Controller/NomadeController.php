@@ -60,14 +60,9 @@ class NomadeController extends AbstractController
         $search = new AnnonceSearch();
         $form = $this->createForm(AnnonceSearchFormType::class, $search);
         $form->handleRequest($request);
-        $tarifMin = $form->get('tarifMin')->getData();
-        $tarifMax = $form->get('tarifMax')->getData();
+        $totalAnnonce = count($annoncePublie);
 
-//        $totalCount = $annoncePublie->
-//        dd($totalCount);
-
-
-        if ($form->isSubmitted())
+        if ($form->isSubmitted() and $form->isValid())
         {
             $annonce = $paginator->paginate(
                 $annonceRepository->findByFiltre($search),
@@ -86,6 +81,7 @@ class NomadeController extends AbstractController
 
 
 
+
 ///////////////        IF NO PUBLISHED ARTICLES        ///////////////
         if ($annoncePublie == false) {
 
@@ -95,6 +91,7 @@ class NomadeController extends AbstractController
                  'noAnnonces' => $annoncePublie,
                  'nomade' => $nomade,
                  'form' => $form->createView(),
+                 'compteur' => $totalAnnonce
              ]);
         }
 /////////////////////////////////////////////////////////////////////
@@ -106,6 +103,7 @@ class NomadeController extends AbstractController
             'noAnnonces' => $annoncePublie,
             'nomade' => $nomade,
             'form' => $form->createView(),
+            'compteur' => $totalAnnonce
         ]);
 
     }
