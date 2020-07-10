@@ -6,13 +6,16 @@
         <div class="column is-one-third">
             <div class="card">
 
-                <header class="card-header has-background-primary" style="position: relative;z-index: 1">
-                    <p class="card-header-title is-size-5 has-text-white" style="justify-content: center;">
+                <header class="card-header has-background-info" style="position: relative;z-index: 1">
+                    <p class="card-header-title is-size-5 has-text-white" style="justify-content: center;position: relative">
                         {{ annonce.titre }}
+                        {% if date(annonce.datepublication) > date('-1week') %}
+                            <span id="newAnimation" class="tag has-text-black-bis has-text-weight-bold">Nouveau</span>
+                        {% endif %}
                     </p>
                 </header>
 
-                <time class="has-background-success" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
+                <time class="has-background-primary has-text-white" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
 
                 <div class="card-content">
                     <div class="content">

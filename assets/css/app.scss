@@ -189,6 +189,31 @@ footer.footer div div a:hover
   border-radius: 4px;
 }
 
+#newAnimation{
+  position: absolute;
+  right: 0;
+  top: -10px;
+  animation: pulse 1s infinite;
+  background: #fceabb;
+  background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
+  background: -webkit-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+  background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 );
+}
+
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px 2px rgba(255,255,255,0);
+  }
+  50% {
+    box-shadow: 0 0 5px 2px rgba(255,255,255,1);
+  }
+  100% {
+    box-shadow: 0 0 5px 2px rgba(255,255,255,0);
+  }
+}
+
 
 
 

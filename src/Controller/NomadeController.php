@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @Route("/locataire", name="nomade_")
@@ -61,19 +62,20 @@ class NomadeController extends AbstractController
         $form = $this->createForm(AnnonceSearchFormType::class, $search);
         $form->handleRequest($request);
         $totalAnnonce = count($annoncePublie);
+        $date = new \DateTime();
 
         if ($form->isSubmitted() and $form->isValid())
         {
             $annonce = $paginator->paginate(
                 $annonceRepository->findByFiltre($search),
                 $request->query->getInt('page', 1),
-                9
+                12
             );
         }else{
             $annonce = $paginator->paginate(
-                $annonceRepository->findByPublication(true),
+                $annonceRepository->findByFiltre($search),
                 $request->query->getInt('page', 1),
-                9
+                12
             );
         }
 
@@ -91,7 +93,8 @@ class NomadeController extends AbstractController
                  'noAnnonces' => $annoncePublie,
                  'nomade' => $nomade,
                  'form' => $form->createView(),
-                 'compteur' => $totalAnnonce
+                 'compteur' => $totalAnnonce,
+                 'currentDate' => $date
              ]);
         }
 /////////////////////////////////////////////////////////////////////
@@ -103,7 +106,8 @@ class NomadeController extends AbstractController
             'noAnnonces' => $annoncePublie,
             'nomade' => $nomade,
             'form' => $form->createView(),
-            'compteur' => $totalAnnonce
+            'compteur' => $totalAnnonce,
+            'currentDate' => $date
         ]);
 
     }

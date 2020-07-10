@@ -49,35 +49,6 @@ class AnnonceRepository extends ServiceEntityRepository
             ;
     }
 
-//    public function  findByTarifMin($value){
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.tarif >= :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getResult()
-//            ;
-//    }
-//
-//    public function  findByTarifMax($value){
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.tarif <= :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getResult()
-//            ;
-//    }
-
-//    public function  findByTarif($min, $max){
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.tarif <= :max AND a.tarif >= :min')
-//            ->setParameter('min', $min)
-//            ->setParameter('max', $max)
-//            ->getQuery()
-//            ->getResult()
-//            ;
-//    }
-
-
     public function  findByFiltre(AnnonceSearch $search)
     {
         $query = $this->createQueryBuilder('a')
@@ -98,7 +69,7 @@ class AnnonceRepository extends ServiceEntityRepository
         }
 
         if ($search->getSuperficieMax()){
-            $query->andWhere('a.superficie >= :smax')
+            $query->andWhere('a.superficie <= :smax')
                 ->setParameter('smax', $search->getSuperficieMax())
             ;
         }
@@ -108,6 +79,12 @@ class AnnonceRepository extends ServiceEntityRepository
                 ->setParameter('smin', $search->getSuperficieMin())
             ;
         }
+
+        $query
+            ->orderBy('a.datePublication','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
 
         return $query;
 
