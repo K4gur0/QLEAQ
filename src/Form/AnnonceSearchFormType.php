@@ -33,6 +33,25 @@ class AnnonceSearchFormType extends AbstractType
                     'placeholder' => 'ex : 700',
                 ]
             ])
+
+            ->add('superficieMin', NumberType::class,[
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'input',
+                    'title' => 'Superficie minimum',
+                    'placeholder' => 'ex : 20',
+                ]
+            ])
+            ->add('superficieMax', NumberType::class,[
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'input',
+                    'title' => 'Superficie maximum',
+                    'placeholder' => 'ex : 60',
+                ]
+            ])
         ;
     }
 
@@ -43,5 +62,10 @@ class AnnonceSearchFormType extends AbstractType
             'method' => 'get',
             'csrf_protection' => false,
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return '';
     }
 }

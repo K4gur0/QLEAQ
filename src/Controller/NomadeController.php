@@ -63,36 +63,23 @@ class NomadeController extends AbstractController
         $tarifMin = $form->get('tarifMin')->getData();
         $tarifMax = $form->get('tarifMax')->getData();
 
-        $annonce = $paginator->paginate(
-            $annonceRepository->findByPublication(true),
-            $request->query->getInt('page', 1),
-            9
-        );
+//        $totalCount = $annoncePublie->
+//        dd($totalCount);
 
 
         if ($form->isSubmitted())
         {
-            if (($tarifMin > $tarifMax) and ($tarifMax != null)){
-                $this->addFlash('danger', 'Erreur d\'interval');
-            }elseif ( ($tarifMin == null) and ($tarifMax != null) ){
-                $annonce = $paginator->paginate(
-                    $annonceRepository->findByTarifMax($tarifMax),
-                    $request->query->getInt('page', 1),
-                    9
-                );
-            }elseif ( ($tarifMax == null) and ($tarifMin != null) ){
             $annonce = $paginator->paginate(
-                $annonceRepository->findByTarifMin($tarifMin),
-                $request->query->getInt('page', 1),
-                9
-                );
-            }elseif ( ($tarifMax != null) and ($tarifMin != null) ){
-            $annonce = $paginator->paginate(
-                $annonceRepository->findByTarif($tarifMin, $tarifMax),
+                $annonceRepository->findByFiltre($search),
                 $request->query->getInt('page', 1),
                 9
             );
-        }
+        }else{
+            $annonce = $paginator->paginate(
+                $annonceRepository->findByPublication(true),
+                $request->query->getInt('page', 1),
+                9
+            );
         }
 
 

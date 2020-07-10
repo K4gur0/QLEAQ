@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Annonce;
+use App\Entity\AnnonceSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,33 +49,70 @@ class AnnonceRepository extends ServiceEntityRepository
             ;
     }
 
-    public function  findByTarifMin($value){
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.tarif >= :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
+//    public function  findByTarifMin($value){
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.tarif >= :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+//
+//    public function  findByTarifMax($value){
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.tarif <= :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
+//    public function  findByTarif($min, $max){
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.tarif <= :max AND a.tarif >= :min')
+//            ->setParameter('min', $min)
+//            ->setParameter('max', $max)
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
+
+    public function  findByFiltre(AnnonceSearch $search)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->andWhere('a.publicationAuth = :val')
+            ->setParameter('val', true)
+        ;
+
+        if ($search->getTarifMax()){
+            $query->andWhere('a.tarif <= :tmax')
+                ->setParameter('tmax', $search->getTarifMax())
+                ;
+        }
+
+        if ($search->getTarifMin()){
+            $query->andWhere('a.tarif >= :tmin')
+                ->setParameter('tmin', $search->getTarifMin())
+                ;
+        }
+
+        if ($search->getSuperficieMax()){
+            $query->andWhere('a.superficie >= :smax')
+                ->setParameter('smax', $search->getSuperficieMax())
             ;
+        }
+
+        if ($search->getSuperficieMin()){
+            $query->andWhere('a.superficie >= :smin')
+                ->setParameter('smin', $search->getSuperficieMin())
+            ;
+        }
+
+        return $query;
+
     }
 
-    public function  findByTarifMax($value){
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.tarif <= :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
-    public function  findByTarif($min, $max){
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.tarif <= :max AND a.tarif >= :min')
-            ->setParameter('min', $min)
-            ->setParameter('max', $max)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
 
 
     public function orderByDate()

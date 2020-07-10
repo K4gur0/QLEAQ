@@ -16,6 +16,16 @@ class AnnonceSearch
     private $TarifMax;
 
     /**
+     * @var int|null
+     */
+    private $SuperficieMin;
+
+    /**
+     * @var int|null
+     */
+    private $SuperficieMax;
+
+    /**
      * @return int|null
      */
     public function getTarifMin()
@@ -48,6 +58,42 @@ class AnnonceSearch
     public function setTarifMax($TarifMax): AnnonceSearch
     {
         $this->TarifMax = $TarifMax;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSuperficieMin()
+    {
+        return $this->SuperficieMin;
+    }
+
+    /**
+     * @param int|null $SuperficieMin
+     * @return AnnonceSearch
+     */
+    public function setSuperficieMin($SuperficieMin): AnnonceSearch
+    {
+        $this->SuperficieMin = $SuperficieMin;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSuperficieMax()
+    {
+        return $this->SuperficieMax;
+    }
+
+    /**
+     * @param int|null $SuperficieMax
+     * @return AnnonceSearch
+     */
+    public function setSuperficieMax($SuperficieMax): AnnonceSearch
+    {
+        $this->SuperficieMax = $SuperficieMax;
         return $this;
     }
 
