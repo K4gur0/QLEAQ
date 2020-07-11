@@ -34,10 +34,7 @@ class RegistrationFormType extends AbstractType
 
             ->add('telephone', TelType::class,
                 array('label' => false,
-                    'required' => true,
-                    'constraints' => [
-                            new NotBlank(['message' => 'Veuillez remplir ce champ.']),
-                        ]
+                    'required' => false,
                     )
             )
 

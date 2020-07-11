@@ -66,6 +66,13 @@ class NomadeController extends AbstractController
 
         if ($form->isSubmitted() and $form->isValid())
         {
+                $annonce = $paginator->paginate(
+                    $annonceRepository->findByFiltre($search),
+                    $request->query->getInt('page', 1),
+                    12
+                );
+        }elseif($form->isSubmitted() and !$form->isValid()){
+            $this->addFlash('error','Valeur(s) dans les filtres incorecte(s)');
             $annonce = $paginator->paginate(
                 $annonceRepository->findByFiltre($search),
                 $request->query->getInt('page', 1),
@@ -78,9 +85,6 @@ class NomadeController extends AbstractController
                 12
             );
         }
-
-
-
 
 
 

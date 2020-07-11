@@ -108,6 +108,13 @@
             </div>
         </label>
 
+{#        {% if form_errors(form) != null %}#}
+{#            <div class="notification is-danger">#}
+{#                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
+{#                {{ form_errors(form) }}#}
+{#            </div>#}
+{#        {% endif %}#}
+
         <div class="field has-addons column" style="justify-content: center">
             <p class="control">
                 <button class="button is-info" type="submit">

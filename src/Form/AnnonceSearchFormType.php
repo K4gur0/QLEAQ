@@ -18,6 +18,8 @@ class AnnonceSearchFormType extends AbstractType
             ->add('tarifMin', NumberType::class,[
                 'required' => false,
                 'label' => false,
+                'error_bubbling' => true,
+//                'invalid_message' => 'Valeur entrée non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Loyer minimum',
@@ -27,6 +29,8 @@ class AnnonceSearchFormType extends AbstractType
             ->add('tarifMax', NumberType::class,[
                 'required' => false,
                 'label' => false,
+                'error_bubbling' => true,
+//                'invalid_message' => 'Valeur entrée non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Loyer maximum',
@@ -37,6 +41,8 @@ class AnnonceSearchFormType extends AbstractType
             ->add('superficieMin', NumberType::class,[
                 'required' => false,
                 'label' => false,
+                'error_bubbling' => true,
+//                'invalid_message' => 'Valeur entrée non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Superficie minimum',
@@ -46,6 +52,8 @@ class AnnonceSearchFormType extends AbstractType
             ->add('superficieMax', NumberType::class,[
                 'required' => false,
                 'label' => false,
+                'error_bubbling' => true,
+//                'invalid_message' => 'Valeur entrée non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Superficie maximum',
