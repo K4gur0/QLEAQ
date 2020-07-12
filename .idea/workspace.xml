@@ -2,53 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d3911f-10d3-4a12-a675-745a4b9acc31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/QLEAQ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QLEAQ.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/NomadeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NomadeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AnnonceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AnnonceRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/delete_nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/delete_nomade.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/delete_proprio.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/delete_proprio.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/espace.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/espace.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/gestion_nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/gestion_nomade.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/gestion_proprio.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/gestion_proprio.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/liste_nomades.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/liste_nomades.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/liste_proprietaires.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/liste_proprietaires.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/change_password/nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/change_password/nomade.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/change_password/proprio.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/change_password/proprio.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/emails/send_confirmation_nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/emails/send_confirmation_nomade.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/annonceurs.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/annonceurs.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/cgu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/cgu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/contact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/mentions.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/mentions.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/partenariats.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/partenariats.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/presse.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/presse.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer/pro.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer/pro.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/annonceDetail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/annonceDetail.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/nomade/espace.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/espace.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/lost_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/lost_password.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/nomade/nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/nomade.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/offres.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/offres.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/presentation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/presentation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/reset_password_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/reset_password_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/add_annonce.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/add_annonce.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/delete_annonce.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/delete_annonce.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/espace.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/espace.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/lost_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/lost_password.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/presentation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/presentation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/proprio.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/proprio.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proprietaire/reset_password_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proprietaire/reset_password_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/proprio_register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/proprio_register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\QLEAQ\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -151,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="272">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding>
                 <element signature="e#12#34#0#Twig" expanded="true" />
                 <element signature="e#67#97#0#Twig" expanded="true" />
@@ -177,17 +134,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/header/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2125">
-              <caret line="179" column="77" selection-start-line="179" selection-start-column="77" selection-end-line="179" selection-end-column="77" />
+            <state relative-caret-position="310">
+              <caret line="196" column="44" lean-forward="true" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
               <folding>
                 <element signature="e#484#488#0#Twig" expanded="true" />
                 <element signature="e#2575#2585#0#Twig" expanded="true" />
                 <element signature="e#5337#5349#0#Twig" expanded="true" />
                 <element signature="e#7760#7771#0#Twig" expanded="true" />
                 <element signature="e#8078#8097#0#Twig" expanded="true" />
+                <element signature="e#8387#8401#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,8 +159,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="272">
+              <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
               <folding>
                 <element signature="e#12#34#0#Twig" expanded="true" />
               </folding>
@@ -210,11 +168,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/presentation.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="170">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="37" />
               <folding>
                 <element signature="e#12#34#0#Twig" expanded="true" />
                 <element signature="e#557#569#0#Twig" expanded="true" />
@@ -227,8 +185,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/espace.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state relative-caret-position="289">
+              <caret line="17" column="105" selection-start-line="17" selection-start-column="105" selection-end-line="17" selection-end-column="105" />
               <folding>
                 <element signature="e#2153#2184#0#HTML" expanded="true" />
                 <element signature="e#2366#2396#0#Twig" expanded="true" />
@@ -265,7 +223,6 @@
         <option value="$PROJECT_DIR$/templates/includes/add_photo_nomade_form.html.twig" />
         <option value="$PROJECT_DIR$/vendor/.env.local" />
         <option value="$PROJECT_DIR$/templates/admin/register.html.twig" />
-        <option value="$PROJECT_DIR$/templates/nomade/nomade.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/NomadeType.php" />
         <option value="$PROJECT_DIR$/templates/includes/listeAnnonces.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/footer_nomade.html.twig" />
@@ -291,11 +248,12 @@
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/ProprioController.php" />
         <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
-        <option value="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" />
-        <option value="$PROJECT_DIR$/templates/header/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/nomade/espace.html.twig" />
         <option value="$PROJECT_DIR$/templates/nomade/presentation.html.twig" />
+        <option value="$PROJECT_DIR$/templates/nomade/espace.html.twig" />
+        <option value="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" />
+        <option value="$PROJECT_DIR$/templates/nomade/nomade.html.twig" />
+        <option value="$PROJECT_DIR$/templates/header/index.html.twig" />
       </list>
     </option>
   </component>
@@ -558,12 +516,12 @@
       <workItem from="1594049983191" duration="12960000" />
       <workItem from="1594399658416" duration="12668000" />
       <workItem from="1594452810713" duration="5413000" />
-      <workItem from="1594574838840" duration="7780000" />
+      <workItem from="1594574838840" duration="8275000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166852000" />
+    <option name="totallyTimeSpent" value="167347000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -584,7 +542,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50319827" side_tool="true" weight="0.29252437" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4968017" weight="0.29252437" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4968017" visible="true" weight="0.29252437" />
       <window_info anchor="bottom" id="Floobits" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3285968" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -968,16 +926,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/includes/InfoNomade.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/presentation.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state relative-caret-position="170">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="37" />
           <folding>
             <element signature="e#12#34#0#Twig" expanded="true" />
-            <element signature="e#67#97#0#Twig" expanded="true" />
-            <element signature="e#582#656#0#HTML" expanded="true" />
-            <element signature="e#704#715#0#Twig" expanded="true" />
-            <element signature="e#637#674#0#HTML" expanded="true" />
+            <element signature="e#557#569#0#Twig" expanded="true" />
+            <element signature="e#685#697#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -995,8 +954,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/nomade/espace.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        <state relative-caret-position="289">
+          <caret line="17" column="105" selection-start-line="17" selection-start-column="105" selection-end-line="17" selection-end-column="105" />
           <folding>
             <element signature="e#2153#2184#0#HTML" expanded="true" />
             <element signature="e#2366#2396#0#Twig" expanded="true" />
@@ -1004,41 +963,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+            <element signature="e#67#97#0#Twig" expanded="true" />
+            <element signature="e#582#656#0#HTML" expanded="true" />
+            <element signature="e#704#715#0#Twig" expanded="true" />
+            <element signature="e#637#674#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/header/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="179" column="77" selection-start-line="179" selection-start-column="77" selection-end-line="179" selection-end-column="77" />
+        <state relative-caret-position="310">
+          <caret line="196" column="44" lean-forward="true" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
           <folding>
             <element signature="e#484#488#0#Twig" expanded="true" />
             <element signature="e#2575#2585#0#Twig" expanded="true" />
             <element signature="e#5337#5349#0#Twig" expanded="true" />
             <element signature="e#7760#7771#0#Twig" expanded="true" />
             <element signature="e#8078#8097#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/InfoNomade.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" selection-end-column="19" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/presentation.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="true" />
-            <element signature="e#557#569#0#Twig" expanded="true" />
-            <element signature="e#685#697#0#Twig" expanded="true" />
+            <element signature="e#8387#8401#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
