@@ -1,0 +1,68 @@
+{% extends 'header/index.html.twig' %}
+
+{% block title %}{% include 'includes/qleaq_title.html.twig' %}Mes favoris{% endblock %}
+
+{% block content %}
+
+    <section class="hero is-medium is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1>
+                    Favoris
+                </h1>
+                <h2 class="subtitle">
+                    Retrouvez sur cette page vos annonces préférées
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+
+        <div style="justify-content: space-between;display: flex;margin-bottom: .75rem">
+            <a class="button is-primary is-outlined" href="{{ path('nomade_home') }}"> <strong>Retour</strong></a>
+        </div>
+
+    <div class="is-multiline columns">
+    {% for annonce in nomade.favori %}
+        <div class="column is-one-third">
+                <div class="card">
+
+                    <header class="card-header has-background-info" style="position: relative;z-index: 1">
+                        <p class="card-header-title is-size-5 has-text-white" style="justify-content: center;position: relative">
+                            {{ annonce.titre }}
+                            {% if date(annonce.datepublication) > date('-1week') %}
+                                <span id="newAnimation" class="tag has-text-black-bis has-text-weight-bold">Nouveau</span>
+                            {% endif %}
+                        </p>
+                    </header>
+
+                    <time class="has-background-primary has-text-white" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
+
+                    <div class="card-content">
+                        <div class="content">
+                            <h4 class="is-size-6 has-text-centered"><strong>Type : {{ annonce.typelogement }}</strong> </h4>
+                            <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.superficie }}m²</strong> </h4>
+                            <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4>
+                            <h4 class="is-size-6 has-text-centered">Disponible dès le : {{ annonce.datedisponible|date('d/m/Y') }} </h4>
+                        </div>
+                    </div>
+
+                    <footer class="card-footer">
+                        <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
+                        {% if annonce in nomade.favori %}
+                            <a title="Retirer des favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}"><span class="icon"><i class="fas fa-lg fa-star"></i></span></a>
+                        {% else %}
+                            <a title="Ajouter aux favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon"><i class="far fa-lg fa-star"></i></span></a>
+                        {% endif %}
+                    </footer>
+
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+
+    </section>
+
+
+{% endblock %}

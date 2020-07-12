@@ -44,6 +44,7 @@ class AnnonceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.publicationAuth = :val')
             ->setParameter('val', $value)
+            ->orderBy('a.datePublication','DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -87,7 +88,6 @@ class AnnonceRepository extends ServiceEntityRepository
             ;
 
         return $query;
-
     }
 
 

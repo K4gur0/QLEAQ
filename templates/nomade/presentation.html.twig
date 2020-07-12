@@ -1,4 +1,4 @@
-{% extends 'home/index.html.twig' %}
+{% extends 'header/index.html.twig' %}
 
 {% block title %}
     {% include 'includes/qleaq_title.html.twig' %}Presentation Locataire
@@ -9,8 +9,11 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title is-1">
-                    Locataire avec Qleaq
+                    En rehcreche d'un hébergement ?
                 </h1>
+                <h2 class="subtitle">
+                    Informations, Offres, Contactes... retrouve tout ce que tu dois savoir en tant que locataire Qleaq
+                </h2>
 
                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
 

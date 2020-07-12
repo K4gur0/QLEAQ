@@ -212,10 +212,24 @@ class NomadeController extends AbstractController
             'nomade' => $nomade,
             'annonce' => $annonce,
         ]);
-
-
     }
 
+
+    /**
+     * @Route("/mes_favoris", name="my_favorites")
+     * @IsGranted("ROLE_USER")
+     */
+    public function myFavorites(AnnonceRepository $annonceRepository){
+
+        $nomade = $this->getUser();
+        $annonce = $annonceRepository->orderByDate();
+
+
+        return $this->render('nomade/my_favorites.html.twig', [
+            'nomade' => $nomade,
+            'annonce' => $annonce,
+        ]);
+    }
 
 
 

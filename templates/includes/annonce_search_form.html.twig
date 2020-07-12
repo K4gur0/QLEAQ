@@ -1,13 +1,25 @@
 <div style="justify-content: space-between;display: flex">
 
-    <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Accueil Locataire</strong></a>
+    <a class="button is-primary is-outlined" href="{{ path('nomade_presentation') }}"> <strong>Présentation</strong></a>
 
-    <div class="button" id="dropdown-filtres">
-        <span>Filtres</span>
-        <span class="icon is-small">
+    <div>
+        <div class="button" id="dropdown-filtres">
+            <span>Filtres</span>
+            <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
         </span>
+        </div>
+        {% set favCount = 0 %}
+        {% for annonce in nomade.favori %}
+            {% set favCount = favCount + 1 %}
+        {% endfor %}
+        {% if favCount != 0 %}
+        <a class="button is-info" href="{{ path('nomade_my_favorites') }}">
+            Mes favoris
+        </a>
+        {% endif %}
     </div>
+
 
 </div>
 
@@ -18,7 +30,7 @@
 
 
 
-    <div id="block-filtres" class="box" style="position: absolute;top: 0;z-index: 5;display: none;background: rgba(0,110,170,0.91)">
+    <div id="block-filtres" class="box" style="position: absolute;top: .75rem;z-index: 5;display: none;background: rgba(0,110,170,0.91)">
 
         {{ form_start(form) }}
 
@@ -107,13 +119,6 @@
 
             </div>
         </label>
-
-{#        {% if form_errors(form) != null %}#}
-{#            <div class="notification is-danger">#}
-{#                <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
-{#                {{ form_errors(form) }}#}
-{#            </div>#}
-{#        {% endif %}#}
 
         <div class="field has-addons column" style="justify-content: center">
             <p class="control">

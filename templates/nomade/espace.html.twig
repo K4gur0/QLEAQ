@@ -1,4 +1,4 @@
-{% extends 'home/index.html.twig' %}
+{% extends 'header/index.html.twig' %}
 
 {% block title %}{% include 'includes/qleaq_title.html.twig' %}Accueil Locataire{% endblock %}
 
@@ -14,11 +14,11 @@
             <section class="hero is-medium is-primary is-bold">
                 <div class="hero-body">
                     <div class="container">
-                        <h1 class="title">
-                            Bonjour {{ app.user.prenom }} {{ app.user.nom }} !
+                        <h1 class="title is-1>
+                            Bonjour {{ app.user.prenom }} {{ app.user.nom }} ! Bienvenue sur votre espace Locataire
                         </h1>
                         <h2 class="subtitle">
-                            Bienvenue sur votre espace Locataire
+                            Parcourrez l'ensemble des annonces sur cette page
                         </h2>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         <h1 class="title">
                             Vous n'êtes pas éligible à cette page
                         </h1>
-                        <a class="button is-large" style="margin: auto" href="{{ path('home') }}">Revenir à l'Accueil</a>
+                        <a class="button is-large" style="margin: auto" href="{{ path('header') }}">Revenir à l'Accueil</a>
                     </div>
                 </div>
             </section>

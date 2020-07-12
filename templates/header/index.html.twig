@@ -173,12 +173,17 @@
 
 
                                         <a class="button is-primary is-fullwidth" href="{{ path('nomade_presentation') }}">
-                                            <span>Accueil Locataire</span>
+                                            <span>Présentation</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
                                         <a class="button is-primary is-fullwidth" href="{{ path('nomade_home', {id: app.user.id} ) }}">
                                             <span>Annonces</span>
+                                        </a>
+
+                                        <hr class="dropdown-divider">
+                                        <a class="button is-primary is-fullwidth" href="{{ path('nomade_my_favorites') }}">
+                                            <span>Mes favoris</span>
                                         </a>
 
                                         <hr class="dropdown-divider">
