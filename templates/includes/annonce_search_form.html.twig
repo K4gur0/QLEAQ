@@ -28,7 +28,12 @@
 
 <div class="column" style="align-items: end;justify-content: end;display: flex;position: relative;">
 
-
+{#    {% if form_errors(form) != null %}#}
+{#        <div class="notification is-danger">#}
+{#            <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>#}
+{#            {{ form_errors(form) }}#}
+{#        </div>#}
+{#    {% endif %}#}
 
     <div id="block-filtres" class="box" style="position: absolute;top: .75rem;z-index: 5;display: none;background: rgba(0,110,170,0.91)">
 

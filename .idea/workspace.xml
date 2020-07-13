@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d3911f-10d3-4a12-a675-745a4b9acc31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/header/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/NomadeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NomadeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/nomade/espace.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/espace.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nomade/nomade.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/nomade/nomade.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\QLEAQ\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,42 +66,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/NomadeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="529">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
               <folding>
                 <element signature="e#33#62#0#PHP" expanded="true" />
-                <element signature="e#5738#5751#0#PHP" expanded="true" />
-                <element signature="e#6447#6460#0#PHP" expanded="true" />
-                <element signature="e#6841#6872#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ProprioController.php">
+        <entry file="file://$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-              <folding>
-                <element signature="e#2660#2674#1#PHP" expanded="true" />
-                <element signature="e#4208#4222#1#PHP" expanded="true" />
-                <element signature="e#6424#6438#1#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="620">
+              <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+        <entry file="file://$PROJECT_DIR$/src/Repository/AnnonceRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3494">
-              <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
-              <folding>
-                <element signature="e#1290#1302#1#PHP" expanded="true" />
-                <element signature="e#5624#5636#1#PHP" expanded="true" />
-                <element signature="e#10581#10593#1#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="374">
+              <caret line="52" column="55" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/AnnonceSearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-77">
+              <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -108,15 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-              <folding>
-                <element signature="e#12#34#0#Twig" expanded="true" />
-                <element signature="e#67#97#0#Twig" expanded="true" />
-                <element signature="e#582#656#0#HTML" expanded="true" />
-                <element signature="e#704#715#0#Twig" expanded="true" />
-                <element signature="e#637#674#0#HTML" expanded="true" />
-              </folding>
+            <state>
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -124,73 +114,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="102">
+              <caret line="30" selection-start-line="30" selection-start-column="2" selection-end-line="35" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#639#658#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/nomade/listeAnnonces.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+              <folding>
+                <element signature="e#1592#1613#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/header/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="196" column="44" lean-forward="true" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
-              <folding>
-                <element signature="e#484#488#0#Twig" expanded="true" />
-                <element signature="e#2575#2585#0#Twig" expanded="true" />
-                <element signature="e#5337#5349#0#Twig" expanded="true" />
-                <element signature="e#7760#7771#0#Twig" expanded="true" />
-                <element signature="e#8078#8097#0#Twig" expanded="true" />
-                <element signature="e#8387#8401#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/includes/InfoNomade.html.twig">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-              <folding>
-                <element signature="e#12#34#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/nomade/presentation.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="37" />
-              <folding>
-                <element signature="e#12#34#0#Twig" expanded="true" />
-                <element signature="e#557#569#0#Twig" expanded="true" />
-                <element signature="e#685#697#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/nomade/espace.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="105" selection-start-line="17" selection-start-column="105" selection-end-line="17" selection-end-column="105" />
+            <state relative-caret-position="561">
+              <caret line="75" column="36" lean-forward="true" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
               <folding>
-                <element signature="e#2153#2184#0#HTML" expanded="true" />
-                <element signature="e#2366#2396#0#Twig" expanded="true" />
+                <element signature="e#2372#2403#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/app.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3587">
+              <caret line="211" column="8" selection-start-line="211" selection-start-column="8" selection-end-line="211" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -205,6 +166,7 @@
       <find>footer</find>
       <find>Date</find>
       <find>date</find>
+      <find>profile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -239,21 +201,21 @@
         <option value="$PROJECT_DIR$/templates/nomade/annonceDetail.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/AnnonceSearch.php" />
         <option value="$PROJECT_DIR$/assets/css/app.scss" />
-        <option value="$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php" />
         <option value="$PROJECT_DIR$/.env.local" />
         <option value="$PROJECT_DIR$/src/Form/RegistrationFormType.php" />
         <option value="$PROJECT_DIR$/templates/nomade/listeAnnonces.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/AnnonceRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/NomadeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/ProprioController.php" />
         <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
-        <option value="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/nomade/presentation.html.twig" />
-        <option value="$PROJECT_DIR$/templates/nomade/espace.html.twig" />
         <option value="$PROJECT_DIR$/templates/nomade/my_favorites.html.twig" />
         <option value="$PROJECT_DIR$/templates/nomade/nomade.html.twig" />
         <option value="$PROJECT_DIR$/templates/header/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php" />
+        <option value="$PROJECT_DIR$/src/Repository/AnnonceRepository.php" />
+        <option value="$PROJECT_DIR$/src/Controller/NomadeController.php" />
+        <option value="$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig" />
+        <option value="$PROJECT_DIR$/templates/nomade/espace.html.twig" />
       </list>
     </option>
   </component>
@@ -415,6 +377,30 @@
             <path>
               <item name="QLEAQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="QLEAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QLEAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QLEAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QLEAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QLEAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QLEAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QLEAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QLEAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QLEAQ" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -460,7 +446,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VINNY-SF4-" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -516,18 +502,22 @@
       <workItem from="1594049983191" duration="12960000" />
       <workItem from="1594399658416" duration="12668000" />
       <workItem from="1594452810713" duration="5413000" />
-      <workItem from="1594574838840" duration="8275000" />
+      <workItem from="1594574838840" duration="8461000" />
+      <workItem from="1594641431091" duration="5000" />
+      <workItem from="1594662548119" duration="922000" />
+      <workItem from="1594665248561" duration="5941000" />
+      <workItem from="1594675761648" duration="6359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167347000" />
+    <option name="totallyTimeSpent" value="180760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15511727" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" show_stripe_button="false" weight="0.32955465" />
@@ -542,7 +532,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50319827" side_tool="true" weight="0.29252437" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4968017" visible="true" weight="0.29252437" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4968017" weight="0.29252437" />
       <window_info anchor="bottom" id="Floobits" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3285968" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -579,15 +569,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://fe57dc3d-b755-427f-88f3-76b0aa653322/schema/qleaq/table/nomade">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="b761ec32-94a7-475f-82f1-3e7fbf4b45b0">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/register.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -733,24 +714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/AnnonceSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/nomade/annonceDetail.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2363">
           <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="210" column="3" selection-start-line="210" selection-start-column="3" selection-end-line="210" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -827,41 +794,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env.local">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Annonce.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2482">
-          <caret line="110" column="47" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/listeAnnonces.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/AnnonceRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -889,43 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3494">
-          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
-          <folding>
-            <element signature="e#1290#1302#1#PHP" expanded="true" />
-            <element signature="e#5624#5636#1#PHP" expanded="true" />
-            <element signature="e#10581#10593#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ProprioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-          <folding>
-            <element signature="e#2660#2674#1#PHP" expanded="true" />
-            <element signature="e#4208#4222#1#PHP" expanded="true" />
-            <element signature="e#6424#6438#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/NomadeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#33#62#0#PHP" expanded="true" />
-            <element signature="e#5738#5751#0#PHP" expanded="true" />
-            <element signature="e#6447#6460#0#PHP" expanded="true" />
-            <element signature="e#6841#6872#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/includes/InfoNomade.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -941,63 +840,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ProprioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Annonce.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2933">
+          <caret line="110" column="47" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3587">
+          <caret line="211" column="8" selection-start-line="211" selection-start-column="8" selection-end-line="211" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="47" selection-end-column="31" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/AnnonceSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-77">
+          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/knplabs/knp-components/src/Knp/Component/Pager/PaginatorInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/AnnonceRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="52" column="55" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/AnnonceSearchFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/NomadeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="e#33#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/includes/annonce_search_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="102">
+          <caret line="30" selection-start-line="30" selection-start-column="2" selection-end-line="35" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#639#658#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/nomade/listeAnnonces.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+          <folding>
+            <element signature="e#1592#1613#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/nomade/espace.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="105" selection-start-line="17" selection-start-column="105" selection-end-line="17" selection-end-column="105" />
+        <state relative-caret-position="561">
+          <caret line="75" column="36" lean-forward="true" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
           <folding>
-            <element signature="e#2153#2184#0#HTML" expanded="true" />
-            <element signature="e#2366#2396#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/nomade.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nomade/my_favorites.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="true" />
-            <element signature="e#67#97#0#Twig" expanded="true" />
-            <element signature="e#582#656#0#HTML" expanded="true" />
-            <element signature="e#704#715#0#Twig" expanded="true" />
-            <element signature="e#637#674#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="196" column="44" lean-forward="true" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
-          <folding>
-            <element signature="e#484#488#0#Twig" expanded="true" />
-            <element signature="e#2575#2585#0#Twig" expanded="true" />
-            <element signature="e#5337#5349#0#Twig" expanded="true" />
-            <element signature="e#7760#7771#0#Twig" expanded="true" />
-            <element signature="e#8078#8097#0#Twig" expanded="true" />
-            <element signature="e#8387#8401#0#Twig" expanded="true" />
+            <element signature="e#2372#2403#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -68,6 +68,31 @@
                         {{ knp_pagination_render(annonce) }}
                     </div>
 
+                    <div class="pagination" style="justify-content: center">
+
+                        <div class="control" style="margin-right: 1.5rem">
+                                <span class="is-primary">
+                                    {{ knp_pagination_sortable(annonce, 'Superficie', 'a.superficie') }}
+                                    <i class="fas fa-sort" aria-hidden="true"></i>
+                                </span>
+                        </div>
+
+                        <div class="control" style="margin-right: 1.5rem">
+                                <span class="is-primary">
+                                    {{ knp_pagination_sortable(annonce, 'Loyer', 'a.tarif') }}
+                                    <i class="fas fa-sort" aria-hidden="true"></i>
+                                </span>
+                        </div>
+
+                        <div class="control" style="margin-right: 1.5rem">
+                                <span class="is-primary">
+                                    {{ knp_pagination_sortable(annonce, 'Date', 'a.datePublication') }}
+                                    <i class="fas fa-sort" aria-hidden="true"></i>
+                                </span>
+                        </div>
+
+                    </div>
+
                     <div class="is-multiline columns">
                         {% include('nomade/listeAnnonces.html.twig') %}
                     </div>

@@ -19,7 +19,7 @@ class AnnonceSearchFormType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'error_bubbling' => true,
-//                'invalid_message' => 'Valeur entrée non valide',
+                'invalid_message' => 'Loyer min non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Loyer minimum',
@@ -30,7 +30,7 @@ class AnnonceSearchFormType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'error_bubbling' => true,
-//                'invalid_message' => 'Valeur entrée non valide',
+                'invalid_message' => 'Loyer max non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Loyer maximum',
@@ -42,7 +42,7 @@ class AnnonceSearchFormType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'error_bubbling' => true,
-//                'invalid_message' => 'Valeur entrée non valide',
+                'invalid_message' => 'Superficie min non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Superficie minimum',
@@ -53,7 +53,7 @@ class AnnonceSearchFormType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'error_bubbling' => true,
-//                'invalid_message' => 'Valeur entrée non valide',
+                'invalid_message' => 'Superficie max non valide',
                 'attr' => [
                     'class' => 'input',
                     'title' => 'Superficie maximum',
