@@ -11,14 +11,14 @@
 
         {% if is_granted('ROLE_USER') %}
 
-            <section class="hero is-medium is-primary is-bold">
+            <section class="hero is-normal is-primary is-bold">
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title is-1">
-                            Bonjour {{ app.user.prenom }} {{ app.user.nom }} ! Bienvenue sur ton espace locataire
+                            Bonjour {{ app.user.prenom }} ! <p class="is-size-4">Bienvenue sur votre espace locataire</p>
                         </h1>
                         <h2 class="subtitle">
-                            Parcours l'ensemble des annonces sur cette page
+                            Parcourez l'ensemble des annonces sur cette page...
                         </h2>
                     </div>
                 </div>
@@ -30,15 +30,18 @@
                 {{ include('includes/annonce_search_form.html.twig') }}
 
 
-                <div>
+                {#<div>
                     <h2 class="subtitle is-3">Annonces hébergement :</h2>
-                </div>
+                </div>#}
 
                 <div class="is-flex justify-content-center align-items-center">
-                    Nombre total d'annonce : {{ compteur }}
+                    <div class="tags has-addons">
+                        <span class="tag">Nombre d'annonces trouver :</span>
+                        <span class="tag is-primary">{{ annonce.getTotalItemCount }}</span>
+                    </div>
                 </div>
 
-                <hr style="border:black 1px solid">
+                <hr style="height: 2px;color: rgba(0,0,0,1)">
 
                 <div class="columns is-centered">
                     {% include 'includes/flash_message.html.twig' %}

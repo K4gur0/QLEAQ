@@ -7,14 +7,14 @@
 
     {% if is_granted('ROLE_USER') %}
 
-        <section class="hero is-medium is-primary is-bold">
+        <section class="hero is-normal is-primary is-bold">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        Gestion du profil : {{ app.user.username }}
+                        Modifiez votre profil locataire : {{ app.user.username }}
                     </h1>
                     <h2 class="subtitle">
-                        Complète ou modifie les informations de ton profil
+                        Complétez ou modifiez les informations de votre profil
                     </h2>
                 </div>
             </div>
