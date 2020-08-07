@@ -6,11 +6,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
  * @UniqueEntity(fields={"titre"}, message="Ce titre d'annonce existe déjà, veuillez en choisir un autre.")
+ * @Vich\Uploadable
  */
 class Annonce
 {
@@ -20,6 +25,28 @@ class Annonce
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $illustration_name;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="illustrations", fileNameProperty="illustration_name")
+     * @Assert\Image(
+     *     maxSize="8Mi",
+     *     mimeTypes={"image/jpeg", "image/png", "image/pdf"},
+     *     mimeTypesMessage = "Seul les fichier jpg/jpeg/png/pdf sont acceptés")
+     * )
+     */
+    private $illustration;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -314,6 +341,59 @@ class Annonce
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getIllustrationName(): ?string
+    {
+        return $this->illustration_name;
+    }
+
+    /**
+     * @param string|null $illustration_name
+     * @return Annonce
+     */
+    public function setIllustrationName(?string $illustration_name): Annonce
+    {
+        $this->illustration_name = $illustration_name;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getIllustration(): ?File
+    {
+        return $this->illustration;
+    }
+
+    /**
+     * @param File|null $illustration
+     * @return Annonce
+     */
+    public function setIllustration(?File $illustration): Annonce
+    {
+        $this->illustration = $illustration;
+        if ($this->illustration instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+
 
     //    public function getProprio(): ?Proprietaire
 //    {

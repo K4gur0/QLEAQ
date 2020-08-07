@@ -157,6 +157,22 @@
                         </div>
                     </div>
 
+                    <div class="field">
+                        <label class="label">Illustration</label>
+
+                        <div class="" style="width: 100%;">
+
+                            {{ form_row(annonceForm.illustration, {'attr' : {'class' : 'image', 'alt' : 'images'}
+                            }) }}
+
+                        </div>
+                        
+                        {% if annonce.illustrationName %}
+                            <img src="{{ vich_uploader_asset(annonce, 'illustration') | imagine_filter('thumb') }}" alt="">
+                        {% endif %}
+
+                    </div>
+
 
                     <div class="field">
                         <label class="label">Détails</label>

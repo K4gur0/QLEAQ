@@ -99,6 +99,9 @@
     "fzaninotto/faker": {
         "version": "v1.9.1"
     },
+    "imagine/imagine": {
+        "version": "1.2.3"
+    },
     "jms/metadata": {
         "version": "2.1.0"
     },
@@ -116,6 +119,19 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "5a5bdc2d0e2533ed6935d5ae562f2b318a8fc1ee"
+        },
+        "files": [
+            "./config/packages/liip_imagine.yaml",
+            "./config/routes/liip_imagine.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "1.25.3"
@@ -417,6 +433,9 @@
             "./config/packages/swiftmailer.yaml",
             "./config/packages/test/swiftmailer.yaml"
         ]
+    },
+    "symfony/templating": {
+        "version": "v4.4.11"
     },
     "symfony/translation": {
         "version": "3.3",

@@ -39,8 +39,31 @@
 
                     <time class="has-background-primary has-text-white" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
 
-                    <div class="card-content">
-                        <div class="content">
+                    <div class="card-content"
+                            {% if annonce.illustrationname %}
+                                style="background: center / contain no-repeat url('{{ vich_uploader_asset(annonce, 'illustration') }}');background-size: cover;position: relative"
+                            {% else %}
+                                style="background:center / contain no-repeat url('{{ asset('build/images/no-image4x3.f917ed4b.jpg') }}');background-size: cover;position: relative"
+                            {% endif %}
+                    >
+                        <div style="
+                                width: 100%;height: 100%;
+                        {% if annonce.illustrationname %}
+                                background: rgb(255,255,255);
+                                background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                background: -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ffffff',GradientType=1);
+                        {% else %}
+                                background: rgba(255,255,255,0.6);
+                        {% endif %}
+                                position: absolute;top: 0;left: 0
+                                ">
+                        </div>
+
+
+
+                        <div class="content" style="position: relative">
                             <h4 class="is-size-6 has-text-centered"><strong>Type : {{ annonce.typelogement }}</strong> </h4>
                             <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.superficie }}m²</strong> </h4>
                             <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4>

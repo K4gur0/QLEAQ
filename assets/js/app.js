@@ -26,9 +26,10 @@ const offres = require('../images/svg/offres.svg');
 const gestion_nomades = require('../images/svg/gestion_nomades.svg');
 const gestion_proprios = require('../images/svg/gestion_proprios.svg');
 const gestion_admins = require('../images/svg/gestion_admins.svg');
+const no_img = require('../images/no-image4x3.jpg');
 
 
-var html = "<img src='${fondEcran}'>";
+// var html = "<img src='${fondEcran}'>";
 
 
 

@@ -3,5 +3,9 @@ vich_uploader:
 
     mappings:
         photos_nomades:
-            uri_prefix: /uploads/photos_nomades
-            upload_destination: '%kernel.project_dir%/public/uploads/photos_nomades'
+            uri_prefix: /uploads/nomades/photos
+            upload_destination: '%kernel.project_dir%/public/uploads/nomades/photos'
+        illustrations:
+            uri_prefix: /uploads/annonces/illustrations
+            upload_destination: '%kernel.project_dir%/public/uploads/annonces/illustrations'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
