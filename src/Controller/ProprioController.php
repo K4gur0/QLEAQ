@@ -108,6 +108,7 @@ class ProprioController extends AbstractController
 
             return $this->render('proprietaire/add_annonce.html.twig', [
                 'annonceForm' => $annonceForm->createView(),
+                'annonce' => $annonce,
             ]);
         }
 
