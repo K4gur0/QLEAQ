@@ -59,7 +59,7 @@
 
                         <div class="" style="width: 100%;">
 
-                            {{ form_row(annonceForm.titre, {'attr' : {'class' : 'select input', 'placeholder' : 'Entrez le titre de votre Annonce', 'alt' : 'titre'}
+                            {{ form_row(annonceForm.titre, {'attr' : {'class' : 'select input', 'onkeyup' : 'verif_nombre_max(this, 50)', 'placeholder' : 'Entrez le titre de votre Annonce', 'alt' : 'titre'}
                             }) }}
 
                         </div>
@@ -179,7 +179,7 @@
 
                         <div class="" style="width: 100%;">
 
-                            {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea','rows' : 10 , 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;' , 'alt' : 'description'}
+                            {{ form_row(annonceForm.description, {'attr' : {'class' : 'textarea','rows' : 10 , 'onkeyup' : 'verif_nombre_max(this, 1000)', 'placeholder' : 'Entrez plus de détails ici ...', 'style' : 'resize:none;' , 'alt' : 'description'}
                             }) }}
 
                         </div>
