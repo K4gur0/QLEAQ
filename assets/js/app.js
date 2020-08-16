@@ -27,6 +27,15 @@ const gestion_nomades = require('../images/svg/gestion_nomades.svg');
 const gestion_proprios = require('../images/svg/gestion_proprios.svg');
 const gestion_admins = require('../images/svg/gestion_admins.svg');
 const no_img = require('../images/no-image4x3.jpg');
+const partenaire_1 = require('../images/partenaires/Logo ACI Conseil Immobilier.png');
+const partenaire_2 = require('../images/partenaires/Logo Convergence Entrepreneurs.png');
+const partenaire_3 = require('../images/partenaires/Logo Convergence Incubateur.png');
+const partenaire_4 = require('../images/partenaires/Logo Dr House Immo.jpg');
+const partenaire_5 = require('../images/partenaires/Logo France Alumni.png');
+const partenaire_6 = require('../images/partenaires/Logo Nexity-Studéa.png');
+const partenaire_7 = require('../images/partenaires/Logo Studélites Bleu.jpeg');
+const partenaire_8 = require('../images/partenaires/Logo_Paris_8.jpg');
+
 
 
 // var html = "<img src='${fondEcran}'>";
