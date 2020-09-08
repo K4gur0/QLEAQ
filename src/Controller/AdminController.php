@@ -34,7 +34,7 @@ class AdminController extends AbstractController
     /**
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
-     * @Route("/login", name="login")
+     * @Route("/", name="login")
      */
 
     public function login(AuthenticationUtils $authenticationUtils): Response
