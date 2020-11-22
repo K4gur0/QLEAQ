@@ -167,43 +167,31 @@ class NomadeController extends AbstractController
      * @Route("/add_favorite_{id}", name="add_favorite")
      * @IsGranted("ROLE_USER")
      */
-    public function addFavorite(AnnonceRepository $annonceRepository, $id, NomadeRepository $nomadeRepository){
+    public function addFavorite(AnnonceRepository $annonceRepository, $id, NomadeRepository $nomadeRepository): Response
+    {
         $annonce = $annonceRepository->find($id);
         $nomade = $this->getUser();
+
+//      Si l'annonce est déjà aux favoris de l'utilisateur connecté, nous le retirons
+        if ($annonce->getNomades()->contains($nomade))
+        {
+            $nomade->removeFavori($annonce);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($nomade);
+            $entityManager->flush();
+            return $this->json('Annonce ' . $annonce->getTitre() . ' retirée des favories');
+        }
+
+//      Sinon, nous ajoutons l'annonce aux favoris
         $nomade->addFavori($annonce);
         $annonce->addNomade($nomade);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($nomade);
         $entityManager->persist($annonce);
         $entityManager->flush();
-
-        $this->addFlash('success', 'L\'annonce : "' . $annonce->getTitre() . '" a été ajoutée aux favoris');
-        return $this->redirectToRoute('nomade_home', [
-            'nomade' => $nomade,
-            'annonce' => $annonce,
-        ]);
-
+        return $this->json('Annonce ' . $annonce->getTitre() . ' ajoutée aux favories');
     }
 
-    /**
-     * @Route("/remove_favorite_{id}", name="remove_favorite")
-     * @IsGranted("ROLE_USER")
-     */
-    public function removeFavorite(AnnonceRepository $annonceRepository, $id){
-        $annonce = $annonceRepository->find($id);
-
-        $nomade = $this->getUser();
-        $nomade->removeFavori($annonce);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($nomade);
-        $entityManager->flush();
-
-        $this->addFlash('warning', 'L\'annonce : "' . $annonce->getTitre() . '" a été retirée de vos favoris');
-        return $this->redirectToRoute('nomade_home', [
-            'nomade' => $nomade,
-            'annonce' => $annonce,
-        ]);
-    }
 
 
     /**

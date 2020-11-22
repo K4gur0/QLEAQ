@@ -54,11 +54,11 @@
 
                 <footer class="card-footer">
                     <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
-                    {% if annonce in nomade.favori %}
-                        <a title="Retirer des favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}"><span class="icon"><i class="fas fa-lg fa-star"></i></span></a>
-                    {% else %}
-                        <a title="Ajouter aux favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon"><i class="far fa-lg fa-star"></i></span></a>
-                    {% endif %}
+{#                    {% if annonce in nomade.favori %}#}
+                        <a title="Retirer des favoris" class="card-footer-item has-text-centered js-favori" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon js-favori-color"><i class="{% if annonce in nomade.favori %}fas{% else %}far{% endif %} fa-lg fa-star"></i></span></a>
+{#                    {% else %}#}
+{#                        <a title="Ajouter aux favoris" class="card-footer-item has-text-centered js-favori" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon js-favori-color"><i class="far fa-lg fa-star"></i></span></a>#}
+{#                    {% endif %}#}
                 </footer>
 
             </div>
@@ -68,3 +68,30 @@
     {% endif %}
 
 {% endfor %}
+
+{#               SCRIPT POUR AJAX                   #}
+<script>
+
+    function addFavori(event){
+        event.preventDefault();
+
+        const url = this.href;
+        const iconFavori = this.querySelector('span.js-favori-color');
+        const iconColor = iconFavori.firstChild;
+
+        axios.get(url).then(function (response) {
+            {#   Si déja en favori   #}
+            if (iconColor.classList.contains('fas')){
+                iconColor.classList.replace('fas', 'far');
+            }else {
+                iconColor.classList.replace('far', 'fas');
+            }
+        })
+    }
+
+    let favoriButton = document.querySelectorAll('a.js-favori').forEach(function (link){
+        link.addEventListener('click' || 'touchstart', addFavori);
+    });
+
+
+</script>

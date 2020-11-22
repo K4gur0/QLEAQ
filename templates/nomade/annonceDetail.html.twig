@@ -140,9 +140,9 @@
                                         <div class="buttons" style="justify-content: end">
                                             <a class="button is-outlined is-primary" href="{{ path('nomade_home', {id: annonce.id}) }}">Retour</a>
                                             {% if annonce in nomade.favori %}
-                                                <a title="Retirer des favoris" class="button is-outlined is-warning" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
+                                            <a title="Retirer des favoris" class="button is-outlined is-warning js-favori" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Retirer des favoris</a>
                                             {% else %}
-                                                <a title="Ajouter aux favoris" class="button is-outlined is-success" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter aux favoris</a>
+                                            <a title="Ajouter des favoris" class="button is-outlined is-success js-favori" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}">Ajouter des favoris</a>
                                             {% endif %}
                                         </div>
 
@@ -153,7 +153,6 @@
 
                         </div>
 
-{#                        <hr style="border:black 1px solid">#}
 
                     {% endfor %}
 
@@ -182,6 +181,38 @@
         {% endif %}
 
     </section>
+
+    {#               SCRIPT POUR AJAX                   #}
+    <script>
+
+        function addFavori(event){
+            event.preventDefault();
+
+            const url = this.href;
+            const textFavori = this;
+
+            console.log(textFavori);
+
+            axios.get(url).then(function (response) {
+
+                if (textFavori.classList.contains('is-success')){
+                    textFavori.classList.replace('is-success', 'is-warning');
+                    textFavori.innerHTML = 'Retirer des favoris';
+                    textFavori.title = 'retirer l\'annonce de vos favoris';
+                }else if (textFavori.classList.contains('is-warning')) {
+                    textFavori.classList.replace('is-warning', 'is-success');
+                    textFavori.innerHTML = 'Ajouter aux favoris';
+                    textFavori.title = 'ajouter l\'annonce à vos favoris';
+                }
+            })
+        }
+
+        let favoriButton = document.querySelectorAll('a.js-favori').forEach(function (link){
+            link.addEventListener('click' || 'touchstart', addFavori);
+        });
+
+
+    </script>
 
 {% endblock %}
 

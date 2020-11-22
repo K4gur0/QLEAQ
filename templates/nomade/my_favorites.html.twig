@@ -17,78 +17,115 @@
         </div>
     </section>
 
-    <section class="section">
+    {% set favCount = 0 %}
+    {% for annonce in nomade.favori %}
+        {% set favCount = favCount + 1 %}
+    {% endfor %}
+    {% if favCount != 0 %}
 
-        <div style="justify-content: space-between;display: flex;margin-bottom: .75rem">
-            <a class="button is-primary is-outlined" href="{{ path('nomade_home') }}"> <strong>Retour</strong></a>
-        </div>
+        <section class="section">
 
-        <div class="container" style="margin-bottom: 1.5rem">
-            <div class="is-multiline columns">
-                {% for annonce in nomade.favori %}
-                    <div class="column is-one-third">
-                        <div class="card">
-
-                            <header class="card-header has-background-info" style="position: relative;z-index: 1">
-                                <p class="card-header-title is-size-5 has-text-white" style="justify-content: center;position: relative;text-align: center">
-                                    {{ annonce.titre }}
-                                    {% if date(annonce.datepublication) > date('-1week') %}
-                                        <span id="newAnimation" class="tag has-text-black-bis has-text-weight-bold">Nouveau</span>
-                                    {% endif %}
-                                </p>
-                            </header>
-
-                            <time class="has-background-primary has-text-white" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
-
-                            <div class="card-content"
-                                    {% if annonce.illustrationname %}
-                                        style="background: center / contain no-repeat url('{{ vich_uploader_asset(annonce, 'illustration') }}');background-size: cover;position: relative"
-                                    {% else %}
-                                        style="background:center / contain no-repeat url('{{ asset('build/images/no-image4x3.f917ed4b.jpg') }}');background-size: cover;position: relative"
-                                    {% endif %}
-                            >
-                                <div style="
-                                        opacity: .3;
-                                        width: 100%;height: 100%;
-                                {% if annonce.illustrationname %}
-                                        background: rgb(255,255,255);
-                                        background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
-                                        background: -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
-                                        background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
-                                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ffffff',GradientType=1);
-                                {% else %}
-                                        background: rgba(255,255,255,0.3);
-                                {% endif %}
-                                        position: absolute;top: 0;left: 0
-                                        ">
-                                </div>
-
-
-
-                                <div class="content" style="position: relative;background: rgba(255,255,255,0.7);padding: 5px;border-radius: .2rem;box-shadow: 0 0 10px 0px black;">
-                                    <h4 class="is-size-6 has-text-centered"><strong>Type : {{ annonce.typelogement }}</strong> </h4>
-                                    <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.superficie }}m²</strong> </h4>
-                                    <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4>
-                                    <h4 class="is-size-6 has-text-centered">Disponible dès le : {{ annonce.datedisponible|date('d/m/Y') }} </h4>
-                                </div>
-                            </div>
-
-                            <footer class="card-footer">
-                                <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
-                                {% if annonce in nomade.favori %}
-                                    <a title="Retirer des favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_remove_favorite', {id: annonce.id}) }}"><span class="icon"><i class="fas fa-lg fa-star"></i></span></a>
-                                {% else %}
-                                    <a title="Ajouter aux favoris" class="card-footer-item has-text-centered" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon"><i class="far fa-lg fa-star"></i></span></a>
-                                {% endif %}
-                            </footer>
-
-                        </div>
-                    </div>
-                {% endfor %}
+            <div style="justify-content: space-between;display: flex;margin-bottom: .75rem">
+                <a class="button is-primary is-outlined" href="{{ path('nomade_home') }}"> <strong>Retour</strong></a>
             </div>
-        </div>
 
-    </section>
+            <div class="container" style="margin-bottom: 1.5rem">
+                <div class="is-multiline columns">
+                    {% for annonce in nomade.favori %}
+                        <div class="column is-one-third">
+                            <div class="card">
 
+                                <header class="card-header has-background-info" style="position: relative;z-index: 1">
+                                    <p class="card-header-title is-size-5 has-text-white" style="justify-content: center;position: relative;text-align: center">
+                                        {{ annonce.titre }}
+                                        {% if date(annonce.datepublication) > date('-1week') %}
+                                            <span id="newAnimation" class="tag has-text-black-bis has-text-weight-bold">Nouveau</span>
+                                        {% endif %}
+                                    </p>
+                                </header>
+
+                                <time class="has-background-primary has-text-white" style="display: flex;justify-content: center;">Publiée le : {{ annonce.datepublication|date('d/m/Y') }}</time>
+
+                                <div class="card-content"
+                                        {% if annonce.illustrationname %}
+                                            style="background: center / contain no-repeat url('{{ vich_uploader_asset(annonce, 'illustration') }}');background-size: cover;position: relative"
+                                        {% else %}
+                                            style="background:center / contain no-repeat url('{{ asset('build/images/no-image4x3.f917ed4b.jpg') }}');background-size: cover;position: relative"
+                                        {% endif %}
+                                >
+                                    <div style="
+                                            opacity: .3;
+                                            width: 100%;height: 100%;
+                                    {% if annonce.illustrationname %}
+                                            background: rgb(255,255,255);
+                                            background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                            background: -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(229,229,255,0.8995799003195029) 15%, rgba(211,211,255,0.8995799003195029) 50%, rgba(229,229,255,0.8967787798713235) 85%, rgba(255,255,255,1) 100%);
+                                            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ffffff',GradientType=1);
+                                    {% else %}
+                                            background: rgba(255,255,255,0.3);
+                                    {% endif %}
+                                            position: absolute;top: 0;left: 0
+                                            ">
+                                    </div>
+
+
+
+                                    <div class="content" style="position: relative;background: rgba(255,255,255,0.7);padding: 5px;border-radius: .2rem;box-shadow: 0 0 10px 0px black;">
+                                        <h4 class="is-size-6 has-text-centered"><strong>Type : {{ annonce.typelogement }}</strong> </h4>
+                                        <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.superficie }}m²</strong> </h4>
+                                        <h4 class="is-size-6 has-text-centered"><strong>{{ annonce.tarif }}€ (CC*)</strong> </h4>
+                                        <h4 class="is-size-6 has-text-centered">Disponible dès le : {{ annonce.datedisponible|date('d/m/Y') }} </h4>
+                                    </div>
+                                </div>
+
+                                <footer class="card-footer">
+                                    <a href="{{ path('nomade_annonce_detail', {id: annonce.id}) }}" class="card-footer-item">Détails</a>
+                                    <a title="Ajouter aux favoris" class="card-footer-item has-text-centered js-favori" href="{{ path('nomade_add_favorite', {id: annonce.id}) }}"><span class="icon js-favori-color"><i class="{% if annonce in nomade.favori %}fas{% else %}far{% endif %} fa-lg fa-star"></i></span></a>
+                                </footer>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+
+    {% else %}
+        {{ include('nomade/empty_favorites.html.twig') }}
+    {% endif %}
+
+
+
+
+
+    {#               SCRIPT POUR AJAX                   #}
+    <script>
+
+        function addFavori(event){
+            event.preventDefault();
+
+            const url = this.href;
+            const iconFavori = this.querySelector('span.js-favori-color');
+            const iconColor = iconFavori.firstChild;
+
+            axios.get(url).then(function (response) {
+                {#   Si déja en favori   #}
+                if (iconColor.classList.contains('fas')){
+                    iconColor.classList.replace('fas', 'far');
+                }else {
+                    iconColor.classList.replace('far', 'fas');
+                }
+            })
+        }
+
+        let favoriButton = document.querySelectorAll('a.js-favori').forEach(function (link){
+            link.addEventListener('click' || 'touchstart', addFavori);
+        });
+
+
+    </script>
 
 {% endblock %}
+
