@@ -7,11 +7,11 @@
 
     <div class="columns is-centered">
 
-        <div class="column is-half is-full-touch" style="margin: auto">
-            <div class="card-image">
+        <div class="columns is-half is-full-touch" style="margin: auto;align-items: center">
+            <div class="card-image column is-half" style="align-self: start">
                 <div class="media-content column">
 
-                    <div class="column is-vcentered" style="margin-bottom: 30px;">
+                    <div class="column is-vcentered" style="">
 
                         <h2> <strong class="is-size-3">{{ annonce.titre }}</strong></h2>
 
@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="columns is-fullwidth is-mobile" style="justify-content: space-around;">
-                    <div><h4 class="tag is-info is-size-4">{{ annonce.typelogement }}</h4> </div>
-                    <div><h4 class="tag is-info is-size-4">{{ annonce.superficie }}m²</h4> </div>
-                    <div><h4 class="tag is-info is-size-4">{{ annonce.tarif }}€ (CC*)</h4> </div>
+                    <div><h4 class="tag is-info is-size-5">{{ annonce.typelogement }}</h4> </div>
+                    <div><h4 class="tag is-info is-size-5">{{ annonce.superficie }}m²</h4> </div>
+                    <div><h4 class="tag is-info is-size-5">{{ annonce.tarif }}€ (CC*)</h4> </div>
                 </div>
 
                 <figure class="image">
@@ -52,7 +52,7 @@
 
 
             </div>
-            <div class="card-content box">
+            <div class="column">
 
                 <div class="content">
 
@@ -150,7 +150,7 @@
         </div>
         </div>
 
-    <hr style="border:black 1px solid">
+    <hr style="border:rgba(0,0,0,0.1) 1px solid">
 
 
 
